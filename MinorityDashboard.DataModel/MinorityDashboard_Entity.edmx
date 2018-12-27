@@ -1,0 +1,871 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MinorityDasboard_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="desk_master">
+          <Key>
+            <PropertyRef Name="desk_id" />
+          </Key>
+          <Property Name="desk_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="desk_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="deskdata_trans">
+          <Key>
+            <PropertyRef Name="tran_id" />
+          </Key>
+          <Property Name="tran_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="desk_id" Type="int" />
+          <Property Name="scheme_id" Type="int" />
+          <Property Name="des_id" Type="int" />
+          <Property Name="fin_y_id" Type="int" />
+          <Property Name="sub_id" Type="int" />
+          <Property Name="est_id" Type="int" />
+          <Property Name="budgetary_provision_amt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="actual_allocation_amt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="actual_expenditure_amt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="actual_remaining_amt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="desk_officer_id" Type="int" />
+          <Property Name="createdby" Type="int" />
+          <Property Name="createddate" Type="datetime" />
+          <Property Name="updatedby" Type="int" />
+          <Property Name="updateddate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="deskdata_trans_bak">
+          <Key>
+            <PropertyRef Name="tran_bak_id" />
+          </Key>
+          <Property Name="tran_bak_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tran_id" Type="int" />
+          <Property Name="desk_id" Type="int" />
+          <Property Name="scheme_id" Type="int" />
+          <Property Name="des_id" Type="int" />
+          <Property Name="fin_y_id" Type="int" />
+          <Property Name="sub_id" Type="int" />
+          <Property Name="est_id" Type="int" />
+          <Property Name="committee_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="scheme_amount" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="deskdocuments">
+          <Key>
+            <PropertyRef Name="deskdoc_id" />
+          </Key>
+          <Property Name="deskdoc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="desk_id" Type="int" />
+          <Property Name="scheme_id" Type="int" />
+          <Property Name="des_id" Type="int" />
+          <Property Name="fin_y_id" Type="int" />
+          <Property Name="sub_id" Type="int" />
+          <Property Name="est_id" Type="int" />
+          <Property Name="doc_title" Type="nvarchar" MaxLength="1000" />
+          <Property Name="doc_filename" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="district_master">
+          <Key>
+            <PropertyRef Name="des_id" />
+          </Key>
+          <Property Name="des_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="des_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="estimation_master">
+          <Key>
+            <PropertyRef Name="est_id" />
+          </Key>
+          <Property Name="est_id" Type="int" Nullable="false" />
+          <Property Name="est_type" Type="nvarchar" MaxLength="500" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="financialyear_master">
+          <Key>
+            <PropertyRef Name="fin_y_id" />
+          </Key>
+          <Property Name="fin_y_id" Type="int" Nullable="false" />
+          <Property Name="fin_y_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="main_menu_master">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="page_url" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="menu_no" Type="int" Nullable="false" />
+          <Property Name="isactive" Type="bit" Nullable="false" />
+          <Property Name="createdby" Type="int" />
+          <Property Name="createddate" Type="datetime" />
+          <Property Name="updatedby" Type="int" />
+          <Property Name="updateddate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="menu_master">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="controller_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="isactive" Type="bit" />
+        </EntityType>
+        <EntityType Name="menu_role_mapping">
+          <Key>
+            <PropertyRef Name="map_id" />
+          </Key>
+          <Property Name="map_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_id" Type="int" />
+          <Property Name="menu_id" Type="int" />
+          <Property Name="submenu_id" Type="int" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="createdby" Type="int" />
+          <Property Name="createddate" Type="datetime" />
+          <Property Name="updatedby" Type="int" />
+          <Property Name="updateddate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="role_master">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="isactive" Type="bit" />
+        </EntityType>
+        <EntityType Name="scheme_master">
+          <Key>
+            <PropertyRef Name="scheme_id" />
+          </Key>
+          <Property Name="scheme_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sub_id" Type="int" />
+          <Property Name="desk_id" Type="int" />
+          <Property Name="scheme_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="scheme_description" Type="nvarchar(max)" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sub_menu_master">
+          <Key>
+            <PropertyRef Name="sub_menu_id" />
+          </Key>
+          <Property Name="sub_menu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu_id" Type="int" Nullable="false" />
+          <Property Name="sub_menu_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="page_url" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="sub_menu_no" Type="int" Nullable="false" />
+          <Property Name="isactive" Type="bit" Nullable="false" />
+          <Property Name="createdby" Type="int" />
+          <Property Name="createddate" Type="datetime" />
+          <Property Name="updatedby" Type="int" />
+          <Property Name="updateddate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="subject_master">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="desk_id" Type="int" />
+          <Property Name="sub_name" Type="nvarchar(max)" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="trans_docfile">
+          <Key>
+            <PropertyRef Name="doc_file_id" />
+          </Key>
+          <Property Name="doc_file_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="deskdoc_id" Type="int" />
+          <Property Name="doc_title" Type="nvarchar(max)" />
+          <Property Name="doc_filename" Type="nvarchar" MaxLength="2000" />
+          <Property Name="is_active" Type="bit" />
+        </EntityType>
+        <Function Name="CheckAuthorizeMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="pageurl" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetDeskDocuments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetDeskTransactionData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSchemeData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSubjectData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LoginByUsernamePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="MinorityDasboard_DBModelStoreContainer">
+          <EntitySet Name="desk_master" EntityType="Self.desk_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="deskdata_trans" EntityType="Self.deskdata_trans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="deskdata_trans_bak" EntityType="Self.deskdata_trans_bak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="deskdocuments" EntityType="Self.deskdocuments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="district_master" EntityType="Self.district_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estimation_master" EntityType="Self.estimation_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="financialyear_master" EntityType="Self.financialyear_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="main_menu_master" EntityType="Self.main_menu_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menu_master" EntityType="Self.menu_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menu_role_mapping" EntityType="Self.menu_role_mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role_master" EntityType="Self.role_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="scheme_master" EntityType="Self.scheme_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sub_menu_master" EntityType="Self.sub_menu_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subject_master" EntityType="Self.subject_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trans_docfile" EntityType="Self.trans_docfile" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MinorityDasboard_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="desk_master">
+          <Key>
+            <PropertyRef Name="desk_id" />
+          </Key>
+          <Property Name="desk_id" Type="Int32" Nullable="false" />
+          <Property Name="desk_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="district_master">
+          <Key>
+            <PropertyRef Name="des_id" />
+          </Key>
+          <Property Name="des_id" Type="Int32" Nullable="false" />
+          <Property Name="des_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="financialyear_master">
+          <Key>
+            <PropertyRef Name="fin_y_id" />
+          </Key>
+          <Property Name="fin_y_id" Type="Int32" Nullable="false" />
+          <Property Name="fin_y_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="scheme_master">
+          <Key>
+            <PropertyRef Name="scheme_id" />
+          </Key>
+          <Property Name="scheme_id" Type="Int32" Nullable="false" />
+          <Property Name="scheme_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+          <Property Name="sub_id" Type="Int32" />
+          <Property Name="desk_id" Type="Int32" />
+          <Property Name="scheme_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="subject_master">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="Int32" Nullable="false" />
+          <Property Name="sub_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+          <Property Name="desk_id" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="MinorityDasboard_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="desk_master" EntityType="Self.desk_master" />
+          <EntitySet Name="district_master" EntityType="Self.district_master" />
+          <EntitySet Name="financialyear_master" EntityType="Self.financialyear_master" />
+          <EntitySet Name="scheme_master" EntityType="Self.scheme_master" />
+          <EntitySet Name="subject_master" EntityType="Self.subject_master" />
+          <EntitySet Name="estimation_master" EntityType="MinorityDasboard_DBModel.estimation_master" />
+          <FunctionImport Name="GetDeskTransactionData" ReturnType="Collection(MinorityDasboard_DBModel.GetDeskTransactionData_Result)" />
+          <FunctionImport Name="GetSubjectData" ReturnType="Collection(MinorityDasboard_DBModel.GetSubjectData_Result)" />
+          <EntitySet Name="deskdocuments" EntityType="MinorityDasboard_DBModel.deskdocument" />
+          <FunctionImport Name="GetDeskDocuments" ReturnType="Collection(MinorityDasboard_DBModel.GetDeskDocuments_Result)" />
+          <EntitySet Name="menu_master" EntityType="MinorityDasboard_DBModel.menu_master" />
+          <EntitySet Name="role_master" EntityType="MinorityDasboard_DBModel.role_master" />
+          <EntitySet Name="deskdata_trans_bak" EntityType="MinorityDasboard_DBModel.deskdata_trans_bak" />
+          <EntitySet Name="trans_docfile" EntityType="MinorityDasboard_DBModel.trans_docfile" />
+          <EntitySet Name="logins" EntityType="MinorityDasboard_DBModel.login" />
+          <FunctionImport Name="LoginByUsernamePassword" ReturnType="Collection(MinorityDasboard_DBModel.LoginByUsernamePassword_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="deskdata_trans" EntityType="MinorityDasboard_DBModel.deskdata_trans" />
+          <EntitySet Name="main_menu_master" EntityType="MinorityDasboard_DBModel.main_menu_master" />
+          <EntitySet Name="sub_menu_master" EntityType="MinorityDasboard_DBModel.sub_menu_master" />
+          <FunctionImport Name="CheckAuthorizeMenu" ReturnType="Collection(MinorityDasboard_DBModel.CheckAuthorizeMenu_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="pageurl" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="menu_role_mapping" EntityType="MinorityDasboard_DBModel.menu_role_mapping" />
+          <FunctionImport Name="GetSchemeData" ReturnType="Collection(MinorityDasboard_DBModel.GetSchemeData_Result)" />
+        </EntityContainer>
+        <EntityType Name="estimation_master">
+          <Key>
+            <PropertyRef Name="est_id" />
+          </Key>
+          <Property Name="est_id" Type="Int32" Nullable="false" />
+          <Property Name="est_type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="GetDeskTransactionData_Result">
+          <Property Type="Int32" Name="tran_id" Nullable="false" />
+          <Property Type="Int32" Name="desk_id" Nullable="true" />
+          <Property Type="Int32" Name="des_id" Nullable="true" />
+          <Property Type="Int32" Name="scheme_id" Nullable="true" />
+          <Property Type="Int32" Name="fin_y_id" Nullable="true" />
+          <Property Type="Int32" Name="sub_id" Nullable="true" />
+          <Property Type="Int32" Name="est_id" Nullable="true" />
+          <Property Type="Decimal" Name="budgetary_provision_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="actual_allocation_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="actual_expenditure_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="actual_remaining_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="desk_name" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="des_name" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="est_type" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="fin_y_name" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="scheme_name" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="sub_name" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GetSubjectData_Result">
+          <Property Type="Int32" Name="sub_id" Nullable="false" />
+          <Property Type="String" Name="sub_name" Nullable="true" />
+          <Property Type="String" Name="desk_name" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="desk_id" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="deskdocument">
+          <Key>
+            <PropertyRef Name="deskdoc_id" />
+          </Key>
+          <Property Name="deskdoc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="desk_id" Type="Int32" />
+          <Property Name="scheme_id" Type="Int32" />
+          <Property Name="des_id" Type="Int32" />
+          <Property Name="fin_y_id" Type="Int32" />
+          <Property Name="sub_id" Type="Int32" />
+          <Property Name="est_id" Type="Int32" />
+          <Property Name="doc_title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="doc_filename" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetDeskDocuments_Result">
+          <Property Type="Int32" Name="deskdoc_id" Nullable="false" />
+          <Property Type="Int32" Name="desk_id" Nullable="true" />
+          <Property Type="Int32" Name="des_id" Nullable="true" />
+          <Property Type="Int32" Name="scheme_id" Nullable="true" />
+          <Property Type="Int32" Name="fin_y_id" Nullable="true" />
+          <Property Type="Int32" Name="sub_id" Nullable="true" />
+          <Property Type="Int32" Name="est_id" Nullable="true" />
+          <Property Type="String" Name="doc_title" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="doc_filename" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="desk_name" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="des_name" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="est_type" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="fin_y_name" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="scheme_name" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="sub_name" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="menu_master">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="controller_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="role_master">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="deskdata_trans_bak">
+          <Key>
+            <PropertyRef Name="tran_bak_id" />
+          </Key>
+          <Property Name="tran_bak_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tran_id" Type="Int32" />
+          <Property Name="desk_id" Type="Int32" />
+          <Property Name="scheme_id" Type="Int32" />
+          <Property Name="des_id" Type="Int32" />
+          <Property Name="fin_y_id" Type="Int32" />
+          <Property Name="sub_id" Type="Int32" />
+          <Property Name="est_id" Type="Int32" />
+          <Property Name="committee_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="scheme_amount" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="trans_docfile">
+          <Key>
+            <PropertyRef Name="doc_file_id" />
+          </Key>
+          <Property Name="doc_file_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="deskdoc_id" Type="Int32" />
+          <Property Name="doc_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="doc_filename" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="is_active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="LoginByUsernamePassword_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="role_id" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="deskdata_trans">
+          <Key>
+            <PropertyRef Name="tran_id" />
+          </Key>
+          <Property Name="tran_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="desk_id" Type="Int32" />
+          <Property Name="scheme_id" Type="Int32" />
+          <Property Name="des_id" Type="Int32" />
+          <Property Name="fin_y_id" Type="Int32" />
+          <Property Name="sub_id" Type="Int32" />
+          <Property Name="est_id" Type="Int32" />
+          <Property Name="budgetary_provision_amt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="actual_allocation_amt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="actual_expenditure_amt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="actual_remaining_amt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="desk_officer_id" Type="Int32" />
+          <Property Name="createdby" Type="Int32" />
+          <Property Name="createddate" Type="DateTime" Precision="3" />
+          <Property Name="updatedby" Type="Int32" />
+          <Property Name="updateddate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="main_menu_master">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu_name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="page_url" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="menu_no" Type="Int32" Nullable="false" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="createdby" Type="Int32" />
+          <Property Name="createddate" Type="DateTime" Precision="3" />
+          <Property Name="updatedby" Type="Int32" />
+          <Property Name="updateddate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sub_menu_master">
+          <Key>
+            <PropertyRef Name="sub_menu_id" />
+          </Key>
+          <Property Name="sub_menu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu_id" Type="Int32" Nullable="false" />
+          <Property Name="sub_menu_name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="page_url" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="sub_menu_no" Type="Int32" Nullable="false" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="createdby" Type="Int32" />
+          <Property Name="createddate" Type="DateTime" Precision="3" />
+          <Property Name="updatedby" Type="Int32" />
+          <Property Name="updateddate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="CheckAuthorizeMenu_Result">
+          <Property Type="Int32" Name="map_id" Nullable="false" />
+          <Property Type="Int32" Name="role_id" Nullable="true" />
+          <Property Type="Int32" Name="menu_id" Nullable="true" />
+          <Property Type="Int32" Name="sub_menu_id" Nullable="false" />
+          <Property Type="String" Name="sub_menu_name" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="page_url" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="sub_menu_no" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="menu_role_mapping">
+          <Key>
+            <PropertyRef Name="map_id" />
+          </Key>
+          <Property Name="map_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_id" Type="Int32" />
+          <Property Name="menu_id" Type="Int32" />
+          <Property Name="submenu_id" Type="Int32" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="createdby" Type="Int32" />
+          <Property Name="createddate" Type="DateTime" Precision="3" />
+          <Property Name="updatedby" Type="Int32" />
+          <Property Name="updateddate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="GetSchemeData_Result">
+          <Property Type="Int32" Name="desk_id" Nullable="false" />
+          <Property Type="String" Name="desk_name" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="scheme_id" Nullable="false" />
+          <Property Type="Int32" Name="sub_id" Nullable="true" />
+          <Property Type="String" Name="scheme_name" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="scheme_description" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="sub_name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ComplexType1" />
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MinorityDasboard_DBModelStoreContainer" CdmEntityContainer="MinorityDasboard_DBEntities">
+          <EntitySetMapping Name="desk_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.desk_master">
+              <MappingFragment StoreEntitySet="desk_master">
+                <ScalarProperty Name="desk_id" ColumnName="desk_id" />
+                <ScalarProperty Name="desk_name" ColumnName="desk_name" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="district_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.district_master">
+              <MappingFragment StoreEntitySet="district_master">
+                <ScalarProperty Name="des_id" ColumnName="des_id" />
+                <ScalarProperty Name="des_name" ColumnName="des_name" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="financialyear_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.financialyear_master">
+              <MappingFragment StoreEntitySet="financialyear_master">
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="fin_y_name" ColumnName="fin_y_name" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scheme_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.scheme_master">
+              <MappingFragment StoreEntitySet="scheme_master">
+                <ScalarProperty Name="scheme_description" ColumnName="scheme_description" />
+                <ScalarProperty Name="desk_id" ColumnName="desk_id" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="scheme_id" ColumnName="scheme_id" />
+                <ScalarProperty Name="scheme_name" ColumnName="scheme_name" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subject_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.subject_master">
+              <MappingFragment StoreEntitySet="subject_master">
+                <ScalarProperty Name="desk_id" ColumnName="desk_id" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="sub_name" ColumnName="sub_name" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estimation_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.estimation_master">
+              <MappingFragment StoreEntitySet="estimation_master">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="est_type" ColumnName="est_type" />
+                <ScalarProperty Name="est_id" ColumnName="est_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetDeskTransactionData" FunctionName="MinorityDasboard_DBModel.Store.GetDeskTransactionData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.GetDeskTransactionData_Result">
+                <ScalarProperty Name="tran_id" ColumnName="tran_id" />
+                <ScalarProperty Name="desk_id" ColumnName="desk_id" />
+                <ScalarProperty Name="des_id" ColumnName="des_id" />
+                <ScalarProperty Name="scheme_id" ColumnName="scheme_id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="est_id" ColumnName="est_id" />
+                <ScalarProperty Name="budgetary_provision_amt" ColumnName="budgetary_provision_amt" />
+                <ScalarProperty Name="actual_allocation_amt" ColumnName="actual_allocation_amt" />
+                <ScalarProperty Name="actual_expenditure_amt" ColumnName="actual_expenditure_amt" />
+                <ScalarProperty Name="actual_remaining_amt" ColumnName="actual_remaining_amt" />
+                <ScalarProperty Name="desk_name" ColumnName="desk_name" />
+                <ScalarProperty Name="des_name" ColumnName="des_name" />
+                <ScalarProperty Name="est_type" ColumnName="est_type" />
+                <ScalarProperty Name="fin_y_name" ColumnName="fin_y_name" />
+                <ScalarProperty Name="scheme_name" ColumnName="scheme_name" />
+                <ScalarProperty Name="sub_name" ColumnName="sub_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSubjectData" FunctionName="MinorityDasboard_DBModel.Store.GetSubjectData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.GetSubjectData_Result">
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="sub_name" ColumnName="sub_name" />
+                <ScalarProperty Name="desk_name" ColumnName="desk_name" />
+                <ScalarProperty Name="desk_id" ColumnName="desk_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="deskdocuments">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.deskdocument">
+              <MappingFragment StoreEntitySet="deskdocuments">
+                <ScalarProperty Name="doc_filename" ColumnName="doc_filename" />
+                <ScalarProperty Name="doc_title" ColumnName="doc_title" />
+                <ScalarProperty Name="est_id" ColumnName="est_id" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="des_id" ColumnName="des_id" />
+                <ScalarProperty Name="scheme_id" ColumnName="scheme_id" />
+                <ScalarProperty Name="desk_id" ColumnName="desk_id" />
+                <ScalarProperty Name="deskdoc_id" ColumnName="deskdoc_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetDeskDocuments" FunctionName="MinorityDasboard_DBModel.Store.GetDeskDocuments">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.GetDeskDocuments_Result">
+                <ScalarProperty Name="deskdoc_id" ColumnName="deskdoc_id" />
+                <ScalarProperty Name="desk_id" ColumnName="desk_id" />
+                <ScalarProperty Name="des_id" ColumnName="des_id" />
+                <ScalarProperty Name="scheme_id" ColumnName="scheme_id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="est_id" ColumnName="est_id" />
+                <ScalarProperty Name="doc_title" ColumnName="doc_title" />
+                <ScalarProperty Name="doc_filename" ColumnName="doc_filename" />
+                <ScalarProperty Name="desk_name" ColumnName="desk_name" />
+                <ScalarProperty Name="des_name" ColumnName="des_name" />
+                <ScalarProperty Name="est_type" ColumnName="est_type" />
+                <ScalarProperty Name="fin_y_name" ColumnName="fin_y_name" />
+                <ScalarProperty Name="scheme_name" ColumnName="scheme_name" />
+                <ScalarProperty Name="sub_name" ColumnName="sub_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="menu_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.menu_master">
+              <MappingFragment StoreEntitySet="menu_master">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="controller_name" ColumnName="controller_name" />
+                <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.role_master">
+              <MappingFragment StoreEntitySet="role_master">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="deskdata_trans_bak">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.deskdata_trans_bak">
+              <MappingFragment StoreEntitySet="deskdata_trans_bak">
+                <ScalarProperty Name="scheme_amount" ColumnName="scheme_amount" />
+                <ScalarProperty Name="committee_amount" ColumnName="committee_amount" />
+                <ScalarProperty Name="est_id" ColumnName="est_id" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="des_id" ColumnName="des_id" />
+                <ScalarProperty Name="scheme_id" ColumnName="scheme_id" />
+                <ScalarProperty Name="desk_id" ColumnName="desk_id" />
+                <ScalarProperty Name="tran_id" ColumnName="tran_id" />
+                <ScalarProperty Name="tran_bak_id" ColumnName="tran_bak_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trans_docfile">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.trans_docfile">
+              <MappingFragment StoreEntitySet="trans_docfile">
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="doc_filename" ColumnName="doc_filename" />
+                <ScalarProperty Name="doc_title" ColumnName="doc_title" />
+                <ScalarProperty Name="deskdoc_id" ColumnName="deskdoc_id" />
+                <ScalarProperty Name="doc_file_id" ColumnName="doc_file_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logins">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.login">
+              <MappingFragment StoreEntitySet="login">
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="LoginByUsernamePassword" FunctionName="MinorityDasboard_DBModel.Store.LoginByUsernamePassword">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.LoginByUsernamePassword_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="deskdata_trans">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.deskdata_trans">
+              <MappingFragment StoreEntitySet="deskdata_trans">
+                <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="desk_officer_id" ColumnName="desk_officer_id" />
+                <ScalarProperty Name="actual_remaining_amt" ColumnName="actual_remaining_amt" />
+                <ScalarProperty Name="actual_expenditure_amt" ColumnName="actual_expenditure_amt" />
+                <ScalarProperty Name="actual_allocation_amt" ColumnName="actual_allocation_amt" />
+                <ScalarProperty Name="budgetary_provision_amt" ColumnName="budgetary_provision_amt" />
+                <ScalarProperty Name="est_id" ColumnName="est_id" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="des_id" ColumnName="des_id" />
+                <ScalarProperty Name="scheme_id" ColumnName="scheme_id" />
+                <ScalarProperty Name="desk_id" ColumnName="desk_id" />
+                <ScalarProperty Name="tran_id" ColumnName="tran_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="main_menu_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.main_menu_master">
+              <MappingFragment StoreEntitySet="main_menu_master">
+                <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="menu_no" ColumnName="menu_no" />
+                <ScalarProperty Name="page_url" ColumnName="page_url" />
+                <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sub_menu_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.sub_menu_master">
+              <MappingFragment StoreEntitySet="sub_menu_master">
+                <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="sub_menu_no" ColumnName="sub_menu_no" />
+                <ScalarProperty Name="page_url" ColumnName="page_url" />
+                <ScalarProperty Name="sub_menu_name" ColumnName="sub_menu_name" />
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="sub_menu_id" ColumnName="sub_menu_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CheckAuthorizeMenu" FunctionName="MinorityDasboard_DBModel.Store.CheckAuthorizeMenu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.CheckAuthorizeMenu_Result">
+                <ScalarProperty Name="map_id" ColumnName="map_id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="sub_menu_id" ColumnName="sub_menu_id" />
+                <ScalarProperty Name="sub_menu_name" ColumnName="sub_menu_name" />
+                <ScalarProperty Name="page_url" ColumnName="page_url" />
+                <ScalarProperty Name="sub_menu_no" ColumnName="sub_menu_no" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="menu_role_mapping">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.menu_role_mapping">
+              <MappingFragment StoreEntitySet="menu_role_mapping">
+                <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="submenu_id" ColumnName="submenu_id" />
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="map_id" ColumnName="map_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetSchemeData" FunctionName="MinorityDasboard_DBModel.Store.GetSchemeData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.GetSchemeData_Result">
+                <ScalarProperty Name="desk_id" ColumnName="desk_id" />
+                <ScalarProperty Name="desk_name" ColumnName="desk_name" />
+                <ScalarProperty Name="scheme_id" ColumnName="scheme_id" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="scheme_name" ColumnName="scheme_name" />
+                <ScalarProperty Name="sub_name" ColumnName="sub_name" />
+                <ScalarProperty Name="scheme_description" ColumnName="scheme_description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

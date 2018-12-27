@@ -1,0 +1,225 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minority Department</title>
+    <link href="../../Website_Assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../../Website_Assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../../Website_Assets/css/mdstyle.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../../Website_Assets/css/responsive-carousel.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <!--//fonts-->
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Revenant Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+		Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <!-- js -->
+    <script type="text/javascript" src="../../Website_Assets/js/jquery.min.js"></script>
+    <!-- js -->
+    <!-- start-smooth-scrolling -->
+    <script type="text/javascript" src="../../Website_Assets/js/move-top.js"></script>
+    <script type="text/javascript" src="../../Website_Assets/js/easing.js"></script>
+    <script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+    </script>
+    <!-- start-smooth-scrolling -->
+
+</head>
+<body>
+    <!-- header -->
+
+    <div id="HeaderMain1_topLinks" class="topLinks top-links-shadow">
+        <div class="container ">
+            <ul class="other_links">
+
+                <li class="m_hide">
+                    <a href=@Url.Action("Login","Account") target="_blank"><span id="HeaderMain1_lbl_skipToNav">  Login</span></a>
+                </li>
+
+
+                <!-- <li class="m_hide"><a href="#Navigation">
+                    <span id="HeaderMain1_lbl_skipToNav">Skip to Navigation</span></a></li>
+                <li class="m_hide"><a href="#Content">
+                    <span id="HeaderMain1_lbl_skipToContent">Skip to Content</span></a></li> -->
+
+                <li class="m_hide"><input type="submit" name="ctl00$HeaderMain1$SetCulture1$btn_Smallest" value="A--" id="HeaderMain1_SetCulture1_btn_Smallest" title="Set to Smallest Font" class="btnResizer"></li>
+                <li class="m_hide"><input type="submit" name="ctl00$HeaderMain1$SetCulture1$btn_Small" value="A-" id="HeaderMain1_SetCulture1_btn_Small" title="Set to Smaller Font" class="btnResizer"></li>
+                <li class="m_hide"><input type="submit" name="ctl00$HeaderMain1$SetCulture1$btn_Medium" value="A" id="HeaderMain1_SetCulture1_btn_Medium" title="Set to Medium Font" class="btnResizer"></li>
+                <li class="m_hide"><input type="submit" name="ctl00$HeaderMain1$SetCulture1$btn_Large" value="A+" id="HeaderMain1_SetCulture1_btn_Large" title="Set to Larger Font" class="btnResizer"></li>
+                <li class="m_hide"><input type="submit" name="ctl00$HeaderMain1$SetCulture1$btn_Larger" value="A++" id="HeaderMain1_SetCulture1_btn_Larger" title="Set to Largest Font" class="btnResizer"></li>
+                <li class="m_hide"><input type="submit" name="ctl00$HeaderMain1$SetCulture1$btnABlack" value="A" id="HeaderMain1_SetCulture1_btnABlack" title="High Contrast" class="btnBlack"></li>
+                <li class="m_hide" style="background:none !important"><input type="submit" name="ctl00$HeaderMain1$SetCulture1$btnAWhite" value="A" id="HeaderMain1_SetCulture1_btnAWhite" title="Low Contrast" class="btnWhite"></li>
+                <li>
+                    <center>
+                        <select name="ctl00$HeaderMain1$SetCulture1$DDL_Language" onchange="javascript:setTimeout('__doPostBack(\'ctl00$HeaderMain1$SetCulture1$DDL_Language\',\'\')', 0)" id="HeaderMain1_SetCulture1_DDL_Language" class="searchBG" style="height:18px;width:131px;">
+                            <option value="मराठी">मराठी</option>
+                            <option selected="selected" value="English">English</option>
+                            <!-- <option value="हिन्दी">हिन्दी</option> -->
+
+                        </select>
+                    </center>
+                </li>
+
+
+            </ul>
+            <div class="searchBox">
+                <label id="HeaderMain1_lblSearchBTN" class="btnDisplay" for="HeaderMain1_searchTxtBox">Search</label>
+                <input name="ctl00$HeaderMain1$searchTxtBox" type="text" value="Search here" id="HeaderMain1_searchTxtBox" class="searchBG" autocomplete="off" onclick="this.value = ( this.value == this.defaultValue ) ? '' : this.value;return true;">
+                <input type="submit" name="ctl00$HeaderMain1$Search_btn" value="Search" id="HeaderMain1_Search_btn" class="searchBTN">
+                <div class="clear">
+                </div>
+            </div>
+
+
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    
+    <!-- //header -->
+    <!-- logo -->
+    <div class="container">
+        <header>
+            <div class="col-md-3 text"><img src="../../Website_Assets/images/master/maharashtra-logo.png" alt="#" class="maharashtra-logo"></div>
+            <div class="col-md-6 text-center"><h1 class="center">MINORITY DEPARTMENT</h1><!-- <img src="img/Minoritydashboard.jpg" alt="#" class="txt-minority"> --></div>
+            <div class="col-md-3 text-right"><img src="../../Website_Assets/images/master/emblem.png" alt="#" class="gov-maharashtra-logo"></div>
+            <div class="clear"></div>
+        </header>
+    </div>
+    <!-- //logo -->
+    <!-- navigation -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-4">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- <a class="navbar-brand" href="#">Brand</a> -->
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-collapse-4">
+                <ul class="nav navbar-nav navbar">
+                    <li> <a href=@Url.Action("Index","Website")>Home</a></li>
+                    <li> <a href=@Url.Action("About","Website")>About</a></li>
+                    <li> <a href=@Url.Action("CitizenCharter","Website")>Citizen Charter</a></li>
+                    <li> <a href=@Url.Action("Schemes","Website")>Schemes</a></li>
+                    <li> <a href=@Url.Action("GRandAct","Website")>GR/Act</a></li>
+                    <li> <a href=@Url.Action("OrganizationStructure","Website")>Organization Structure</a></li>
+                    <li> <a href=@Url.Action("Gallery","Website")>Gallery</a></li>
+                    @*<li> <a href=@Url.Action("NewsRoom","Website")>Newsroom</a></li>*@
+                    <li> <a href=@Url.Action("DepartmentInformation","Website")>Department Info</a></li>
+                    <li> <a href=@Url.Action("Contact","Website")>Contact</a></li>
+
+                </ul>
+                <ul class="collapse nav navbar-nav nav-collapse slide-down" role="search" id="nav-collapse4">
+                    <li><a href="#">Support</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="img-circle" src="https://pbs.twimg.com/profile_images/588909533428322304/Gxuyp46N.jpg" alt="maridlcrmn" width="20"> Maridlcrmn <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">My profile</a></li>
+                            <li><a href="#">Favorited</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+    <!-- //navigation -->
+    <!-- banner -->
+  @RenderBody()
+    
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-xs-12 mtop20">
+                    <div id="FooterMenu1_Footermenu1">
+                        <ul class="bottomLink list-inline"></ul>
+                    </div>
+                    <span id="FooterMenu1_lbl_copyright">This is the official website of Minority Department, <br><span> Government of Maharashtra. ©2018 All Rights Reserved.</span></span>
+
+
+                </div>
+
+                <div class="col-md-2 col-xs-12">
+                    <ul class="pull-right logo-list">
+                        <li><a href="#"><span id="FooterMenu1_lbl_developedby">Developed By :</span></a></li>
+                        <li>
+                            <a class="maintan ExternalLinkClick" href="https://www.mahait.org" target="_blank">
+                                <img src="../../Website_Assets/Images/master/MahaIT_Trans.png" alt="">
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col-md-5 col-xs-12 mtop20">
+                    <ul class="pull-right logo-list">
+                        <li>
+                            <span id="FooterMenu1_lblTotalVisitHeading">Total Visitors :</span>
+                            <span class="color-cyan">  <span id="FooterMenu1_lblCounter">4585</span></span>
+                        </li>
+                        <li>
+                            <span id="FooterMenu1_lblTodayVisitHeading">Today's Count</span>
+                            <span class="color-cyan"> <span id="FooterMenu1_lbltodayCount">5</span></span>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear'
+				};
+			*/
+
+			$().UItoTop({ easingType: 'easeOutQuart' });
+
+			});
+    </script>
+    <!-- //here ends scrolling icon -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="../../Website_Assets/js/bootstrap.min.js"></script>
+    <script src="../../Website_Assets/js/responsive-carousel.js"></script>
+    <script>
+
+	// Custom options for the carousel
+	var args = {
+		arrowRight : '.arrow-right',
+		arrowLeft : '.arrow-left',
+		speed : 700,
+		slideDuration : 4000
+	};
+	// start BannerSlide
+	$('.carousel').BannerSlide(args);
+
+    </script>
+</body>
+</html>

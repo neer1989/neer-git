@@ -1,0 +1,120 @@
+header{background: #fff;height:auto;webkit-box-shadow: 0 14px 10px 0px #1c2331;/* -moz-box-shadow: 0 14px 10px 0px #777;box-shadow: 0 10px 8px 0px #1c2331; */ margin:0 auto; padding-bottom:5px;}
+header img {max-width:100%;}
+.main-content{margin-top:2%; margin-bottom:2%; background-color:}
+.clear{clear:both;}
+
+body{font-family: 'Montserrat', sans-serif; background:#3c4858}
+
+/*Table Style*/
+h3{margin:5px;padding: 5px;}
+
+.btn-custom{border: none;}
+
+#toolbar-admin{display: none;}
+
+.padding{margin: 0px 30px 30px 30px; width: -webkit-fill-available;}
+/*Table Style*/
+
+h1{font-family: 'Roboto', sans-serif;font-size: 375%;font-weight: 800;color:#3c4858;}
+/* h3 {font-family: 'Montserrat', sans-serif;font-size: 24px;font-weight: 600;margin: 5px 10px 0px 7px;}
+h5 {font-size: 14px;color: #424242;margin-left: 10px;font-weight: 600;} */
+
+.data {font-family: open sans;background: #efefef;padding: 1px;border-radius: 5px;margin-bottom: 3%;box-shadow: 0 10px 10px -5px #1C2331;font-size: 12px; font-size: 14px;
+}
+
+/* .desk {background: #fff;border-radius: 5px; padding: 15px;margin-bottom: 3%;box-shadow: 0 10px 10px -5px #1C2331;font-size: 14px; transition:all 200ms ease-in-out}
+.desk:hover{background: #fff;border-radius: 5px; padding: 15px;margin-bottom: 3%;box-shadow: 0 30px 30px -5px #212121;font-size: 14px; transform: scale(1.01);} */
+
+.main-desk{ width:100%; margin:20px auto 20px auto;}
+/* .aside-desk{background: #ff4444;;padding: 10px 20px;color: #fff; border: 1px solid #ffffff; margin-bottom:6%; margin-top:20px; border-radius:5px;box-shadow: 0 10px 10px -5px #cccccc;}
+.aside-desk h5{font-weight:bold; margin:5px auto; color: #007F7E;} */
+.show-data{text-align:center; font-size:20px;font-weight: normal;cursor: pointer;}
+.show-data-radius{border-radius: 10px;}
+.footer{ background-color:#fff;width:100%;height:auto;margin:0 auto;box-shadow: 0 8px 6px -6px grey; color:#fff; text-align:center;}
+.footer p {padding:5px 0px; font-size:16px; color:#3c4858}
+.txt-minority{width:550px;padding-top:25px;}
+.maharashtra-logo{width:90px;height;112px;}
+.gov-maharashtra-logo{width: 65px;height: 110px;}
+.top-header{background:#3c4858; padding:5px 0px; color:#fff;}
+.top-header-bar{margin: 0 auto;width: 78%;text-align: right;}
+.top-header-bar a { color:#fff; padding:0px 5px;text-decoration: none;}
+@media screen and (max-width: 767px) {	
+	.footer{ background-color:#fff;width:100%;height:auto;margin:0 auto;box-shadow: 0 8px 6px -6px grey;bottom:5px; position:relative;}
+	.txt-minority{width:70%; padding-top:0px;}
+	.maharashtra-logo{width:60px;height:72px;}
+	.gov-maharashtra-logo{width:45px;height:72px !important;}
+	.show-data{text-align:center; font-size:16px;font-weight: normal;cursor: pointer;}
+	.top-header-bar{margin: 0 auto;width: 100%;text-align: center;}
+	h1{font-size: 300%;font-weight: bold;color:#3c4858;margin-top: 12px;}
+}
+
+/*Panels*/
+
+.panel-primary {
+   /*  border-color: #33b5e5; */
+}
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    /* border: 1px solid transparent; */
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #33b5e5;
+    border-color: #33b5e5;
+}
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.panel-variant(@border; @heading-text-color; @heading-bg-color; @heading-border) {
+  border-color: @border;
+
+  & > .panel-heading {
+    color: @heading-text-color;
+    background-color: @heading-bg-color;
+    border-color: @heading-border;
+
+    + .panel-collapse > .panel-body {
+      border-top-color: @border;
+    }
+    .badge {
+      color: @heading-bg-color;
+      background-color: @heading-text-color;
+    }
+  }
+  & > .panel-footer {
+    + .panel-collapse > .panel-body {
+      border-bottom-color: @border;
+    }
+  }
+}
+/*Panels*/
+
+
+
+/* .aside-deskh:hover{background-color: rgb(139, 195, 74) !important; color:#000;}
+.desk01 h5:hover, .desk02 h5:hover{font-weight: bold;margin: 8px 5px 0 5px;	padding: 7px 15px 7px 15px;border-radius: 5px; width: fit-content;   background-color: #fff;color: color: #007F7E;} 
+ */
+/* .show-data-bg{background:#606060;}.show-doc-bg{background:#3b5999;}
+
+#btn{margin: 5px 0; width:100%;height:auto;border:1px solid #ffffff;} */
+
+/* .table{margin-bottom:0px;border:0px;}
+
+#fill{
+	width: -webkit-fill-available;width: -moz-available;margin: 10px;}
+
+.desk1{color:#e65100}.desk2{color:#0d47a1}.desk3{color:#007E33}.desk4{color:#880e4f}.desk5{color:#827717}.desk6{color:#dd2c00}.desk7{color:#3e2723}.desk8{color:#006064}.desk9{color:#1b5e20}
+ */
+@media (min-width: 768px){
+	.col-sm-6 {margin-bottom: 20px;}
+	h1{font-size: 275%;font-weight: bold;color: #3c4858;margin-top: 38px;}
+	

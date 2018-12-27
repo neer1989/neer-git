@@ -1,0 +1,283 @@
+﻿@model MinorityDashboardWeb.Models.DashboardModel
+@{
+    ViewBag.Title = "DeskData";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    decimal CAmtTotal = 0;
+    decimal SAmtTotal = 0;
+
+    decimal ExpendAmtTotal = 0;
+    decimal ActualAmtTotal = 0;
+
+}
+
+
+<style type="text/css">
+
+
+    .nav-tabs-custom {
+        margin-bottom: 20px;
+        background: #fff;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        border-radius: 3px;
+    }
+
+    .nav nav-tabs {
+        margin: 0;
+        border-bottom-color: #f4f4f4;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
+        .nav nav-tabs li {
+            border-top: 3px solid transparent;
+            border-top-color: transparent;
+            margin-bottom: 0px;
+            margin-right: 5px;
+            border-top-color: #3c8dbc;
+        }
+
+            .nav nav-tabs li a {
+                position: relative;
+                display: block;
+                padding: 10px 15px;
+            }
+
+    .activetab {
+        background-color: #f9dfb3;
+    }
+</style>
+
+
+<div class="card mx-1 mt-12">
+
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs" id="ulclr">
+            <li class="btnxxx activetab"><a href="#fa-icons" data-toggle="tab" style="position: relative;display: block;padding: 10px 15px;">Insert Data</a></li>
+            <li class="btnxxx"><a href="#glyphicons" data-toggle="tab" style="position: relative;display: block; padding: 10px 15px;">View Data</a></li>
+        </ul>
+        <div class="tab-content">
+            <!-- Font Awesome Icons -->
+            <div class="tab-pane active" id="fa-icons">
+                <div class="card-header">Desk Data</div>
+
+                @using (Html.BeginForm("DeskData", "Admin", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    @Html.HiddenFor(s => s.tran_id)
+
+                <div class="card-body">
+
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Desk Name</label>
+
+                                @Html.DropDownListFor(s => s.desk_id, Model.lstDesk, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Scheme Name</label>
+                                @Html.DropDownListFor(s => s.scheme_id, Model.lstScheme, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputName">District</label>
+                                @Html.DropDownListFor(s => s.des_id, Model.lstDistrict, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Financil Year</label>
+
+                                @Html.DropDownListFor(s => s.fin_y_id, Model.lstFinancialYear, new { @class = "form-control" })
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Subject</label>
+
+                                @Html.DropDownListFor(s => s.sub_id, Model.lstSubject, new { @class = "form-control" })
+
+
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Estimation</label>
+                                @Html.DropDownListFor(s => s.est_id, Model.lstEstimatipn, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Budgetary Provision Amount</label>
+
+                                @Html.TextBoxFor(model => model.budgetary_provision_amt, new { @class = "form-control", id = "budgetary_provision_amt", placeholder = "Budgetary Provision Amount" })
+
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Actual Allocation Amount</label>
+
+                                @Html.TextBoxFor(model => model.actual_allocation_amt, new { @class = "form-control", id = "actual_allocation_amt", placeholder = "Actual Allocation Amount" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Actual Expenditure Amount</label>
+
+                                @Html.TextBoxFor(model => model.actual_expenditure_amt, new { @class = "form-control", id = "actual_expenditure_amt", placeholder = "Actual Expenditure Amount" })
+
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Actual Remaining Amount</label>
+
+                                @Html.TextBoxFor(model => model.actual_remaining_amt, new { @class = "form-control", id = "actual_remaining_amt", placeholder = "Actual Remaining Amount", @readonly=true })
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <div class="form-row">
+
+                            <div class="col-md-6">
+                                <label for="exampleInputName"></label>
+
+                                @if (Model.tran_id > 0)
+                                {
+                                    <input type="submit" value="Update" class="btn btn-primary btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                                }
+                                else
+                                {
+                                    <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                                }
+                            </div>
+                            <div class="col-md-6">
+                                <a href=@Url.Action("DeskData","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                }
+            </div>
+            <!-- /#fa-icons -->
+            <!-- glyphicons-->
+            <div class="tab-pane" id="glyphicons">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> Desk View
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+
+                                        <th>Desk Name</th>
+                                        <th>Budgetary Provision</th>
+                                        <th>Actual Allocation</th>
+                                        <th>Actual Expenditure</th>
+                                        <th>Actual Remaining</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var X in Model.lstDeskTransData)
+                                    {
+                                        CAmtTotal = CAmtTotal + Convert.ToDecimal(X.budgetary_provision_amt);
+                                        SAmtTotal = SAmtTotal + Convert.ToDecimal(X.actual_allocation_amt);
+                                        ExpendAmtTotal = ExpendAmtTotal + Convert.ToDecimal(X.actual_expenditure_amt);
+                                        ActualAmtTotal = ActualAmtTotal + Convert.ToDecimal(X.actual_remaining_amt);
+
+                                    <tr>
+
+                                        <td>@X.desk_name</td>
+                                        <td>@X.budgetary_provision_amt</td>
+                                        <td>@X.actual_allocation_amt</td>
+                                        <td>@X.actual_expenditure_amt</td>
+                                        <td>@X.actual_remaining_amt</td>
+                                        <td> @Html.ActionLink("Edit", "EditDeskTrans", new { id = X.tran_id })  |  @Html.ActionLink("Delete", "DeletDeskTrans", new { id = X.tran_id }) </td>
+                                    </tr>
+                                    }
+
+                                </tbody>
+                                <tfoot style="background-color: #e7e4e1;">
+                                    <tr>
+                                        <td> <b>Total</b> </td>
+                                        <td> <b>@CAmtTotal</b> </td>
+                                        <td><b> @SAmtTotal</b> </td>
+                                        <td> <b>@ExpendAmtTotal</b> </td>
+                                        <td><b> @ActualAmtTotal</b> </td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /#ion-icons -->
+        </div>
+        <!-- /.tab-content -->
+    </div>
+    <!-- /.nav-tabs-custom -->
+    <!-- /.col -->
+</div>
+
+<script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("ulclr");
+    var btns = header.getElementsByClassName("btnxxx");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("activetab");
+            current[0].className = current[0].className.replace(" activetab", "");
+            this.className += " activetab";
+        });
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#actual_expenditure_amt").keyup(function () {
+            var actual_alloc_amt = $("#actual_allocation_amt").val();
+            var actual_exp_amt = $("#actual_expenditure_amt").val();
+
+            var actual_rem_amt = $("#actual_remaining_amt").val();
+
+            if (actual_alloc_amt != "" && actual_alloc_amt > 0 && actual_alloc_amt > actual_exp_amt) {
+             
+                //$("#actual_remaining_amt").value = 0;
+                if (actual_exp_amt != "")                
+                $('#actual_remaining_amt').val((parseFloat(actual_alloc_amt) - parseFloat(actual_exp_amt)).toString());
+            }
+        });
+    });
+</script>

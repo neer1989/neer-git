@@ -1,0 +1,101 @@
+﻿@model MinorityDashboardWeb.Models.DashboardModel
+@{
+    ViewBag.Title = "DashboardData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal CAmtTotal = 0;
+    decimal SAmtTotal = 0;
+}
+
+<link href="../Website_Assets/css/table_style.css" rel="stylesheet" />
+
+@*<div class="card mb-3" style="background-color:#fff;padding:20px">*@
+
+<div class="container" style="background-color:#fff">
+
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3>
+                    Desk View
+                    <div class="pull-right">
+                        <button id="btn-admin" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Export</button>
+                    </div>
+                </h3>
+            </div>
+        </div>
+
+        @*<div class="card-header" style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;background-color: #dbd8d8;">
+
+                <ul style="list-style-type:none">
+                    <li style="float:left"><i class="fa fa-table"></i> Desk View</li>
+                    <li style="float:right">  </li>
+                    <li style="float:right">  <input type="button" id="btnExport" value="Export" /></li>
+                </ul>
+            </div>*@
+
+        <div class="padding">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+
+                            <th>Desk</th>
+                            <th>District</th>
+                            <th>Committed Amount</th>
+                            <th>Scheme Amount</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var X in Model.lstDeskTransData)
+                        {
+                            CAmtTotal = CAmtTotal + Convert.ToDecimal(X.committee_amount);
+                            SAmtTotal = SAmtTotal + Convert.ToDecimal(X.scheme_amount);
+                            <tr>
+
+                                <td>@X.desk_name</td>
+                                <td>@X.des_name</td>
+                                <td>@X.committee_amount</td>
+                                <td>@X.scheme_amount</td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"> <b>Total</b> </td>
+                            <td> <b>@CAmtTotal</b> </td>
+                            <td> <b>@SAmtTotal</b> </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+    <!-- /#ion-icons -->
+
+
+
+    <script src="../Admin_Assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../Website_Assets/js/table2excel.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btnExport").click(function () {
+                $("#dataTable").table2excel({
+                    filename: "Table.xls"
+                });
+            });
+        });
+    </script>
+
+    <script src="../Admin_Assets/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../Admin_Assets/js/sb-admin-datatables.min.js"></script>

@@ -1,0 +1,1649 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-decoration: none;
+}
+
+.topHeaderSection {
+    height: 15%;
+}
+
+.top-links-shadow {
+    /* border-bottom: 2px solid #fcba19;
+    box-shadow: 0px 5px 10px 0px rgba(169,169,169,1); */
+}
+
+.topLinks {
+    background: #ebebeb;
+    padding: 3px
+}
+.btnResizer {
+    background: transparent;
+    color: #000;
+    font-size: 11px;
+    text-align: center
+}
+
+    .btnResizer:hover {
+        color: #0D47A1;
+    }
+	
+.other_links {
+    list-style-type: none;
+    float: left;
+    font-size: 11px;
+    text-align: center;
+    color: #000;
+    margin: 3px 0 0 !important;
+}
+
+    .other_links li {
+        float: left;
+        color: #000;
+        background: url(../../Images/linkSeperator.jpg) no-repeat right center;
+        padding: 0 5px;
+    }
+
+        .other_links li a, .other_links li a:visited {
+            color: #0D47A1;
+            display: inline-block;
+        }
+
+            .other_links li a:hover {
+                color: #0D47A1;
+                text-decoration: none
+            }
+
+    .other_links input {
+        margin: 0px;
+        cursor: pointer;
+    }
+	
+.btnBlack {
+    background: #333;
+    color: #fff;
+    font-size: 11px;
+    text-align: center;
+    padding: 0px 6px;
+    border: 1px solid #eee
+}
+
+    .btnBlack:hover {
+        color: #fff;
+		background:#0D47A1;
+    }
+
+.btnWhite {
+    background: #fff;
+    color: #333;
+    font-size: 11px;
+    text-align: center;
+    padding: 0px 6px;
+    border: 1px solid #eee;
+    display: block;
+}
+
+    .btnWhite:hover {
+        color: #333
+    }
+
+.searchBox {
+    overflow: hidden;
+    background: url(../Images/searchBG.png) no-repeat left bottom;
+    float: right;
+}
+
+.searchBTN {
+    width: 25px;
+    height: 20px;
+    float: left;
+    display: block;
+    border: 0px;
+    text-indent: -999px;
+    background: url(../Images/searchIcon.png) no-repeat 4px 2px;
+    margin: 4px 0 0 -26px;
+    cursor: pointer;
+    border-left: 1px solid #fff; /* padding: 6px; */
+    text-align: center;
+}
+
+.searchBG {
+    font-size: 11px;
+    float: left;
+    background: rgba(45, 44, 44, 0.55) !important;
+    border: 1px solid #fff !important;
+    border-radius: 1px;
+    line-height: 20px !important;
+    padding: 0px 6px !important;
+    color: #fff;
+    margin-top: 2px;
+    width: 130px;
+}
+
+    .searchBG:focus {
+        background: #FFF;
+        color: #fff;
+    }
+
+.btnDisplay {
+    position: absolute;
+    left: -9999px;
+}	
+
+.clear {
+    clear: both
+}
+
+.navbar-default {
+    background-color: #1E88E5;
+    /* border-color: #e7e7e7; */
+	color:#fff;
+}
+
+.content {
+    background: #fff;
+    min-height: 500px;
+    border-radius: 3px;
+    padding: 20px;
+	border: 1px solid #ccc;
+	margin-bottom:20px;
+}
+
+.content ul{
+	margin-left: 0px;
+	line-height:28px;
+}
+
+#myDIV {
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: lightblue;
+    margin-top: 20px;
+}
+/* .site-sec {
+    background: #eee;
+    padding: 25px 0;
+    margin-top: -20px;
+} */
+
+
+/* nav css starts here */
+
+
+
+/* nav css ends here */
+
+
+@media (min-width:320px) {
+    .banner {
+        width: 100%
+    }
+
+    .m_hide {
+        display: none
+    }
+
+    .navbar-nav > li {
+        float: none;
+       /* background: #55332a;*/
+        background: #b3b1b1;
+        border-bottom: 1px solid #441E1E
+    }
+
+    .menu {
+        background: #b3b1b1;
+        display: block;
+        height: 100%;
+        overflow-y: scroll;
+        padding-top: 10px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+    }
+
+    .navbar-toggle {
+        float: left;
+        margin-left: 20px;
+    }
+
+    .cenlogo {
+        margin: 10px 10px 10px;
+        width: 12%;
+    }
+
+    .header .mahalogo {
+        margin: 10px 8px 0px 0px;
+        width: 10%;
+    }
+
+    .heading {
+        width: 70%;
+        padding: 10px 10px 0px 0px;
+        line-height: 15px;
+        font-size: 1.1em
+    }
+
+    .cenlogo img, .header .mahalogo img {
+        width: 100%
+    }
+
+    .keyperson {
+        top: 5px;
+        right: 0;
+        margin-right: 0;
+        position: relative;
+        font-size: 1.1em
+    }
+
+        .keyperson ul li p {
+            margin: 10px 0 0 75px;
+            line-height: 15px;
+            float: none
+        }
+
+        .keyperson small {
+            margin: 0 0 0 8px
+        }
+
+    .news-date {
+        width: 14%;
+        margin-right: 14px
+    }
+
+    .latest-news {
+        padding: 9px 10px 10px;
+        border: 1px solid #eee;
+        margin-bottom: 10px;
+    }
+
+    #vertical-ticker {
+        height: 160px;
+        border-bottom: 1px solid #E0E0E0
+    }
+
+    .related-links {
+        padding: 9px 15px 10px;
+    }
+	
+	/* Login css start */
+	.form-heading { color:#fff; font-size:23px;}
+.panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
+.panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
+.login-form .form-control {
+  background: #f7f7f7 none repeat scroll 0 0;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 50px;
+  line-height: 50px;
+  width:100%
+}
+.main-div {
+  background: #ffffff none repeat scroll 0 0;
+  border-radius: 2px;
+  margin: 10px auto 30px;
+  max-width: 38%;
+  padding: 30px;
+  border:1px solid #ccc;
+}
+
+.login-form .form-group {
+  margin-bottom:10px;
+}
+.login-form{ text-align:center;}
+.forgot a {
+  color: #777777;
+  font-size: 14px;
+  text-decoration: underline;
+}
+.login-form  .btn.btn-primary {
+  background: #1E88E5 none repeat scroll 0 0;
+  border-color: #1E88E5;
+  color: #ffffff;
+  font-size: 14px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+}
+.forgot {
+  text-align: left; margin-bottom:30px;
+}
+.botto-text {
+  color: #ffffff;
+  font-size: 14px;
+  margin: auto;
+}
+.login-form .btn.btn-primary.reset {
+  background: #ff9900 none repeat scroll 0 0;
+}
+.back { text-align: left; margin-top:10px;}
+.back a {color: #444444; font-size: 13px;text-decoration: none;}
+/* Login css end */
+	
+
+    footer {
+        padding: 5px 0px;
+        font-size: 0.85em
+    }
+
+        footer .col-xs-12 {
+            text-align: center
+        }
+
+            footer .col-xs-12:nth-child(2) {
+                background: rgb(238, 238, 238);
+                padding: 2px 0
+            }
+
+        footer .pull-right {
+            float: none !important;
+            margin: 0 auto
+        }
+
+    .bottomLink {
+        padding: 0px
+    }
+
+    .footer-links .col-xs-12 {
+        margin-bottom: 25px
+    }
+
+    .other-links {
+        margin: 15px 0 0 20px;
+    }
+
+    .carousel {
+        /* margin-top: 83px */
+    }
+
+    .carousel-control {
+        left: 10px;
+    }
+
+        .carousel-control.right {
+            right: 17px;
+        }
+
+            .carousel-control.left span, .carousel-control.right span {
+                font-size: 0.5em;
+                padding: 0
+            }
+
+    .carousel-indicators {
+        bottom: -5px
+    }
+
+    .mclear {
+        clear: both
+    }
+
+    .link {
+        margin-bottom: 25px
+    }
+
+    footer a, footer a:visited {
+        padding: 0;
+    }
+
+    .list-inline > li {
+        padding-right: 0
+    }
+
+    .topLinks {
+        background: #ebebeb;
+    }
+
+    .welcome {
+        padding: 20px
+    }
+
+        .welcome h1 {
+            margin-top: 10px;
+            font-size: 1.5em;
+            text-align: center
+        }
+
+    .home-sec {
+        margin-top: 10px;
+    }
+
+        .home-sec img {
+            margin: 0px auto
+        }
+
+    .arrow-right {
+        /* margin-top: 9% */
+    }
+
+    .blue p {
+        padding-top: 20px !important
+    }
+
+    .lastReviewed {
+        text-align: center
+    }
+
+        .lastReviewed span {
+            float: none
+        }
+}
+
+@media (min-width:480px) { /* smartphones, Android phones, landscape iPhone */
+    .cenlogo {
+        width: 7%;
+    }
+
+    .keyperson {
+        top: 0;
+        margin-right: 40px;
+        font-size: 1.2em
+    }
+
+        .keyperson ul li p {
+            margin: 10px 0 0 80px;
+            line-height: 13px;
+            float: none !important
+        }
+
+        .keyperson small {
+            margin: 0 0 0 13px
+        }
+
+    .heading {
+        width: 75%;
+        padding: 18px 10px 0px 5px;
+        line-height: 17px;
+        font-size: 1.5em
+    }
+
+    .home-sec {
+        margin-top: 0
+    }
+
+    .register {
+        margin-top: 12px;
+    }
+
+        .register h2 {
+            margin-bottom: 0;
+            padding: 6px 25px;
+        }
+
+        .register li {
+            display: inline-block;
+            margin-bottom: 0;
+            margin-right: 10px;
+            color: #C62F06;
+            font-size: 1.4em;
+        }
+
+            .register li span {
+                padding-left: 5px;
+                margin-left: 2px;
+                border: 0;
+                color: #333
+            }
+
+    .photo-gallery li, .photo-gallery li img {
+        width: 62px;
+    }
+
+    .bottomLink {
+        padding: 0
+    }
+
+    .carousel {
+       /*  margin-top: 95px */
+    }
+
+    #vertical-ticker {
+        height: 130px
+    }
+
+    .arrow-right {
+        /* margin-top: 6% */
+    }
+}
+
+@media (min-width:600px) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+    .heading {
+        width: 74%;
+        font-size: 1.5em;
+        line-height: 25px;
+        padding: 12px 10px 0px 0px;
+    }
+
+    .topLinks {
+        background: #104384;
+    }
+
+    .cenlogo {
+        margin: 11px 10px 0px;
+        width: auto
+    }
+
+    .header .mahalogo {
+        margin: 10px 15px 10px 0;
+        width: auto
+    }
+
+    .keyperson {
+        top: 20px;
+        padding: 0
+    }
+
+        .keyperson .row {
+            background: transparent;
+            margin: 0
+        }
+
+        .keyperson p {
+            margin: 7px 0px 0px;
+        }
+
+            .keyperson p span {
+                line-height: 3px;
+                display: block;
+                margin: 0
+            }
+
+        .keyperson ul li {
+            display: inline-block;
+            float: left;
+            width: 49%;
+        }
+
+            .keyperson ul li:first-child {
+                margin-right: 10px
+            }
+
+    .home-sec {
+        margin-top: 15px;
+    }
+
+    #vertical-ticker {
+        height: 125px
+    }
+
+    .related-links {
+        margin-top: 15px;
+        padding: 9px 25px 10px;
+    }
+
+        .related-links li {
+            margin-bottom: 18px;
+        }
+
+    .footer-links .col-xs-6 {
+        margin-bottom: 15px
+    }
+
+    footer .col-xs-9 {
+        padding-right: 20px
+    }
+
+    footer span {
+        width: 100%;
+        text-align: center;
+    }
+
+    footer .col-xs-12 {
+        text-align: left
+    }
+
+        footer .col-xs-12:nth-child(2) {
+            background: none;
+            padding: 0;
+            text-align: center;
+        }
+
+    .bottomLink {
+        padding: 0px;
+    }
+
+    .latest-news {
+        padding: 15px 10px 10px;
+        border: none;
+        margin-bottom: 0
+    }
+
+    .bottomLink {
+        padding: 0px 0px 0px 32px
+    }
+
+    .other-links {
+        margin: 15px 0px 20px 20px;
+    }
+
+    .carousel-control.left span, .carousel-control.right span {
+        font-size: 1.1em
+    }
+
+    .carousel-control {
+        left: 50px;
+    }
+
+        .carousel-control.right {
+            right: 50px;
+        }
+
+    .photo-gallery li, .photo-gallery li img {
+        width: 70px;
+    }
+
+    .news-date {
+        width: 12%
+    }
+
+    .carousel {
+        /* margin-top: 105px */
+    }
+
+    .welcome h1 {
+        font-size: 2em
+    }
+
+    .arrow-right {
+       /*  margin-top: 4% */
+    }
+
+    .service p {
+        margin-top: 10px
+    }
+
+    .carousel-indicators {
+        bottom: 0px
+    }
+
+    footer a, footer a:visited {
+        padding: 0 4px 0 6px;
+    }
+
+    .list-inline > li {
+        padding-right: 5px
+    }
+
+    .welcome {
+        padding: 20px 5px
+    }
+
+    .blue p {
+        padding-top: 11px !important
+    }
+}
+
+@media (min-width:768px) { /* tablet, landscape iPad, lo-res laptops ands desktops */
+    .heading {
+        width: 70%;
+        font-size: 1.8em;
+        padding: 13px 10px 0px 0px
+    }
+
+    .navbar-nav > li > a, .navbar-nav > li > a:visited {
+        padding: 8px !important;
+        margin: 0;
+		color: #fff;
+    }
+
+    nav > ul > li {
+        font-size: 0.95em;
+    }
+
+    .navbar-nav > li {
+        float: left;
+        background: none;
+        border: 0;
+        /* border-bottom: 3px solid #009746; */
+        padding: 12px;
+    }
+    /*.gears{top: 188px;left: 2px;}*/
+    .keyperson ul li:first-child {
+        margin-right: 14px;
+    }
+
+    .keyperson ul li:nth-child(2n+1) {
+        margin-right: 14px;
+    }
+
+    .help, .photo-gallery {
+        margin-top: 30px
+    }
+
+    .home-sec {
+        margin-top: 25px;
+    }
+
+    .footer-links .col-xs-6 {
+        margin-bottom: 0
+    }
+
+    footer .col-xs-9 {
+        padding-right: 0px
+    }
+
+    footer {
+        padding: 15px 0px;
+    }
+
+        footer .pull-right {
+            float: right !important
+        }
+
+        footer span {
+            text-align: left
+        }
+
+    .bottomLink {
+        padding: 0
+    }
+
+    .welcome h1 {
+        font-size: 1.6em
+    }
+
+    .welcome img {
+        margin-bottom: 80px
+    }
+
+    .arrow-right {
+        /* margin-top: 8% */
+    }
+
+    .list-inline > li {
+        padding: 0
+    }
+
+    .service p {
+        margin-top: 10px
+    }
+
+    .carousel-indicators {
+        bottom: 0px
+    }
+
+    .topLinks {
+        background: #104384;
+    }
+
+    .lastReviewed {
+        text-align: left
+    }
+
+        .lastReviewed span {
+            float: left
+        }
+    .m_hide {
+        display: block
+    }
+   
+}
+
+@media (min-width:800px) { /* tablet, landscape iPad, lo-res laptops ands desktops */
+    .heading {
+        width: 70%;
+    }
+
+    .home-sec .first {
+        padding-right: 40px;
+    }
+
+    .lastReviewed {
+        text-align: left
+    }
+
+        .lastReviewed span {
+            float: left
+        }
+    .m_hide {
+        display: block
+    }
+}
+
+@media (min-width:1024px) { /* big landscape tablets, laptops, and desktops */
+    .container {
+        width: 1020px
+    }
+
+    .hm-bg {
+        background: #104384;
+    }
+
+    .heading {
+        width: 55%;
+    }
+
+    .topLinks {
+        background: #ebebeb;;
+    }
+
+    .navbar-nav > li > a, .navbar-nav > li > a:visited {
+        padding: 5px !important;
+        margin: 0;
+        font-size: 0.9em
+    }
+
+    nav > ul > li {
+        font-size: 0.98em;
+    }
+
+    .key-person {
+        margin-left: 10px;
+    }
+
+    #vertical-ticker {
+        height: 160px
+    }
+
+    .keyperson {
+        position: absolute;
+        margin-right: 21px;
+        top: 174px;
+        z-index: 99;
+        font-size: 1.1em
+    }
+
+        .keyperson img {
+            width: 20%
+        }
+
+        .keyperson ul li p {
+            margin: 2px 0 0 60px;
+        }
+
+        .keyperson small {
+            margin: 0 0 0 10px
+        }
+
+        .keyperson ul li:first-child {
+            margin-right: 0
+        }
+
+    .related-links {
+        padding: 9px 15px 10px;
+    }
+
+        .related-links li {
+            line-height: 18px;
+            margin-bottom: 5px;
+        }
+
+            .related-links li a, .related-links li a:visited {
+                font-size: 1em
+            }
+
+    .help, .photo-gallery {
+        margin-top: 0
+    }
+
+    .home-sec {
+        margin-top: 15px
+    }
+
+        .home-sec .first {
+            padding-right: 15px
+        }
+
+    .carousel-control .fa-angle-right, .carousel-control .icon-next {
+        right: -45px
+    }
+
+    .welcome h1 {
+        font-size: 1.8em;
+        text-align: left;
+        margin-top: 0
+    }
+
+    .welcome p {
+        line-height: 15px
+    }
+
+    .welcome img {
+        margin-bottom: 0
+    }
+
+    .latest-news p {
+        line-height: 13px
+    }
+
+    .info-sec ul li {
+        margin: 0px 0px 7px
+    }
+
+    .mclear {
+        clear: none
+    }
+
+    .link {
+        margin-bottom: 0
+    }
+
+    .news-date {
+        width: 18%
+    }
+
+    .arrow-right {
+        /* margin-top: 12% */
+    }
+
+    .list-inline > li {
+        padding: 0 5px
+    }
+
+    .carousel {
+        /* margin-top: 186px; */
+    }
+
+    .keyPersonDiv {
+        /*margin-top:177px;*/
+    }
+    .carousel-indicators {
+        bottom: 30px
+    }
+
+    .keyperson ul li {
+        width: 100%;
+    }
+
+    .service p {
+        margin-top: 0
+    }
+
+    div .service:first-child {
+        margin-top: 500px
+    }
+
+    .mtop10 {
+        margin-top: 10px
+    }
+
+    footer {
+        font-size: 0.9em
+    }
+
+    .list-inline > li {
+        padding: 0 3px
+    }
+
+    footer a, footer a:visited {
+        padding: 0 4px 0 0
+    }
+
+    .green p, .red p {
+        padding-top: 20px !important
+    }
+    .m_hide {
+        display: block
+    }
+}
+
+@media (min-width:1280px) { /* hi-res laptops and desktops */
+    .container {
+        width: 1100px
+    }
+
+    .m_hide {
+        display: block
+    }
+
+    .hm-bg {
+        background: #104384;
+    }
+
+    .heading {
+        width: 86%
+    }
+
+    nav > ul > li {
+        font-size: 1em;
+    }
+
+    .navbar-nav > li > a, .navbar-nav > li > a:visited {
+        padding: 3px 5px 0px 5px !important;
+        margin: 0;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    .keyperson {
+        right: 0;
+        margin-right: 95px;
+        top: 150px;
+        padding-left: 5px
+    }
+
+        .keyperson img {
+            width: auto;
+        }
+
+        .keyperson ul li p {
+            margin: 1px 0px 0px 56px;
+            font-size: 12px;
+            color: #242424;
+        }
+
+        .keyperson small {
+            padding: 0 0 6px;
+            font-size: 85%;
+            margin: 0 0 0 8px;
+            color: #242424;
+        }
+
+    .related-links {
+        padding: 9px 25px 10px;
+    }
+
+    .services div {
+       /* height: 135px;*/
+        margin-bottom: 12px;
+        padding: 15px;
+    }
+
+    .nbs-flexisel-container {
+        margin: 15px 0px 5px;
+    }
+
+    .nbs-flexisel-item img {
+        margin: 10px 0
+    }
+
+    footer {
+        padding: 5px;
+    }
+
+    .carousel-control .fa-angle-right, .carousel-control .icon-next {
+        right: 0
+    }
+
+    .welcome p {
+        line-height: 18px
+    }
+
+    .latest-news p {
+        line-height: 15px
+    }
+
+    .info-sec ul li {
+        margin: 0px 0px 10px
+    }
+
+    .mtop10 {
+        margin-top: 10px !important
+    }
+
+    .green p, .red p {
+        padding-top: 10px !important
+    }
+}
+
+/* Header css ends here */
+
+#headpdng{
+	height:40px;
+	padding-top:5px;
+	background-color:#cccccc;
+}
+
+header a{
+	padding: 5px 5px;
+	display:block;
+	color: #888888;
+	float:left;
+}
+header a:hover{
+	padding: 5px 5px;
+	display:block;
+	color: #000;
+	text-decoration:none;
+	float:left;
+}
+
+.maharashtra-logo {
+    width: 90px;
+    height: ;
+    112px: ;
+}
+.gov-maharashtra-logo {
+    width:;
+    height: 110px;
+}
+
+h1 {
+	font-family: 'Roboto', sans-serif;
+    font-size: 300%;
+    font-weight: 600;
+    color: #3c4858;
+    margin-top: 34px;
+}
+
+/* Navbar */
+
+.navbar-custom {
+	background-color: #192f42;
+    color:#ffffff;
+  	border-radius:0;
+    min-height:auto;
+}
+  
+.navbar-custom .navbar-nav > li > a {
+  	color:#fff;
+  	padding-left:25px;
+  	padding-right:25px;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+	background-color:transparent;
+}
+      
+.navbar-custom .navbar-nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #2a3f53;
+}
+      
+.navbar-custom .navbar-brand {
+   color:#eeeeee;
+   padding:20px;
+}
+
+.navbar-custom .navbar-toggle,
+.navbar-custom .nav .open>a, .navbar-custom .nav .open>a:hover, .navbar-custom .nav .open>a:focus {
+   background-color:transparent;
+}
+
+.navbar-custom .icon-bar {
+   border: 1px solid #fff;                
+}
+
+/*-- change navbar dropdown color --*/
+.navbar-custom .navbar-nav .open .dropdown-menu>li>a,.navbar-custom .navbar-nav .open .dropdown-menu {
+    color:#428bca;
+}
+
+
+.scheme{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+	display:block;
+	text-align:left;	
+	padding:12px 16px;
+	font-size: 15px;
+    font-weight: 800;
+	margin-bottom:5px;
+}
+.scheme:hover, scheme:focus{
+    color: #333;
+    background-color: #f7f7f7;
+    border-color: #3bbdfb;
+	-webkit-box-shadow:none;
+    box-shadow: none;
+}
+	
+.scheme a{
+    line-height: 3;
+	color:#000;
+    padding-left: 18px;
+    display: block;
+	text-decoration:none;
+}
+
+.scheme i{
+	padding-right:10px;
+}
+
+.separador-vertical{
+  border-right:1px solid #bfbdbd;
+  }
+  
+  .titulo-equipo{
+  margin-top:0px;
+      
+    }
+    
+  .equipo-item{
+    border:	1px solid #D1CFCF ;
+        padding: 10px;
+    border-radius:10px;
+  margin-bottom:25px;
+      }
+
+	  
+    .transition-timer-carousel .carousel-caption {
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 4%, rgba(0,0,0,0.5) 32%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(4%,rgba(0,0,0,0.1)), color-stop(32%,rgba(0,0,0,0.5)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.5) 32%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.5) 32%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.5) 32%,rgba(0,0,0,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.5) 32%,rgba(0,0,0,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	width: 100%;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	text-align: left;
+	padding-top: 5px;
+	padding-left: 15%;
+	padding-right: 15%;
+}
+.transition-timer-carousel .carousel-caption .carousel-caption-header {
+	margin-top: 10px;
+	font-size: 24px;
+}
+
+@media (min-width: 970px) {
+    /* Lower the font size of the carousel caption header so that our caption
+    doesn't take up the full image/slide on smaller screens */
+	.transition-timer-carousel .carousel-caption .carousel-caption-header {
+		font-size: 36px;
+	}
+}
+.transition-timer-carousel .carousel-indicators {
+	bottom: 0px;
+	margin-bottom: 5px;
+}
+.transition-timer-carousel .carousel-control {
+	z-index: 11;
+}
+.transition-timer-carousel .transition-timer-carousel-progress-bar {
+    height: 5px;
+    background-color: #5cb85c;
+    width: 0%;
+    margin: -5px 0px 0px 0px;
+    border: none;
+    z-index: 11;
+    position: relative;
+}
+.transition-timer-carousel .transition-timer-carousel-progress-bar.animate{
+    /* We make the transition time shorter to avoid the slide transitioning
+    before the timer bar is "full" - change the 4.25s here to fit your
+    carousel's transition time */
+    -webkit-transition: width 4.25s linear;
+	-moz-transition: width 4.25s linear;
+	-o-transition: width 4.25s linear;
+	transition: width 4.25s linear;
+}
+    .event-list {
+		list-style: none;
+		font-family: 'Lato', sans-serif;
+		margin: 0px;
+		padding: 0px;
+	}
+	.event-list > li {
+		background-color: rgb(255, 255, 255);
+		/* box-shadow: 0px 0px 5px rgb(51, 51, 51);
+		box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.7); */
+		padding: 0px;
+		margin: 0px 0px 20px;
+		border:1px solid #ccc;
+		margin-bottom:23px;
+	}
+	.event-list > li > time {
+		display: inline-block;
+		width: 100%;
+		color: rgb(255, 255, 255);
+		background-color: rgb(197, 44, 102);
+		padding: 5px;
+		text-align: center;
+		text-transform: uppercase;
+	}
+	.event-list > li:nth-child(even) > time {
+		background-color: rgb(165, 82, 167);
+	}
+	.event-list > li > time > span {
+		display: none;
+	}
+	.event-list > li > time > .day {
+		display: block;
+		font-size: 56pt;
+		font-weight: 100;
+		line-height: 1;
+	}
+	.event-list > li time > .month {
+		display: block;
+		font-size: 24pt;
+		font-weight: 900;
+		line-height: 1;
+	}
+	.event-list > li > img {
+		width: 100%;
+	}
+	.event-list > li > .info {
+		padding-top: 5px;
+		text-align: center;
+	}
+	.event-list > li > .info > .title {
+		font-size: 17pt;
+		font-weight: 700;
+		margin: 0px;
+	}
+	.event-list > li > .info > .desc {
+		font-size: 13pt;
+		font-weight: 300;
+		margin: 0px;
+	}
+	.event-list > li > .info > ul,
+	.event-list > li > .social > ul {
+		display: table;
+		list-style: none;
+		margin: 10px 0px 0px;
+		padding: 0px;
+		width: 100%;
+		text-align: center;
+	}
+	.event-list > li > .social > ul {
+		margin: 0px;
+	}
+	.event-list > li > .info > ul > li,
+	.event-list > li > .social > ul > li {
+		display: table-cell;
+		cursor: pointer;
+		color: rgb(30, 30, 30);
+		font-size: 11pt;
+		font-weight: 300;
+        padding: 3px 0px;
+	}
+    .event-list > li > .info > ul > li > a {
+		display: block;
+		width: 100%;
+		color: rgb(30, 30, 30);
+		text-decoration: none;
+	} 
+    .event-list > li > .social > ul > li {    
+        padding: 0px;
+    }
+    .event-list > li > .social > ul > li > a {
+        padding: 3px 0px;
+	} 
+	.event-list > li > .info > ul > li:hover,
+	.event-list > li > .social > ul > li:hover {
+		color: rgb(30, 30, 30);
+		background-color: rgb(200, 200, 200);
+	}
+	.facebook a,
+	.twitter a,
+	.google-plus a {
+		display: block;
+		width: 100%;
+		color: rgb(75, 110, 168) !important;
+	}
+	.twitter a {
+		color: rgb(79, 213, 248) !important;
+	}
+	.google-plus a {
+		color: rgb(221, 75, 57) !important;
+	}
+	.facebook:hover a {
+		color: rgb(255, 255, 255) !important;
+		background-color: rgb(75, 110, 168) !important;
+	}
+	.twitter:hover a {
+		color: rgb(255, 255, 255) !important;
+		background-color: rgb(79, 213, 248) !important;
+	}
+	.google-plus:hover a {
+		color: rgb(255, 255, 255) !important;
+		background-color: rgb(221, 75, 57) !important;
+	}
+
+	@media (min-width: 768px) {
+		.event-list > li {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 108px;
+			padding: 0px;
+			border:1px solid #ccc;
+			margin-bottom:23px;
+		}
+		.event-list > li > time,
+		.event-list > li > img  {
+			display: inline-block;
+		}
+		.event-list > li > time,
+		.event-list > li > img {
+			width: 114px;
+			float: left;
+		}
+		.event-list > li > .info {
+			background-color: rgb(245, 245, 245);
+			overflow: hidden;
+		}
+		.event-list > li > time,
+		.event-list > li > img {
+			width: 106px;
+			height: 106px;
+			padding: 0px;
+			margin: 0px;
+		}
+		.event-list > li > .info {
+			position: relative;
+			height: 106px;
+			text-align: left;
+			/* padding-right: 40px; */
+		}	
+		.event-list > li > .info > .title, 
+		.event-list > li > .info > .desc {
+			padding: 0px 10px;
+		}
+		.event-list > li > .info > ul {
+			position: absolute;
+			left: 0px;
+			bottom: 0px;
+		}
+		.event-list > li > .social {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			display: block;
+			width: 40px;
+		}
+        .event-list > li > .social > ul {
+            border-left: 1px solid rgb(230, 230, 230);
+        }
+		.event-list > li > .social > ul > li {			
+			display: block;
+            padding: 0px;
+		}
+		.event-list > li > .social > ul > li > a {
+			display: block;
+			width: 40px;
+			padding: 10px 0px 9px;
+		}
+	}
+    
+    .container .container-recents{
+        padding: 100px;
+        }
+	  
+/* BOOTSTRAP 3.x GLOBAL STYLES
+-------------------------------------------------- */
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+}
+
+
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+/* Navbar */
+
+
+@media (min-width: 768px){
+	.col-sm-6 {margin-bottom: 20px;}
+	
+	
+	
+	
+/* Popup Start */	
+	
+	.box {
+ width: 50%;
+ margin: 0 auto;
+ background: rgba(53, 52, 52, 0.2);
+ padding: 50px;
+ border: 2px solid #fff;
+ background-clip: padding-box;
+ text-align: center;
+}
+
+.button {
+ font-size: 1em;
+ padding: 10px;
+ color: #fff;
+ border: 2px solid #FF9800;
+ border-radius: 20px;
+ text-decoration: none;
+ cursor: pointer;
+ transition: all 0.3s ease-out;
+}
+.button:hover {
+ background: #06D85F;
+}
+
+.overlay {
+ position: fixed;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ background: rgba(0, 0, 0, 0.7);
+ transition: opacity 500ms;
+ visibility: hidden;
+ opacity: 0;
+ z-index:998
+}
+.overlay:target {
+ visibility: visible;
+ opacity: 1;
+}
+
+.popup {
+ margin: 70px auto;
+ padding: 20px;
+ background: #fff;
+ border-radius: 5px;
+ width: 60%;
+ position: relative;
+/*  transition: all 5s ease-in-out; */
+ z-index:1000;
+}
+
+.popup h3 {
+ margin-top: 0;
+ color: #fff;
+ /* font-family: Tahoma, Arial, sans-serif; */
+ display: block;
+ background: #1565C0;
+ padding: 5px 10px;
+ border-radius:3px;
+}
+.popup .close {
+ position: absolute;
+ top: 22px;
+ right: 30px;
+ transition: all 200ms;
+ font-size: 30px;
+ font-weight: bold;
+ text-decoration: none;
+ color: #fff;
+ opacity:0.5;
+}
+.popup .close:hover {
+ color: #fff;
+ opacity: 1
+}
+.popup .content {
+ max-height: 30%;
+ overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+ .box{
+ width: 70%;
+ }
+ .popup{
+ width: 70%;
+ }
+}
+	h1{font-size: 275%;font-weight: bold;color: #3c4858;margin-top: 38px;}
+	
+	/* Popup End */	
+	
+	
+	/*Footer*/
+	
+	footer {
+    background: #fff;
+    color: #000000;
+    padding: 15px 0;
+    clear: both;
+    border-top: 5px solid #1E88E5;
+    border-bottom: 25px solid #1E88E5;
+}
+
+    footer a, footer a:visited {
+        color: rgb(51, 51, 51) !important;
+        padding: 0 4px 0 6px;
+    }
+
+    footer li:first-child a {
+        padding-left: 0;
+    }
+	
+	footer li {
+		list-style-type:none;
+		display: inline-block;
+	}
+
+    footer span {
+        /* float: left;*/
+        color: #000;
+    }
+	
+	.mtop20 {
+    margin-top: 20px;
+	}
+
+.bottomLink {
+    padding: 0;
+    margin: 0;
+    float: left
+}
+
+    .bottomLink li {
+        float: left;
+        margin: 0;
+    }
+
+        .bottomLink li:after {
+            content: "/";
+            color: #CBCBCB
+        }
+
+        .bottomLink li:last-child:after {
+            content: ""
+        }
+
+.footerTop {
+    padding: 50px 0 25px;
+}
+
+    .footerTop .mahaonline {
+        float: right;
+        display: inline-block
+    }

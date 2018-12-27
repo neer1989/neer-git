@@ -1,0 +1,61 @@
+﻿@model MinorityDashboardWeb.Models.SubMenu_Role_Mapping
+@{
+    ViewBag.Title = "ManageRole";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("ManageRole", "RoleManagement", FormMethod.Post))
+{
+    <div class="card mx-1 mt-12">
+        <div class="card-header">Form-Role Mapping</div>
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <label for="exampleInputName">Select Role</label>
+                        @Html.DropDownListFor(s => s.role_id, Model.lstRoleMaster, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /> <br />
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Form-Role Mapping View
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">                
+                <div id="partialDiv">
+                    @Html.Partial("ManageRolePartial")
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#role_id").on("change", function () {
+                $(".modal1212").show();
+                $.ajax(
+                    {
+                        url: '/RoleManagement/RoleChange?id=' + $("#role_id").val(),
+                        type: 'POST',
+                        data: "",
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {                            
+                            $("#partialDiv").html('');
+                            $("#partialDiv").html(data);
+                            $(".modal1212").hide();
+                        },
+                        error: function () {
+                            alert("error");
+                        }
+                    });
+            });
+        });
+    </script>

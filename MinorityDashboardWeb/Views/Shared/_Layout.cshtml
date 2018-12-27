@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>MINORITY DASHBOARD</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../Website_Assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../Website_Assets/css/style.css" rel="stylesheet">
+
+    @*<link href="../Admin_Assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">*@
+    <link href="../Admin_Assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../Admin_Assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../Admin_Assets/css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<body style="border-left: 4px solid #fff;border-right: 4px solid #fff;">
+    <div class="full-width top-header">
+        <div class="top-header-bar"><a href="#">A-</a>|<a href="#">A</a>|<a href="#">A+</a>|<a href=@Url.Action("Login","Account") target="_blank">Login</a></div>
+    </div>
+
+    <!-- Header -->
+    @*<header>
+            <div class="col-md-3 text-center"><img src="../Website_Assets/img/maharashtra-logo.jpg" alt="#" class="maharashtra-logo"></div>
+            <div class="col-md-6 text-center"><img src="../Website_Assets/img/Minoritydashboard.jpg" alt="#" class="txt-minority"></div>
+            <div class="col-md-3 text-center"><img src="../Website_Assets/img/emblem.png" alt="#" class="gov-maharashtra-logo"></div>
+            <div class="clear"></div>
+        </header>*@
+
+    <header>
+        <div class="col-md-3 text-center"><img src="../Website_Assets/img/maharashtra-logo.jpg" alt="#" class="maharashtra-logo"></div>
+        <div class="col-md-6 text-center"><h1 class="center">MINORITY DASHBOARD</h1><!-- <img src="img/Minoritydashboard.jpg" alt="#" class="txt-minority"> --></div>
+        <div class="col-md-3 text-center"><img src="../Website_Assets/img/emblem.png" alt="#" class="gov-maharashtra-logo"></div>
+        <div class="clear"></div>
+    </header>
+
+
+    <!-- Page Content -->
+    <div class="main-content">
+        @RenderBody()
+
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2018 Minority. All rights reserved | Developed by <a href="http://mahait.org/" target="_blank"><img src="../Website_Assets/img/MahaIT_Trans.png" alt=""></a></p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../Website_Assets/js/bootstrap.js"></script>
+    <script src="../Website_Assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //   document.getElementById('dataTable_length')[0].className = 'dropdown form-control';
+            document.getElementsByName('dataTable_length')[0].className = 'dropdown form-control';
+
+            document.querySelectorAll('input[type=search]')[0].className = 'dropdown form-control';
+        });
+    </script>
+</body>
+
+</html>

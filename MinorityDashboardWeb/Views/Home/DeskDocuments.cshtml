@@ -1,0 +1,99 @@
+﻿@model MinorityDashboardWeb.Models.DashboardModel
+@{
+    ViewBag.Title = "DashboardDocuments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card mb-3" style="background-color:#fff;padding:20px">
+    <div class="card-header" style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;background-color: #dbd8d8;">
+        @*<i class="fa fa-table"></i> Desk View*@
+        <ul style="list-style-type:none">
+            <li style="float:left"><i class="fa fa-table"></i> Documents View</li>
+            <li style="float:right">  </li>
+            <li style="float:right">  <input type="button" id="btnExport" value="Export" /></li>
+        </ul>
+    </div>
+    <br />
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Desk</th>
+                        <th>District</th>
+                        <th>File Title </th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var X in Model.lstDeskDocData)
+            {
+                string docpath = "../../DeskDoc/" + X.doc_filename;
+                <tr>
+                    <td>@X.desk_name</td>
+                    <td>@X.des_name</td>
+                    <td>@X.doc_title</td>
+
+                    <td><a class="details" href="javascript:;" onclick="Showpopup(@X.deskdoc_id)">View</a></td>
+                    @*<td> <a target="_blank" title="Download" href=@docpath> View </a> </td>*@
+                </tr>
+    }
+                </tbody>
+            </table>
+
+            <div class="modal custpop" id="dialog1" style="display:none;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <input type="button" title="close" />
+            </div>
+
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+            <script type="text/javascript">
+                function Showpopup(Id) {
+
+                    var deskdocid = Id;
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/GetDocuments",
+                        data: '{deskdocid: "' + deskdocid + '" }',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "html",
+                        success: function (response) {
+
+                            $('#dialog1').html(response);
+                            //$('#dialog1').modal('show');
+                            $('#dialog1').show();
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                }
+
+            </script>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- /#ion-icons -->
+
+
+
+<script src="../Admin_Assets/vendor/jquery/jquery.min.js"></script>
+<script src="../Website_Assets/js/table2excel.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnExport").click(function () {
+            $("#dataTable").table2excel({
+                filename: "Table.xls"
+            });
+        });
+    });
+</script>
+
+<script src="../Admin_Assets/vendor/datatables/jquery.dataTables.js"></script>
+<script src="../Admin_Assets/js/sb-admin-datatables.min.js"></script>

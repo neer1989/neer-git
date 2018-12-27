@@ -1,0 +1,51 @@
+﻿@model List<MinorityDashboard.DataModel.scheme_master>
+@{
+    ViewBag.Title = "Schemes";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+
+
+<div id="faq" class="testimonials">
+    <div class="container">
+        <div class="test-grids">
+
+            <div class="">
+                <div class="container">
+                    <div class="portfolio-info">
+                        <h3>SCHEMES</h3>
+
+                    </div>
+                </div>
+                <div class="container">
+
+                    @if (Model != null)
+                    {
+                        <div class="row">
+                            @foreach (var X in Model)
+                            {
+                                <div class="col-md-4">
+                                    <a href="#@X.scheme_id" class="btn scheme"><i class="fas fa-angle-right fa-lg"></i> @X.scheme_name </a>
+                                    <div id=@X.scheme_id class="overlay">
+                                        <div class="popup">
+                                            <h3>@X.scheme_name</h3>
+                                            <a class="close" href="#">×</a>
+                                            <div class="content">
+                                                @Html.Raw(X.scheme_description)
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    <!-- script for tabs -->
+                    <!-- script for tabs -->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

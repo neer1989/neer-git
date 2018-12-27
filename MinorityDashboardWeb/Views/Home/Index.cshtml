@@ -1,0 +1,436 @@
+﻿@model MinorityDashboardWeb.Models.DashboardModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="container-fluid">
+
+
+    @using (Html.BeginForm("DashboardData", "Home", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-6 col-sm-6">
+                <div class="data">
+                    <h5>SELECT DESK</h5>
+
+                    @Html.DropDownListFor(s => s.desk_id, Model.lstDesk, new { @class = "form-control" })
+
+                    @*<select class="form-control" id="fill">
+                            <option>Desk 1</option>
+                            <option>Desk 2</option>
+                            <option>Desk 3</option>
+                            <option>Desk 4</option>
+                        </select>*@
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-sm-6">
+
+                <div class="data">
+                    <h5>SELECT SUBJECT</h5>
+                    @Html.DropDownListFor(s => s.sub_id, Model.lstSubject, new { @class = "form-control" })
+                    @*<select class="form-control" id="fill">
+                            <option>Subject 1</option>
+                            <option>Subject 2</option>
+                            <option>Subject 3</option>
+                            <option>Subject 4</option>
+                        </select>*@
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-sm-6">
+                <div class="data">
+                    <h5>SELECT SCHEMES</h5>
+                    @Html.DropDownListFor(s => s.scheme_id, Model.lstScheme, new { @class = "form-control" })
+                    @*<select class="form-control" id="fill">
+                            <option>Schemes 1</option>
+                            <option>Schemes 1</option>
+                            <option>Schemes 3</option>
+                            <option>Schemes 4</option>
+                        </select>*@
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-6 col-sm-6">
+
+                <div class="data">
+                    <h5>SELECT DISTRICT</h5>
+                    @Html.DropDownListFor(s => s.des_id, Model.lstDistrict, new { @class = "form-control" })
+                    @*<select class="form-control" id="fill">
+                            <option>District 1</option>
+                            <option>District 2</option>
+                            <option>District 3</option>
+                            <option>District 4</option>
+                        </select>*@
+                </div>
+            </div>
+            @*<div class="col-lg-2 col-md-2 col-sm-6 col-sm-6">
+                    <div class="data">
+                        <h5>SELECT SCHEMES</h5>
+                        <select class="form-control" id="fill">
+                            <option>Schemes 1</option>
+                            <option>Schemes 1</option>
+                            <option>Schemes 3</option>
+                            <option>Schemes 4</option>
+                        </select>
+                    </div>
+                </div>*@
+            <div class="col-lg-2 col-md-2 col-sm-6 col-sm-6">
+                @*<a class="btn btn-default btn-block btn-md" style="margin-bottom: 14px;">Show Data</a>*@
+                <input type="submit" class="btn btn-default btn-block btn-md" value="Show Data" formaction="/Home/DashboardData" formmethod="post" />
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-6 col-sm-6">
+
+                @*<a class="btn btn-default btn-block btn-md">Show Document</a>*@
+
+
+                <input type="submit" class="btn btn-default btn-block btn-md" value="Show Document" formaction="/Home/DeskDocuments" formmethod="post" />
+            </div>
+        </div>
+
+    }
+</div>
+
+
+
+@*<div class="col-md-3">
+        @using (Html.BeginForm("DashboardData", "Home", FormMethod.Post))
+        {
+            <div class="aside-desk">
+                <p class="text-center"><b>Select Desk</b></p>
+                @Html.DropDownListFor(s => s.desk_id, Model.lstDesk, new { @class = "form-control" })
+            </div>
+
+            <div class="aside-desk desk2">
+                <p class="text-center"><b>Select Subject</b></p>
+                @Html.DropDownListFor(s => s.sub_id, Model.lstSubject, new { @class = "form-control" })
+            </div>
+
+            <div class="aside-desk">
+                <p class="text-center"><b>Select Schemes</b></p>
+                @Html.DropDownListFor(s => s.scheme_id, Model.lstScheme, new { @class = "form-control" })
+            </div>
+
+            <div class="aside-desk desk2">
+                <p class="text-center"><b>Select District</b></p>
+                @Html.DropDownListFor(s => s.des_id, Model.lstDistrict, new { @class = "form-control" })
+            </div>
+
+            <div class="aside-desk show-data-radius aside-deskh show-data-bg">
+
+                <input type="submit" class="show-data" value="Show Data" formaction="/Home/DashboardData" formmethod="post" style="background-color: transparent;border: 0px;width: 100%;" />
+
+            </div>
+            <div class="aside-desk show-data-radius aside-deskh show-doc-bg">
+                <input type="submit" class="show-data" value="Show Document" formaction="/Home/DeskDocuments" formmethod="post" style="background-color: transparent;border: 0px;width: 100%;" />
+
+
+            </div>
+        }
+
+    </div>*@
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+
+        <div class="main-desk">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="desk desk1">
+                    <h3>DESK 1</h3>
+                    <table class="table table-responsive" id="deck_stable">
+                        <thead>
+                            <tr>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Financial Year</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Committed Amount</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Scheme Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="desk desk2">
+                    <h3>DESK 2</h3>
+                    <table class="table" id="deck_stable">
+                        <thead>
+                            <tr>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Financial Year</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Committed Amount</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Scheme Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="desk desk3">
+                    <!--table-->
+                    <h3>DESK 3</h3>
+                    <table class="table" id="deck_stable">
+                        <thead>
+                            <tr>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Financial Year</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Committed Amount</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Scheme Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="desk desk4">
+                    <h3>DESK 4</h3>
+                    <table class="table" id="deck_stable">
+                        <thead>
+                            <tr>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Financial Year</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Committed Amount</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Scheme Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="desk desk5">
+                    <h3>DESK 5</h3>
+                    <table class="table" id="deck_stable">
+                        <thead>
+                            <tr>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Financial Year</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Committed Amount</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Scheme Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="desk desk6">
+                    <h3>DESK 6</h3>
+                    <table class="table" id="deck_stable">
+                        <thead>
+                            <tr>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Financial Year</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Committed Amount</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Scheme Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="desk desk7">
+                    <h3>DESK 7</h3>
+                    <table class="table" id="deck_stable">
+                        <thead>
+                            <tr>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Financial Year</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Committed Amount</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Scheme Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="desk desk8">
+                    <h3>DESK 8</h3>
+                    <table class="table" id="deck_stable">
+                        <thead>
+                            <tr>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Financial Year</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Committed Amount</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Scheme Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="desk desk9">
+                    <h3>DESK 9</h3>
+                    <table class="table" id="deck_stable">
+                        <thead>
+                            <tr>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Financial Year</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Committed Amount</th>
+                                <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Scheme Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                            <tr>
+                                <td>F-Y(2018-19)</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                                <td><i class="fa fa-rupee" aria-hidden="true"></i>1500000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+</div>
+

@@ -1,0 +1,236 @@
+﻿@model MinorityDashboardWeb.Models.DashboardModel
+@{
+    ViewBag.Title = "UploadDocuments";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+
+
+    .nav-tabs-custom {
+        margin-bottom: 20px;
+        background: #fff;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        border-radius: 3px;
+    }
+
+    .nav nav-tabs {
+        margin: 0;
+        border-bottom-color: #f4f4f4;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
+        .nav nav-tabs li {
+            border-top: 3px solid transparent;
+            border-top-color: transparent;
+            margin-bottom: 0px;
+            margin-right: 5px;
+            border-top-color: #3c8dbc;
+        }
+
+            .nav nav-tabs li a {
+                position: relative;
+                display: block;
+                padding: 10px 15px;
+            }
+
+    .activetab {
+        background-color: #f9dfb3;
+    }
+</style>
+
+
+<div class="card mx-1 mt-12">
+
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs" id="ulclr">
+            <li class="btnxxx activetab"><a href="#fa-icons" data-toggle="tab" style="position: relative;display: block;padding: 10px 15px;">Insert Documents</a></li>
+            <li class="btnxxx"><a href="#glyphicons" data-toggle="tab" style="position: relative;display: block; padding: 10px 15px;">View Documents</a></li>
+        </ul>
+        <div class="tab-content">
+            <!-- Font Awesome Icons -->
+            <div class="tab-pane active" id="fa-icons">
+                <div class="card-header"> <i class="fa fa-table"></i>Desk Documents</div>
+
+                @using (Html.BeginForm("UploadDocuments", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "DocumentForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputName">Desk Name</label>
+
+                                    @Html.DropDownListFor(s => s.desk_id, Model.lstDesk, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exampleInputName">Scheme Name</label>
+                                    @Html.DropDownListFor(s => s.scheme_id, Model.lstScheme, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputName">District</label>
+                                    @Html.DropDownListFor(s => s.des_id, Model.lstDistrict, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exampleInputName">Financil Year</label>
+
+                                    @Html.DropDownListFor(s => s.fin_y_id, Model.lstFinancialYear, new { @class = "form-control" })
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputName">Subject</label>
+
+                                    @Html.DropDownListFor(s => s.sub_id, Model.lstSubject, new { @class = "form-control" })
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exampleInputName">Estimation</label>
+                                    @Html.DropDownListFor(s => s.est_id, Model.lstEstimatipn, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputName">Title</label>
+                                    @Html.TextBoxFor(model => model.DocTitle, new { @class = "form-control", id = "DocTitle", placeholder = "Title" })
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exampleInputName">Upload Document</label>
+                                    @Html.TextBoxFor(a => a.UploadDoc, "", new { @class = "form-control", @type = "file", @multiple = "multiple" })
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <div class="form-row">
+
+                                <div class="col-md-6">
+                                    <label for="exampleInputName"></label>
+                                    <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px" />
+                                    @*<a class="btn btn-primary btn-block" href="login.html" style="margin-top:7px">Save</a>*@
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                }
+            </div>
+            <!-- /#fa-icons -->
+            <!-- glyphicons-->
+            <div class="tab-pane" id="glyphicons">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> Document View
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+
+                                        <th>Desk Name</th>
+                                        <th>File Title</th>
+                                        <th>File</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var X in Model.lstDeskDocData)
+                                    {
+                                        string docpath = "../../DeskDoc/" + X.doc_filename;
+                                        <tr>
+
+                                            <td>@X.des_name</td>
+                                            <td>@X.doc_title</td>
+                                            <td><a class="details" href="javascript:;" onclick="Showpopup(@X.deskdoc_id)">View Doc</a></td>
+                                            @*<td> <a target="_blank" href=@docpath>@X.doc_filename </a> </td>*@
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+
+                            <div class="modal custpop" id="dialog1" style="display:none;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                <input type="button" title="close" />
+                            </div>
+
+                            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+                            <script type="text/javascript">
+                                function Showpopup(Id) {
+                                   
+                                    var deskdocid = Id;
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/Admin/GetDocuments",
+                                        data: '{deskdocid: "' + deskdocid + '" }',
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "html",
+                                        success: function (response) {
+
+                                            $('#dialog1').html(response);
+                                            //$('#dialog1').modal('show');
+                                            $('#dialog1').show();
+                                        },
+                                        failure: function (response) {
+                                            alert(response.responseText);
+                                        },
+                                        error: function (response) {
+                                            alert(response.responseText);
+                                        }
+                                    });
+                                }
+
+                            </script>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /#ion-icons -->
+        </div>
+        <!-- /.tab-content -->
+    </div>
+    <!-- /.nav-tabs-custom -->
+    <!-- /.col -->
+</div>
+
+
+
+<script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("ulclr");
+    var btns = header.getElementsByClassName("btnxxx");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("activetab");
+            current[0].className = current[0].className.replace(" activetab", "");
+            this.className += " activetab";
+        });
+    }
+</script>

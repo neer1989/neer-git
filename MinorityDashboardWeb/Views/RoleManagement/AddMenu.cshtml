@@ -1,0 +1,101 @@
+﻿@model MinorityDashboardWeb.Models.MainMenuMaster
+
+@{
+    ViewBag.Title = "AddMenu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card mx-1 mt-12">
+    <div class="card-header">Menu Master</div>
+    <div class="card-body">
+        @using (Html.BeginForm("AddMenu", "RoleManagement", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="exampleInputName">Menu Name</label>
+                    @Html.TextBoxFor(model => model.menu_name, new { @class = "form-control", id = "menu_name", placeholder = "Enter Menu Name" })
+                </div>
+                <div class="col-md-6">
+                    <label for="exampleInputName">Page Url</label>
+                    @Html.TextBoxFor(model => model.page_url, new { @class = "form-control", id = "page_url", placeholder = "Enter Page Url" })
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="exampleInputName">Menu No</label>
+                    @Html.TextBoxFor(model => model.menu_no, new { @class = "form-control", id = "menu_no", placeholder = "Enter Menu No" })
+                </div>
+               
+                    <div class="col-md-1" style="margin-top:3%">
+                        <label for="exampleInputName">Is Active</label>
+
+                    </div>
+                    <div class="col-md-1" style="margin-top:3.5%">
+
+                        @Html.CheckBoxFor(model => model.is_active, new { @class = "form-control", id = "is_active" })
+                    </div>
+                
+            </div>
+        </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="exampleInputName"></label>
+                        <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px" />
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>
+
+<br /> <br />
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Menu View
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Menu ID</th>
+                        <th>Menu Name</th>
+                        <th>Is Active</th>
+                        <th>Menu No</th>
+                        <th>Page Url</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+
+                    @foreach (var X in Model.lstMainMaster)
+                        {
+
+                    <tr>
+                        <td>@X.menu_id   </td>
+                        <td>@X.menu_name</td>
+                        <td>@X.isactive</td>
+                        <td>@X.menu_no</td>
+                        <td>@X.page_url</td>
+
+                    </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+

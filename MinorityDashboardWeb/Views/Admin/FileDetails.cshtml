@@ -1,0 +1,62 @@
+﻿@model MinorityDashboardWeb.Models.DashboardModel
+<style type="text/css">
+    /*body {
+        font-family: Arial;
+        font-size: 10pt;
+    }*/
+
+    table, table td {
+        border: 1px solid #635d5d;
+    }
+
+    .custpop {
+        width: 50%;
+        height: 70%;
+        margin-left: 25%;
+        padding-top: 0px;
+        z-index: 9999;
+        margin-top: 5%;
+        background-color: #f5f3f3;
+        position: fixed;
+        padding: 35px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+</style>
+
+
+
+<div>
+    <div style="float:right;">
+        <input type="button" value="Close" id="btnclose" onclick="ClosePopup()" />
+    </div>
+
+    <h2>File List</h2>
+</div>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+
+
+    @foreach (var X in Model.lstDeskDocFile)
+    {
+        string docpath = "../../DeskDoc/" + X.doc_filename;
+        <tr>
+            <td>
+            <td> <a target="_blank" href=@docpath>@X.doc_filename </a> </td> </td>
+        </tr>
+    }
+
+
+
+</table>
+
+
+
+<script type="text/javascript">
+
+    function ClosePopup() {
+        $("#dialog1").hide();
+
+    }
+
+</script>

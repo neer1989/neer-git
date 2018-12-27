@@ -1,0 +1,85 @@
+﻿@model MinorityDashboardWeb.Models.SubMenu_Role_Mapping
+
+
+@if (Model.lstSubMenuMaster != null)
+{
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="exampleInputName"></label>
+                <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
+            </div>
+            <div class="col-md-6">
+                <a href=@Url.Action("ManageRole","RoleManagement") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
+            </div>
+        </div>
+    </div>
+
+    int i = 0;
+
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Menu ID</th>
+                <th>Url</th>
+                <th>Menu Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var X in Model.lstSubMenuMaster)
+            {
+                <tr>
+                    <td>
+                        @X.menu_id
+                        @*@Html.HiddenFor(s => s.lstSubMenuMaster[i].menu_id, new { id = "m_" + i })*@
+                    </td>
+                    <td>
+                        @X.page_url
+                        @*@Html.HiddenFor(s => s.lstSubMenuMaster[i].page_url, new { id = "p_" + i })*@
+                    </td>
+                    <td>
+                        @X.sub_menu_name
+
+                        @*@Html.HiddenFor(s => s.lstSubMenuMaster[i].sub_menu_name, new { id = "sm_" + i })*@
+                    </td>
+                    <td>
+                        @if (X.isactive == true)
+                        {
+                            @Html.CheckBoxFor(s => s.lstSubMenuMaster[i].isactive, new { id = "i_" + i })
+
+                        }
+                        else
+                        {
+                            @Html.CheckBoxFor(s => s.lstSubMenuMaster[i].isactive, new { id = "i_" + i })
+
+                        }
+                    </td>
+                </tr>
+
+
+
+                i = i + 1;
+            }
+        </tbody>
+    </table>
+
+    i = 0;
+
+    <table style="visibility:hidden">
+
+        @foreach (var X in Model.lstSubMenuMaster)
+        {
+            <tr>
+                <td>@Html.HiddenFor(s => s.lstSubMenuMaster[i].menu_id, new { id = "m_" + i }); </td>
+                <td>@Html.HiddenFor(s => s.lstSubMenuMaster[i].sub_menu_id, new { id = "sm_" + i }); </td>
+                <td>@Html.CheckBoxFor(s => s.lstSubMenuMaster[i].isactive, new { id = "i_" + i }); </td>
+
+            </tr>
+            i = i + 1;
+        }
+
+    </table>
+}
+<script src="../../Admin_Assets/js/sb-admin-datatables.min.js"></script>

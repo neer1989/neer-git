@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bf27215c1caf433487e5e310768b4b06" Name="Diagram1">
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.desk_master" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.district_master" Width="1.5" PointX="4.875" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.financialyear_master" Width="1.5" PointX="4.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.scheme_master" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.subject_master" Width="1.5" PointX="8.875" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.estimation_master" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.deskdocument" Width="1.5" PointX="3.375" PointY="6.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.menu_master" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.role_master" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.deskdata_trans_bak" Width="1.5" PointX="8.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.trans_docfile" Width="1.5" PointX="8.375" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.login" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.deskdata_trans" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.main_menu_master" Width="1.5" PointX="10.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.sub_menu_master" Width="1.5" PointX="10.375" PointY="8.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.menu_role_mapping" Width="1.5" PointX="11.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
