@@ -3012,6 +3012,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="index.html" />
     <Content Include="loader.gif" />
+    <Content Include="Pictures\1.jpg" />
+    <Content Include="Pictures\2.jpg" />
+    <Content Include="Pictures\3.jpg" />
+    <Content Include="Pictures\4.jpg" />
+    <Content Include="Pictures\5.jpg" />
+    <Content Include="Pictures\6.jpg" />
+    <Content Include="Pictures\7.jpg" />
+    <Content Include="Pictures\8.jpg" />
+    <Content Include="Pictures\9.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
