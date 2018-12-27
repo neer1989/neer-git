@@ -3148,6 +3148,10 @@
     <Content Include="Website_Assets\images\right-arrow.svg" />
     <Content Include="Website_Assets\images\themes.png" />
     <Content Include="Website_Assets\js\easing.js" />
+    <Content Include="Website_Assets\js\fancy-box\jquery.fancybox.css" />
+    <Content Include="Website_Assets\js\fancy-box\jquery.fancybox.js" />
+    <Content Include="Website_Assets\js\fancy-box\jquery.fancybox.min.css" />
+    <Content Include="Website_Assets\js\fancy-box\jquery.fancybox.min.js" />
     <Content Include="Website_Assets\js\j1.js" />
     <Content Include="Website_Assets\js\j2.js" />
     <Content Include="Website_Assets\js\jquery.flexisel.js" />

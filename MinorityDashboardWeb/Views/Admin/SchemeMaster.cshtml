@@ -116,14 +116,16 @@
 
                         @foreach (var X in Model.lstSchems)
                         {
+                        <tr>
+                            <td>@X.scheme_id   </td>
+                            <td>@X.desk_name</td>
+                            <td>@X.sub_name</td>
+                            <td>@X.scheme_name</td>
+                            <td>@Html.ActionLink("Edit", "EditSchems", new { id = X.scheme_id })  </td>
 
-                            <tr>
-                                <td>@X.scheme_id   </td>
-                                <td>@X.desk_name</td>
-                                <td>@X.sub_name</td>
-                                <td>@X.scheme_name</td>
-                                <td> @Html.ActionLink("Edit", "EditSchems", new { id = X.scheme_id })  </td>
-                            </tr>
+                          
+
+                        </tr>
                         }
                     </tbody>
                 </table>

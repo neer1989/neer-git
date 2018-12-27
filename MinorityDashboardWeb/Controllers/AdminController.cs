@@ -311,7 +311,7 @@ namespace MinorityDashboard.Web.Controllers
             // Edit Delete flag for preserve the Temp Data
             return View("DeskData", GetTempDeskTrans(id));
         }
-
+        [HttpGet]
         public ActionResult EditSchems(int id)
         {
             // Edit Delete flag for preserve the Temp Data
