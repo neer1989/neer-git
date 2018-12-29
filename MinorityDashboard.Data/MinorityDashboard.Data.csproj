@@ -58,6 +58,19 @@
     <Compile Include="Repository\MenuManager.cs" />
     <Compile Include="Repository\RoleManager.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.xml" />
+    <Content Include="bin\Debug\MinorityDashboard.Data.dll" />
+    <Content Include="bin\Debug\MinorityDashboard.Data.pdb" />
+    <Content Include="bin\Debug\MinorityDashboard.DataModel.dll" />
+    <Content Include="bin\Debug\MinorityDashboard.DataModel.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\MinorityDashboard.DataModel.dll.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

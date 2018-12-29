@@ -4,43 +4,72 @@
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
 
-<h2>Gallery</h2>
+
 
 <link href="~/Website_Assets/js/fancy-box/jquery.fancybox.min.css" rel="stylesheet" />
 
-<ul style="list-style:none;" class="row">
+<div class="container">
+    <div class="content">
 
-    <li class="col-md-3">
-        <br />
-        <a data-fancybox="gallery" data-caption="Test 1" href="~/Website_Assets/images/11.jpg">
-            <img class="img" src="~/Website_Assets/images/11.jpg" style="width:100%;height:180px;" />
-        </a>
-        <br />
-        <label>Test 1</label>
-        <br />
-        <br />
-    </li>
-    <li class="col-md-3">
-        <br />
-        <a data-fancybox="gallery" data-caption="Test 1" href="~/Website_Assets/images/12.png">
-            <img class="img" src="~/Website_Assets/images/12.png" style="width:100%;height:180px;" />
-        </a>
-        <br />
-        <label>Test 1</label>
-        <br />
-        <br />
-    </li>
-    <li class="col-md-3">
-        <br />
-        <a data-fancybox="gallery" data-caption="Test 1" href="~/Website_Assets/images/13.jpg">
-            <img class="img" src="~/Website_Assets/images/13.jpg" style="width:100%;height:180px;" />
-        </a>
-        <br />
-        <label>Test 1</label>
-        <br />
-        <br />
-    </li>
 
-</ul>
+        <div class="headingBg">
+            <!--  <h2>
+             <span id="SitePH_CmsContent_lblHeading">About Us</span></h2> -->
+            <div id="SitePH_CmsContent_BreadCrum_breadcrumb" class="breadcrumbDiv">
+                <ul class="breadcrumb">
+                    <li><b>You are here :</b></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li>Gallery</li>
+                </ul>
 
-<script src="~/Website_Assets/js/fancy-box/jquery.fancybox.min.js"></script>
+            </div>
+
+        </div>
+
+
+        <h2>Gallery</h2>
+        <ul style="list-style:none;" class="row">
+            <li class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <br />
+                <a data-fancybox="gallery" data-caption="Test 1" href="~/Website_Assets/images/8.jpg">
+                    <img class="img" src="~/Website_Assets/images/8.jpg" style="width:100%;height:180px;" />
+                </a>
+                <br />
+                <label>Test 1</label>
+                <br />
+                <br />
+            </li>
+            <li class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <br />
+                <a data-fancybox="gallery" data-caption="Test 1" href="~/Website_Assets/images/9.jpg">
+                    <img class="img" src="~/Website_Assets/images/9.jpg" style="width:100%;height:180px;" />
+                </a>
+                <br />
+                <label>Test 1</label>
+                <br />
+                <br />
+            </li>
+            <li class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <br />
+                <a data-fancybox="gallery" data-caption="Test 1" href="~/Website_Assets/images/10.jpg">
+                    <img class="img" src="~/Website_Assets/images/10.jpg" style="width:100%;height:180px;" />
+                </a>
+                <br />
+                <label>Test 1</label>
+                <br />
+                <br />
+            </li>
+            <li class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <br />
+                <a data-fancybox="gallery" data-caption="Test 1" href="~/Website_Assets/images/11.jpg">
+                    <img class="img" src="~/Website_Assets/images/11.jpg" style="width:100%;height:180px;" />
+                </a>
+                <br />
+                <label>Test 1</label>
+                <br />
+                <br />
+            </li>
+        </ul>
+    </div>
+    </div>
+    <script src="~/Website_Assets/js/fancy-box/jquery.fancybox.min.js"></script>

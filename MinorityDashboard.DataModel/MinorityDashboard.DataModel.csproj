@@ -157,6 +157,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MinorityDashboard_Entity.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="bin\Debug\MinorityDashboard.DataModel.dll.config" />
     <None Include="MinorityDashboard_Entity.edmx.diagram">
       <DependentUpon>MinorityDashboard_Entity.edmx</DependentUpon>
     </None>
@@ -178,6 +179,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\Debug\EntityFramework.xml" />
+    <Content Include="bin\Debug\MinorityDashboard.DataModel.dll" />
+    <Content Include="bin\Debug\MinorityDashboard.DataModel.pdb" />
     <Content Include="MinorityDashboard_Entity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MinorityDashboard_Entity.edmx</DependentUpon>
@@ -188,6 +195,9 @@
       <DependentUpon>MinorityDashboard_Entity.edmx</DependentUpon>
       <LastGenOutput>MinorityDashboard_Entity.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
