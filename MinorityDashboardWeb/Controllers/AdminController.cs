@@ -421,6 +421,14 @@ namespace MinorityDashboard.Web.Controllers
             return obj;
         }
 
+        public ActionResult GalleryMaster()
+        {
+            return View();
+        }
+        public ActionResult OrganizationStructureMaster()
+        {
+            return View();
+        }
 
     }
 }

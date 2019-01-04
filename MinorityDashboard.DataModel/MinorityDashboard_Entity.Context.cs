@@ -43,6 +43,13 @@ namespace MinorityDashboard.DataModel
         public virtual DbSet<main_menu_master> main_menu_master { get; set; }
         public virtual DbSet<sub_menu_master> sub_menu_master { get; set; }
         public virtual DbSet<menu_role_mapping> menu_role_mapping { get; set; }
+        public virtual DbSet<gallery_master> gallery_master { get; set; }
+        public virtual DbSet<org_structure> org_structure { get; set; }
+        public virtual DbSet<parentscheme> parentschemes { get; set; }
+        public virtual DbSet<scheme_child1> scheme_child1 { get; set; }
+        public virtual DbSet<scheme_child2> scheme_child2 { get; set; }
+        public virtual DbSet<scheme_child3> scheme_child3 { get; set; }
+        public virtual DbSet<scheme_desc_mapping> scheme_desc_mapping { get; set; }
     
         public virtual ObjectResult<GetDeskTransactionData_Result> GetDeskTransactionData()
         {

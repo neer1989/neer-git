@@ -27,7 +27,7 @@
             <i class="fa fa-table"></i> Form-Role Mapping View
         </div>
         <div class="card-body">
-            <div class="table-responsive">                
+            <div class="table-responsive">
                 <div id="partialDiv">
                     @Html.Partial("ManageRolePartial")
                 </div>
@@ -36,26 +36,26 @@
     </div>
 
 }
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#role_id").on("change", function () {
-                $(".modal1212").show();
-                $.ajax(
-                    {
-                        url: '/RoleManagement/RoleChange?id=' + $("#role_id").val(),
-                        type: 'POST',
-                        data: "",
-                        contentType: 'application/json; charset=utf-8',
-                        success: function (data) {                            
-                            $("#partialDiv").html('');
-                            $("#partialDiv").html(data);
-                            $(".modal1212").hide();
-                        },
-                        error: function () {
-                            alert("error");
-                        }
-                    });
-            });
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#role_id").on("change", function () {
+            $(".modal1212").show();
+            $.ajax(
+                {
+                    url: '/RoleManagement/RoleChange?id=' + $("#role_id").val(),
+                    type: 'POST',
+                    data: "",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        $("#partialDiv").html('');
+                        $("#partialDiv").html(data);
+                        $(".modal1212").hide();
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
         });
-    </script>
+    });
+</script>

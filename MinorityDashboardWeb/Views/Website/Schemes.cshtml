@@ -1,51 +1,183 @@
-﻿@model List<MinorityDashboard.DataModel.scheme_master>
+﻿@model MinorityDashboardWeb.Models.SchemeModel
+@using MinorityDashboard.DataModel;
+
 @{
+    /**/
+
     ViewBag.Title = "Schemes";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    List<scheme_child1> lstchld1 = new List<scheme_child1>();
+    List<scheme_child2> lstchld2 = new List<scheme_child2>();
+    List<scheme_child3> lstchld3 = new List<scheme_child3>();
 }
 
 
-<div id="faq" class="testimonials">
-    <div class="container">
-        <div class="test-grids">
+<link href="../../Website_Assets/css/expandcollapse.css" rel="stylesheet" />
+<!-- <h1>jQuery expandcollapse.js Plugin</h1> -->
 
-            <div class="">
-                <div class="container">
-                    <div class="portfolio-info">
-                        <h3>SCHEMES</h3>
+<div class="container">
+    <div class="content allullia">
+        <ul class="accordion">
 
+            @if (Model != null)
+            {
+                foreach (var Px in Model.lstParentScheme)
+                {
+                    lstchld1 = Model.lstChildScheme1.Where(s => s.parent_scheme_id == Px.parent_scheme_id).ToList();
+                    <li>
+                        <a id="top" class="toggle" href="javascript:void(0);">@Px.parent_schemename_m</a>
+
+
+                        @if (lstchld1.Count > 0)
+                        {
+                            <ul class="inner">
+                                @foreach (var C1 in lstchld1)
+                                {
+                                    lstchld2 = Model.lstChildScheme2.Where(s => s.parent_scheme_id == Px.parent_scheme_id && s.scheme_id_child1 == C1.scheme_id_child1).ToList();
+                                    <li>
+                                        <a href="#" class="toggle">@C1.child1_schemename_m</a>
+                                        @if (lstchld2.Count > 0)
+                                        {
+                                            <ul class="inner">
+                                                @foreach (var C2 in lstchld2)
+                                                {
+                                                    <li>
+                                                        <a href="#" class="toggle">@C2.child2_schemename_m</a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+
+                                    </li>
+
+
+                                }
+                            </ul>
+                        }
+
+                    </li>
+
+                }
+
+            }
+
+
+        </ul>
+
+
+    </div>
+</div>
+
+@*<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>*@
+
+<script src="../../Website_Assets/js/expandcollapse.js"></script>
+
+
+
+@*<h3>SCHEMES</h3>
+    <ul class="accordion">
+        <li>
+            <a id="top" class="toggle" href="#a1" data-toggle="collapse">शैक्षणिक</a>
+            <ul class="collapse" id="a1">
+                <li>
+                    <a href="#a11" class="toggle" data-toggle="collapse">शिष्यवृत्ती</a>
+                    <ul class="collapse" id="a11">
+                        <li>
+                            <a href="#a111" class="toggle" data-toggle="collapse">केंद्र पुरस्कृत योजना </a>
+                            <ul class="collapse" id="a111">
+                                <li>
+                                    <a href="#">प्री - मॅट्रिक शिष्यवृत्ती </a>
+                                </li>
+                                <li>
+                                    <a href="#">पोस्ट- मॅट्रिक शिष्यवृत्ती </a>
+                                </li>
+                                <li>
+                                    <a href="#">मेरीट कम मिन्स शिष्यवृत्ती </a>
+                                </li>
+                                <li>
+                                    <a href="#">मौलाना आझाद राष्ट्रीय फेलोशिप (अल्पसंख्याक कार्य मंत्रालय भारत सरकार ) </a>
+                                </li>
+                            </ul>
+                            <a href="#a112" class="toggle" data-toggle="collapse">राज्य शासन पुरस्कृत योजना</a>
+                            <ul class="collapse" id="a112">
+                                <li>
+                                    <a href="#">उच्च व व्यावसायिक शिक्षणासाठी राज्य शासनाची अल्पसंख्यांक शिष्यवृत्ती </a>
+                                </li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="toggle" href="#a2" data-toggle="collapse">कौशल्यविकास</a>
+            <ul class="collapse" id="a2">
+                <li>
+                    <a href="#">अल्पकालावधीन रोजगारभिमुख प्रशिक्षण फी प्रतिकृती योजना</a>
+
+                </li>
+                <li>
+                    <a href="#">नविन तंत्रनिकेतन सुरू करणे</a>
+
+                </li>
+                <li>
+                    <a href="#">नवीन आय टि आय सुरु करणे</a>
+
+                </li>
+                <li>
+                    <a href="#">आय टि आय मध्ये दुसरी-तिसरी पाळी सुरु करणे</a>
+
+                </li>
+            </ul>
+        </li>
+
+
+    </ul>*@
+
+
+@*<div id="faq" class="testimonials">
+        <div class="container">
+            <div class="test-grids">
+
+                <div class="">
+                    <div class="container">
+                        <div class="portfolio-info">
+                            <h3>SCHEMES</h3>
+
+                        </div>
                     </div>
-                </div>
-                <div class="container">
+                    <div class="container">
 
-                    @if (Model != null)
-                    {
-                        <div class="row">
-                            @foreach (var X in Model)
-                            {
-                                <div class="col-md-4">
-                                    <a href="#@X.scheme_id" class="btn scheme"><i class="fas fa-angle-right fa-lg"></i> @X.scheme_name </a>
-                                    <div id=@X.scheme_id class="overlay">
-                                        <div class="popup">
-                                            <h3>@X.scheme_name</h3>
-                                            <a class="close" href="#">×</a>
-                                            <div class="content">
-                                                @Html.Raw(X.scheme_description)
+                        @if (Model != null)
+                        {
+                            <div class="row">
+                                @foreach (var X in Model)
+                                {
+                                    <div class="col-md-4">
+                                        <a href="#@X.scheme_id" class="btn scheme"><i class="fas fa-angle-right fa-lg"></i> @X.scheme_name </a>
+                                        <div id=@X.scheme_id class="overlay">
+                                            <div class="popup">
+                                                <h3>@X.scheme_name</h3>
+                                                <a class="close" href="#">×</a>
+                                                <div class="content">
+                                                    @Html.Raw(X.scheme_description)
+                                                </div>
+
                                             </div>
-
                                         </div>
                                     </div>
-                                </div>
-                            }
-                        </div>
-                    }
-                    <!-- script for tabs -->
-                    <!-- script for tabs -->
+                                }
+                            </div>
+                        }
+                        <!-- script for tabs -->
+                        <!-- script for tabs -->
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>*@
 

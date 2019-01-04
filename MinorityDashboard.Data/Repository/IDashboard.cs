@@ -38,5 +38,10 @@ namespace MinorityDashboard.Data.Repository
 
         List<trans_docfile> GetTransactionFile(int deskdocid);
 
+        List<parentscheme> GetParentScheme();
+        List<scheme_child1> GetSchemeChild1();
+        List<scheme_child2> GetSchemeChild2();
+        List<scheme_child3> GetSchemeChild3();
+
     }
 }

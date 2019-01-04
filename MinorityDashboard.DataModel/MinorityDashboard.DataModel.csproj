@@ -92,6 +92,9 @@
     <Compile Include="financialyear_master.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="gallery_master.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetDeskDocuments_Result.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
@@ -134,8 +137,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MinorityDashboard_Entity.edmx</DependentUpon>
     </Compile>
+    <Compile Include="org_structure.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="parentscheme.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="role_master.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheme_child1.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheme_child2.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheme_child3.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheme_desc_mapping.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="scheme_master.cs">
@@ -157,7 +178,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MinorityDashboard_Entity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="bin\Debug\MinorityDashboard.DataModel.dll.config" />
     <None Include="MinorityDashboard_Entity.edmx.diagram">
       <DependentUpon>MinorityDashboard_Entity.edmx</DependentUpon>
     </None>
@@ -181,10 +201,7 @@
   <ItemGroup>
     <Content Include="bin\Debug\EntityFramework.dll" />
     <Content Include="bin\Debug\EntityFramework.SqlServer.dll" />
-    <Content Include="bin\Debug\EntityFramework.SqlServer.xml" />
-    <Content Include="bin\Debug\EntityFramework.xml" />
     <Content Include="bin\Debug\MinorityDashboard.DataModel.dll" />
-    <Content Include="bin\Debug\MinorityDashboard.DataModel.pdb" />
     <Content Include="MinorityDashboard_Entity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MinorityDashboard_Entity.edmx</DependentUpon>

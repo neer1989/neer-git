@@ -12,19 +12,16 @@ namespace MinorityDashboard.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class role_master
+    public partial class scheme_child1
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public role_master()
-        {
-            this.logins = new HashSet<login>();
-        }
-    
-        public int role_id { get; set; }
-        public string role_name { get; set; }
+        public int scheme_id_child1 { get; set; }
+        public int parent_scheme_id { get; set; }
+        public string child1_schemename_e { get; set; }
+        public string child1_schemename_m { get; set; }
         public Nullable<bool> isactive { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<login> logins { get; set; }
+        public Nullable<int> created_by { get; set; }
+        public Nullable<System.DateTime> created_date { get; set; }
+        public Nullable<int> updated_by { get; set; }
+        public Nullable<System.DateTime> updated_date { get; set; }
     }
 }

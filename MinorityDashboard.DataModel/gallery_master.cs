@@ -12,13 +12,15 @@ namespace MinorityDashboard.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class login
+    public partial class gallery_master
     {
-        public int id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public int role_id { get; set; }
-    
-        public virtual role_master role_master { get; set; }
+        public int gallery_id { get; set; }
+        public string title { get; set; }
+        public string file_name { get; set; }
+        public string file_extension { get; set; }
+        public Nullable<int> created_by { get; set; }
+        public Nullable<System.DateTime> created_date { get; set; }
+        public Nullable<int> updated_by { get; set; }
+        public Nullable<System.DateTime> updated_date { get; set; }
     }
 }

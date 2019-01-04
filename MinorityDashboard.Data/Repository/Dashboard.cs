@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MinorityDashboard.DataModel;
 
+
 namespace MinorityDashboard.Data.Repository
 {
     public class Dashboard : IDashboard
@@ -36,6 +37,24 @@ namespace MinorityDashboard.Data.Repository
         {
             return ObjCR.GetData<scheme_master>();
         }
+
+        public List<parentscheme> GetParentScheme()
+        {
+            return ObjCR.GetData<parentscheme>();
+        }
+        public List<scheme_child1> GetSchemeChild1()
+        {
+            return ObjCR.GetData<scheme_child1>();
+        }
+        public List<scheme_child2> GetSchemeChild2()
+        {
+            return ObjCR.GetData<scheme_child2>();
+        }
+        public List<scheme_child3> GetSchemeChild3()
+        {
+            return ObjCR.GetData<scheme_child3>();
+        }
+
 
         public List<GetSchemeData_Result> GetSchemeTransaction()
         {

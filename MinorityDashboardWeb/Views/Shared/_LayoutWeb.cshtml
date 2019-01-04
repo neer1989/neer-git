@@ -25,12 +25,12 @@
     <script type="text/javascript" src="../../Website_Assets/js/move-top.js"></script>
     <script type="text/javascript" src="../../Website_Assets/js/easing.js"></script>
     <script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){
-					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
-			});
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
     </script>
     <!-- start-smooth-scrolling -->
 
@@ -43,11 +43,11 @@
             <ul class="other_links">
 
                 <li class="m_hide">
-                    <a href=@Url.Action("Login","Account") target="_blank"><span id="HeaderMain1_lbl_skipToNav">  Login</span></a>
+                    <a href=@Url.Action("Login","Account") ><span id="HeaderMain1_lbl_skipToNav">  Login</span></a>
                 </li>
 
 
-                
+
                 <!-- <li class="m_hide"><a href="#Navigation">
                     <span id="HeaderMain1_lbl_skipToNav">Skip to Navigation</span></a></li>
                 <li class="m_hide"><a href="#Content">
@@ -62,12 +62,41 @@
                 <li class="m_hide" style="background:none !important"><input type="submit" name="ctl00$HeaderMain1$SetCulture1$btnAWhite" value="A" id="HeaderMain1_SetCulture1_btnAWhite" title="Low Contrast" class="btnWhite"></li>
                 <li>
                     <center>
-                        <select name="ctl00$HeaderMain1$SetCulture1$DDL_Language" onchange="javascript:setTimeout('__doPostBack(\'ctl00$HeaderMain1$SetCulture1$DDL_Language\',\'\')', 0)" id="HeaderMain1_SetCulture1_DDL_Language" class="searchBG" style="height:18px;width:131px;">
-                            <option value="मराठी">मराठी</option>
-                            <option selected="selected" value="English">English</option>
-                            <!-- <option value="हिन्दी">हिन्दी</option> -->
+                        @{
+                            HttpCookie langCookie = Request.Cookies["culture"];
+                        }
 
-                        </select>
+                        @*@Html.DropDownList("DDL_Language", new SelectListItem[] { new SelectListItem() { Text = "मराठी", Value = "0" }, new SelectListItem() { Text = "English", Value = "1" } })*@
+
+
+                        @if (Request.Cookies["culture"] != null)
+                        {
+                            if (Request.Cookies["culture"].Value == "mr-IN")
+                            {
+                                <select name="DDL_Language" id="DDL_Language" class="searchBG" style="height:18px;width:131px;">
+                                    <option selected="selected" value="mr-IN">मराठी</option>
+                                    <option value="en-US">English</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <select name="DDL_Language" id="DDL_Language" class="searchBG" style="height:18px;width:131px;">
+                                    <option value="mr-IN">मराठी</option>
+                                    <option selected="selected" value="en-US">English</option>
+                                </select>
+                            }
+
+                        }
+                        else
+                        {
+                            <select name="DDL_Language" id="DDL_Language" class="searchBG" style="height:18px;width:131px;">
+                                <option selected="selected" value="mr-IN">मराठी</option>
+                                <option value="en-US">English</option>
+                            </select>
+                        }
+
+
+
                     </center>
                 </li>
 
@@ -86,14 +115,17 @@
             </div>
         </div>
     </div>
-    
+
     <!-- //header -->
     <!-- logo -->
     <div class="container">
         <header>
-            <div class="col-md-3 text"><img src="../../Website_Assets/images/master/maharashtra-logo.png" alt="#" class="maharashtra-logo"></div>
-            <div class="col-md-6 text-center"><h1 class="center">MINORITY DEPARTMENT</h1><!-- <img src="img/Minoritydashboard.jpg" alt="#" class="txt-minority"> --></div>
-            <div class="col-md-3 text-right"><img src="../../Website_Assets/images/master/emblem.png" alt="#" class="gov-maharashtra-logo"></div>
+            <div class="col-md-2 col-sm-2 col-xs-12 text"><img src="../../Website_Assets/images/master/maharashtra-logo.png" alt="#" class="maharashtra-logo"></div>
+            <div class="col-md-8 col-sm-8 col-xs-12 text-center">
+                <h1 class="center">@LanguageResources.HomeContent.lblHeaderTitle</h1>
+                <h4>@LanguageResources.HomeContent.lblHeaderSubTitle</h4><!-- <img src="img/Minoritydashboard.jpg" alt="#" class="txt-minority"> -->
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12 text-right"><img src="../../Website_Assets/images/master/emblem.png" alt="#" class="gov-maharashtra-logo"></div>
             <div class="clear"></div>
         </header>
     </div>
@@ -115,16 +147,16 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-4">
                 <ul class="nav navbar-nav navbar">
-                    <li> <a href=@Url.Action("Index","Website")>Home</a></li>
-                    <li> <a href=@Url.Action("About","Website")>About</a></li>
-                    <li> <a href=@Url.Action("CitizenCharter","Website")>Citizen Charter</a></li>
-                    <li> <a href=@Url.Action("Schemes","Website")>Schemes</a></li>
-                    <li> <a href=@Url.Action("GRandAct","Website")>GR/Act</a></li>
-                    <li> <a href=@Url.Action("OrganizationStructure","Website")>Organization Structure</a></li>
-                    <li> <a href=@Url.Action("Gallery","Website")>Gallery</a></li>
+                    <li> <a href=@Url.Action("Index","Website")>@LanguageResources.HomeContent.lblHome</a></li>
+                    <li> <a href=@Url.Action("About","Website")>@LanguageResources.HomeContent.lblAbout</a></li>
+                    <li> <a href=@Url.Action("CitizenCharter","Website")>@LanguageResources.HomeContent.lblCitizenCharter</a></li>
+                    <li> <a href=@Url.Action("Schemes","Website")>@LanguageResources.HomeContent.lblSchemes</a></li>
+                    <li> <a href=@Url.Action("GRandAct","Website")>@LanguageResources.HomeContent.lblGRAct</a></li>
+                    <li> <a href=@Url.Action("OrganizationStructure","Website")>@LanguageResources.HomeContent.lblOrganizationStructure</a></li>
+                    <li> <a href=@Url.Action("Gallery","Website")>@LanguageResources.HomeContent.lblGallery</a></li>
                     @*<li> <a href=@Url.Action("NewsRoom","Website")>Newsroom</a></li>*@
-                    <li> <a href=@Url.Action("DepartmentInformation","Website")>Department Info</a></li>
-                    <li> <a href=@Url.Action("Contact","Website")>Contact</a></li>
+                    <li> <a href=@Url.Action("DepartmentInformation","Website")>@LanguageResources.HomeContent.lblDepartmentInfo</a></li>
+                    <li> <a href=@Url.Action("Contact","Website")>@LanguageResources.HomeContent.lblContact</a></li>
 
                 </ul>
                 <ul class="collapse nav navbar-nav nav-collapse slide-down" role="search" id="nav-collapse4">
@@ -145,8 +177,8 @@
     </nav>
     <!-- //navigation -->
     <!-- banner -->
-  @RenderBody()
-    
+    @RenderBody()
+
     <footer>
         <div class="container">
             <div class="row">
@@ -190,36 +222,50 @@
     </footer>
     <!-- //footer -->
     <!-- here stars scrolling icon -->
-    <script type="text/javascript">
-		$(document).ready(function() {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-				};
-			*/
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                /*
+                    var defaults = {
+                    containerID: 'toTop', // fading element id
+                    containerHoverID: 'toTopHover', // fading element hover id
+                    scrollSpeed: 1200,
+                    easingType: 'linear'
+                    };
+                */
 
-			$().UItoTop({ easingType: 'easeOutQuart' });
+                $().UItoTop({ easingType: 'easeOutQuart' });
 
-			});
-    </script>
+            });
+        </script>*@
     <!-- //here ends scrolling icon -->
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script src="../../Website_Assets/js/bootstrap.min.js"></script>
     <script src="../../Website_Assets/js/responsive-carousel.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#DDL_Language").on("change", function () {
+
+                document.cookie = "culture=" + $('#DDL_Language').val();
+
+
+                location.reload();
+            });
+        });
+    </script>
     <script>
 
-	// Custom options for the carousel
-	var args = {
-		arrowRight : '.arrow-right',
-		arrowLeft : '.arrow-left',
-		speed : 700,
-		slideDuration : 4000
-	};
-	// start BannerSlide
-	$('.carousel').BannerSlide(args);
+
+
+        // Custom options for the carousel
+        var args = {
+            arrowRight: '.arrow-right',
+            arrowLeft: '.arrow-left',
+            speed: 700,
+            slideDuration: 4000
+        };
+        // start BannerSlide
+        $('.carousel').BannerSlide(args);
 
     </script>
 </body>

@@ -1,6 +1,7 @@
 ﻿using MinorityDashboard.Data.Repository;
 using MinorityDashboard.DataModel;
 using MinorityDashboard.Web.Controllers;
+using MinorityDashboardWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,17 @@ namespace MinorityDashboardWeb.Controllers
 
         public ActionResult Index()
         {
-          
+            var url = Request.RawUrl;
+            if (url == @"/")
+            {
+                Response.Redirect("/Website/Home");
+            }
+
+            return View();
+        }
+
+        public ActionResult Home()
+        {
             return View();
         }
 
@@ -75,9 +86,18 @@ namespace MinorityDashboardWeb.Controllers
 
         public ActionResult Schemes()
         {
-            List<scheme_master> lstScheme = new List<scheme_master>();
-            lstScheme = objDashboard.GetScheme();
-            return View(lstScheme);
+            SchemeModel sm = new SchemeModel();
+
+
+            sm.lstParentScheme = objDashboard.GetParentScheme();
+            sm.lstChildScheme1 = objDashboard.GetSchemeChild1();
+            sm.lstChildScheme2 = objDashboard.GetSchemeChild2();
+            sm.lstChildScheme3 = objDashboard.GetSchemeChild3();
+
+
+            //List<scheme_master> lstScheme = new List<scheme_master>();
+            //lstScheme = objDashboard.GetScheme();
+            return View(sm);
         }
 
 

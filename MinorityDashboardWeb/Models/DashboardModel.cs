@@ -73,6 +73,14 @@ namespace MinorityDashboardWeb.Models
         public List<SelectListItem> lstSubject { get; set; }
         public List<SelectListItem> lstDesk { get; set; }
         public List<GetSchemeData_Result> lstSchems { get; set; }
+
+        public List<parentscheme> lstParentScheme { get; set; }
+        public List<scheme_child1> lstChildScheme1 { get; set; }
+        public List<scheme_child2> lstChildScheme2 { get; set; }
+        public List<scheme_child3> lstChildScheme3 { get; set; }
+
+
+
     }
 
     public class FinancialYearModel
@@ -116,6 +124,18 @@ namespace MinorityDashboardWeb.Models
         public decimal D9FY2017_18 { get; set; }
         public decimal D9FY2018_19 { get; set; }
 
+    }
+
+   public class ImgGallery
+    {
+        public int gallery_id { get; set; }
+        public string title { get; set; }
+        public string file_name { get; set; }
+        public string file_extension { get; set; }
+        public int created_by { get; set; }
+        public DateTime created_date { get; set; }
+        public int updated_by { get; set; }
+        public DateTime updated_date { get; set; }
     }
 
 }

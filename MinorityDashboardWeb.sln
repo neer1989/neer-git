@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinorityDashboard.Web", "Mi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinorityDashboard.Data", "MinorityDashboard.Data\MinorityDashboard.Data.csproj", "{1627059B-7B19-4B28-8472-1FDD584626DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageResources", "LanguageResources\LanguageResources.csproj", "{CF83E015-DBF0-4181-B3B2-3D32D1F48B27}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinorityDashboard.DataModel", "MinorityDashboard.DataModel\MinorityDashboard.DataModel.csproj", "{6F96123F-2568-41F0-B1A2-A37A295ADC1F}"
 EndProject
 Global
@@ -23,6 +25,10 @@ Global
 		{1627059B-7B19-4B28-8472-1FDD584626DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1627059B-7B19-4B28-8472-1FDD584626DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1627059B-7B19-4B28-8472-1FDD584626DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF83E015-DBF0-4181-B3B2-3D32D1F48B27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF83E015-DBF0-4181-B3B2-3D32D1F48B27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF83E015-DBF0-4181-B3B2-3D32D1F48B27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF83E015-DBF0-4181-B3B2-3D32D1F48B27}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6F96123F-2568-41F0-B1A2-A37A295ADC1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6F96123F-2568-41F0-B1A2-A37A295ADC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F96123F-2568-41F0-B1A2-A37A295ADC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
