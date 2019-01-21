@@ -78,8 +78,50 @@ namespace MinorityDashboardWeb.Models
         public List<scheme_child1> lstChildScheme1 { get; set; }
         public List<scheme_child2> lstChildScheme2 { get; set; }
         public List<scheme_child3> lstChildScheme3 { get; set; }
+        public List<GetSchemeDesc_Result> lstSchemeDesc { get; set; }
+
+        public int parent_scheme_id { get; set; }
+        public int scheme_id_child1 { get; set; }
+        public int scheme_id_child2 { get; set; }
+        public int scheme_id_child3 { get; set; }
+        public string scheme_description_e { get; set; }
+        public string scheme_description_m { get; set; }
 
 
+        public List<SelectListItem> ddlParentScheme { get; set; }
+        public List<SelectListItem> ddlChildScheme1 { get; set; }
+        public List<SelectListItem> ddlChildScheme2 { get; set; }
+        public List<SelectListItem> ddlChildScheme3 { get; set; }
+
+
+    }
+
+   public class SchemeAmtAllotment
+    {
+
+        public int parent_scheme_id { get; set; }
+        public int scheme_id_child1 { get; set; }
+        public int scheme_id_child2 { get; set; }
+        public int scheme_id_child3 { get; set; }
+
+        public decimal alloted_amount { get; set; }
+        public int fin_y_id { get; set; }
+
+        public List<SelectListItem> ddlParentScheme { get; set; }
+        public List<SelectListItem> ddlChildScheme1 { get; set; }
+        public List<SelectListItem> ddlChildScheme2 { get; set; }
+        public List<SelectListItem> ddlChildScheme3 { get; set; }
+        public List<SelectListItem> ddlFinancialYear { get; set; }
+
+
+        public List<parent_scheme_amt> lstParentSchemeAmt { get; set; }
+        public List<scheme_child1_amt> lstChildScheme1Amt { get; set; }
+        public List<scheme_child2_amt> lstChildScheme2Amt { get; set; }
+        public List<scheme_child3_amt> lstChildScheme3Amt { get; set; }
+
+        public List<DistrictList> lstDistrict { get; set; }
+
+        public string DistrictAllotedAmt { get; set; }
 
     }
 
@@ -136,6 +178,14 @@ namespace MinorityDashboardWeb.Models
         public DateTime created_date { get; set; }
         public int updated_by { get; set; }
         public DateTime updated_date { get; set; }
+    }
+
+
+    public class DistrictList
+    {
+        public int district_id { get; set; }
+        public string districtname { get; set; }
+        public decimal allotedmt { get; set; }
     }
 
 }

@@ -232,6 +232,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DistrictAdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleManagementController.cs" />
     <Compile Include="Controllers\WebsiteController.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin_Assets\css\admin_style.css" />
     <Content Include="Admin_Assets\css\sb-admin.css" />
     <Content Include="Admin_Assets\css\sb-admin.min.css" />
     <Content Include="Admin_Assets\js\sb-admin-charts.js" />
@@ -3135,6 +3137,14 @@
     <Content Include="fonts\iconic\css\material-design-iconic-font.css" />
     <Content Include="fonts\iconic\css\material-design-iconic-font.min.css" />
     <Content Include="fonts\iconic\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="GalleryImages\1.jpg" />
+    <Content Include="GalleryImages\2.jpg" />
+    <Content Include="GalleryImages\3.jpg" />
+    <Content Include="GalleryImages\4.jpg" />
+    <Content Include="GalleryImages\5.jpg" />
+    <Content Include="GalleryImages\6.jpg" />
+    <Content Include="GalleryImages\7.jpg" />
+    <Content Include="GalleryImages\8.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="index.html" />
@@ -3228,6 +3238,8 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jsapi.js" />
+    <Content Include="SliderImages\sliderImg1.jpg" />
+    <Content Include="SliderImages\sliderImg2.jpg" />
     <Content Include="Website_Assets\css\bootstrap.css" />
     <Content Include="Website_Assets\css\c1.css" />
     <Content Include="Website_Assets\css\dashboard.css" />
@@ -3281,11 +3293,16 @@
     <Content Include="Website_Assets\images\master\MC6U95Ko_400x400.jpg" />
     <Content Include="Website_Assets\images\master\Minoritydashboard.jpg" />
     <Content Include="Website_Assets\images\master\pm.jpg" />
+    <Content Include="Website_Assets\images\master\PS.jpg" />
+    <Content Include="Website_Assets\images\master\smm.png" />
     <Content Include="Website_Assets\images\minus.svg" />
+    <Content Include="Website_Assets\images\minus1.svg" />
     <Content Include="Website_Assets\images\plus.png" />
     <Content Include="Website_Assets\images\plus.svg" />
+    <Content Include="Website_Assets\images\plus1.svg" />
     <Content Include="Website_Assets\images\right-arrow.png" />
     <Content Include="Website_Assets\images\right-arrow.svg" />
+    <Content Include="Website_Assets\images\smm.png" />
     <Content Include="Website_Assets\images\themes.png" />
     <Content Include="Website_Assets\js\easing.js" />
     <Content Include="Website_Assets\js\expandcollapse.js" />
@@ -3500,10 +3517,15 @@
     <Content Include="Views\Admin\GalleryMaster.cshtml" />
     <Content Include="Views\Admin\OrganizationStructureMaster.cshtml" />
     <Content Include="Views\Website\Home.cshtml" />
+    <Content Include="Views\Website\SchemeDescription.cshtml" />
+    <Content Include="Views\Admin\SchemeDescriptionMaster.cshtml" />
+    <Content Include="Views\Admin\SechemeAmountAllotment.cshtml" />
+    <Content Include="Views\Admin\_DistrictAmtAllotment.cshtml" />
+    <Content Include="Views\Shared\_LayoutDistrictAdmin.cshtml" />
+    <Content Include="Views\DistrictAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DeskDoc\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

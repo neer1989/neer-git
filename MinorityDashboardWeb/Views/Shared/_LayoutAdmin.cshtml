@@ -16,7 +16,8 @@
     <!-- Custom styles for this template-->
     <link href="../../Admin_Assets/css/sb-admin.css" rel="stylesheet">
 
-    
+    <link href="../Admin_Assets/css/admin_style.css" rel="stylesheet" />
+
 
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -51,6 +52,11 @@
                         <li>
                             <a href=@Url.Action("SchemeMaster","Admin")>Scheme</a>
                         </li>
+
+                        <li>
+                            <a href=@Url.Action("SchemeDescriptionMaster","Admin")>Scheme Description</a>
+                        </li>
+
                         <li>
                             <a href=@Url.Action("GalleryMaster","Admin")>Gallery</a>
                         </li>
@@ -66,17 +72,14 @@
                         <span class="nav-link-text">Transactions</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseExamplePages">
-
                         <li>
                             <a href=@Url.Action("DeskData","Admin")>Desk Data</a>
-
                         </li>
                         <li>
                             <a href=@Url.Action("UploadDocuments","Admin")>Upload Documents</a>
-
-                        </li>
+                        </li>  
                         <li>
-                            <a href="#">Blank Page</a>
+                            <a href=@Url.Action("SechemeAmountAllotment","Admin")>Amount Allotment</a>
                         </li>
                     </ul>
                 </li>
@@ -206,7 +209,7 @@
         <script src="../../Admin_Assets/js/sb-admin-charts.min.js"></script>
 
 
-        <style type="text/css">
+        @*<style type="text/css">
             #mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
                 background: #264b66;
             }
@@ -214,7 +217,7 @@
                 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
                     color: #f9f9f9;
                 }
-        </style>
+        </style>*@
     </div>
     <script type="text/javascript">
         $("#myform").submit(function (e) {

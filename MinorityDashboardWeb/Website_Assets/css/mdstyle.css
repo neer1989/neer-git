@@ -136,9 +136,9 @@
 }
 
 .navbar-default {
-    background-color: #1E88E5;
+    background-color: #1976D2;
     /* border-color: #e7e7e7; */
-	color:#fff;
+    color: #fff;
 }
 
 .content {
@@ -148,6 +148,24 @@
     padding: 20px;
 	border: 1px solid #ccc;
 	margin-bottom:20px;
+}
+
+.conthome {
+    background: #42A5F5;
+    border-radius: 3px;
+    padding: 20px;
+    border: 1px solid #42A5F5;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: justify;
+    color: #fff;
+    margin: 30px;
+    line-height: 36px;
+}
+
+.phone span i   {
+    padding: 0px 10px 0px 0px;
 }
 
 .content ul{
@@ -175,7 +193,73 @@
 
 /* nav css ends here */
 
+.list-bullet {
+    margin-left:24px;
+}
 
+.panel-default {
+    border-color: #64B5F6;
+}
+
+
+.panel-default > .panel-heading {
+    color: #fff;
+    background-color: #42A5F5;
+    border-color: #ddd;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0px;
+}
+
+.btn-info {
+    color: #000;
+    background-color: #ccc;
+    border-color: #999;
+}
+
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+    color: #fff;
+    background-color: #42A5F5;
+    border-color: #269abc;
+}
+
+.fa {
+    color:#
+}
+
+.fa:hover {
+    color:#fff;
+}
+
+.phone > span {
+    border: 1px solid #ddd;
+    display: inline-block;
+    margin: 0 10px 10px 0;
+    padding: 10px;
+    vertical-align: top;
+    background: #efefef;
+}
+
+.padding{
+    margin:30px 0px
+}
 @media (min-width:320px) {
     .banner {
         width: 100%
@@ -271,7 +355,7 @@
 	/* Login css start */
 	.form-heading { color:#fff; font-size:23px;}
 .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
-.panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
+.panel p { color:#777777; font-size:14px; /*margin-bottom:30px;*/ line-height:24px;}
 .login-form .form-control {
   background: #f7f7f7 none repeat scroll 0 0;
   border: 1px solid #d4d4d4;

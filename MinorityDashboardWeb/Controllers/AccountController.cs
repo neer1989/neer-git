@@ -121,6 +121,12 @@ namespace MinorityDashboard.Web.Controllers
                             //  Session["MenuList"] = new CommonUtility().GetMainMenuList();
                             // Session["SubMenuList"] = new CommonUtility().GetSubMenuList();
                             //return RedirectToAction("Profile");
+
+                            if(logindetails.role_id==3)
+                            {
+                                 return this.RedirectToAction("Index", "DistrictAdmin");
+                            }
+
                             return this.RedirectToLocal(returnUrl);
                         }
 

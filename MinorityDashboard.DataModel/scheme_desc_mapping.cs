@@ -19,8 +19,8 @@ namespace MinorityDashboard.DataModel
         public int scheme_id_child1 { get; set; }
         public int scheme_id_child2 { get; set; }
         public Nullable<int> scheme_id_child3 { get; set; }
-        public string child2_schemename_e { get; set; }
-        public string child2_schemename_m { get; set; }
+        public string scheme_description_e { get; set; }
+        public string scheme_description_m { get; set; }
         public Nullable<bool> isactive { get; set; }
         public Nullable<int> created_by { get; set; }
         public Nullable<System.DateTime> created_date { get; set; }

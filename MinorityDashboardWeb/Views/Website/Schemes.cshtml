@@ -27,36 +27,63 @@
                     <li>
                         <a id="top" class="toggle" href="javascript:void(0);">@Px.parent_schemename_m</a>
 
-
                         @if (lstchld1.Count > 0)
                         {
                             <ul class="inner">
                                 @foreach (var C1 in lstchld1)
                                 {
                                     lstchld2 = Model.lstChildScheme2.Where(s => s.parent_scheme_id == Px.parent_scheme_id && s.scheme_id_child1 == C1.scheme_id_child1).ToList();
-                                    <li>
+                                <li>
+
+                                    @if (lstchld2.Count > 0)
+                                    {
                                         <a href="#" class="toggle">@C1.child1_schemename_m</a>
-                                        @if (lstchld2.Count > 0)
-                                        {
-                                            <ul class="inner">
-                                                @foreach (var C2 in lstchld2)
-                                                {
-                                                    <li>
+                                        <ul class="inner">
+                                            @foreach (var C2 in lstchld2)
+                                            {
+                                                lstchld3 = Model.lstChildScheme3.Where(s => s.parent_scheme_id == Px.parent_scheme_id && s.scheme_id_child1 == C1.scheme_id_child1 && s.scheme_id_child2 == C2.scheme_id_child2).ToList();
+
+                                                <li>
+
+                                                    @if (lstchld3.Count > 0)
+                                                    {
                                                         <a href="#" class="toggle">@C2.child2_schemename_m</a>
-                                                    </li>
-                                                }
-                                            </ul>
-                                        }
+                                                        <ul class="inner">
 
-                                    </li>
+                                                            @foreach (var C3 in lstchld3)
+                                                            {
+                                                                <li>
+                                                                    <a href='@Url.Action("SchemeDescription", "Website", new { schids = Px.parent_scheme_id+"/"+C1.scheme_id_child1+"/"+C2.scheme_id_child2+"/"+C3.scheme_id_child3})'> @C3.child3_schemename_m</a>
+                                                                    @*<a href="/Controller/Method/">@C3.child2_schemename_m</a>*@
+                                                                </li>
+
+                                                            }
+
+                                                        </ul>
+                                                    }
+                                                    else
+                                                    {
+                                                        @*<a href="#" >@C2.child2_schemename_m</a>*@
+                                                        <a href='@Url.Action("SchemeDescription", "Website", new { schids = Px.parent_scheme_id+"/"+C1.scheme_id_child1+"/"+C2.scheme_id_child2+"/0"})'> @C2.child2_schemename_m</a>
+
+                                                    }
 
 
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        @*<a href="#">@C1.child1_schemename_m</a>*@
+                                        <a href='@Url.Action("SchemeDescription", "Website", new { schids = Px.parent_scheme_id+"/"+C1.scheme_id_child1+"/0/0"})'> @C1.child1_schemename_m</a>
+                                    }
+                                </li>
                                 }
                             </ul>
                         }
 
                     </li>
-
                 }
 
             }
@@ -137,7 +164,7 @@
     </ul>*@
 
 
-@*<div id="faq" class="testimonials">
+<div id="faq" class="testimonials">
         <div class="container">
             <div class="test-grids">
 
@@ -153,16 +180,16 @@
                         @if (Model != null)
                         {
                             <div class="row">
-                                @foreach (var X in Model)
+                                @foreach (var X in Model.lstParentScheme)
                                 {
                                     <div class="col-md-4">
-                                        <a href="#@X.scheme_id" class="btn scheme"><i class="fas fa-angle-right fa-lg"></i> @X.scheme_name </a>
-                                        <div id=@X.scheme_id class="overlay">
+                                        <a href="#@X.parent_scheme_id" class="btn scheme"><i class="fas fa-angle-right fa-lg"></i> @X.parent_schemename_m </a>
+                                        <div id=@X.parent_scheme_id class="overlay">
                                             <div class="popup">
-                                                <h3>@X.scheme_name</h3>
+                                                <h3>@X.parent_schemename_m</h3>
                                                 <a class="close" href="#">×</a>
                                                 <div class="content">
-                                                    @Html.Raw(X.scheme_description)
+                                                    @Html.Raw(X.parent_schemename_m)
                                                 </div>
 
                                             </div>
@@ -179,5 +206,5 @@
             </div>
         </div>
 
-    </div>*@
+    </div>
 

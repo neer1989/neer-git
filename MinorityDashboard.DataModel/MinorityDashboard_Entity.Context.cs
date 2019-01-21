@@ -48,8 +48,12 @@ namespace MinorityDashboard.DataModel
         public virtual DbSet<parentscheme> parentschemes { get; set; }
         public virtual DbSet<scheme_child1> scheme_child1 { get; set; }
         public virtual DbSet<scheme_child2> scheme_child2 { get; set; }
-        public virtual DbSet<scheme_child3> scheme_child3 { get; set; }
         public virtual DbSet<scheme_desc_mapping> scheme_desc_mapping { get; set; }
+        public virtual DbSet<scheme_child3> scheme_child3 { get; set; }
+        public virtual DbSet<scheme_child1_amt> scheme_child1_amt { get; set; }
+        public virtual DbSet<scheme_child2_amt> scheme_child2_amt { get; set; }
+        public virtual DbSet<parent_scheme_amt> parent_scheme_amt { get; set; }
+        public virtual DbSet<scheme_child3_amt> scheme_child3_amt { get; set; }
     
         public virtual ObjectResult<GetDeskTransactionData_Result> GetDeskTransactionData()
         {
@@ -95,6 +99,27 @@ namespace MinorityDashboard.DataModel
         public virtual ObjectResult<GetSchemeData_Result> GetSchemeData()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSchemeData_Result>("GetSchemeData");
+        }
+    
+        public virtual ObjectResult<GetSchemeDesc_Result> GetSchemeDesc(Nullable<int> pSchemeID, Nullable<int> schemeChild1, Nullable<int> schemeChild2, Nullable<int> schemeChild3)
+        {
+            var pSchemeIDParameter = pSchemeID.HasValue ?
+                new ObjectParameter("PSchemeID", pSchemeID) :
+                new ObjectParameter("PSchemeID", typeof(int));
+    
+            var schemeChild1Parameter = schemeChild1.HasValue ?
+                new ObjectParameter("SchemeChild1", schemeChild1) :
+                new ObjectParameter("SchemeChild1", typeof(int));
+    
+            var schemeChild2Parameter = schemeChild2.HasValue ?
+                new ObjectParameter("SchemeChild2", schemeChild2) :
+                new ObjectParameter("SchemeChild2", typeof(int));
+    
+            var schemeChild3Parameter = schemeChild3.HasValue ?
+                new ObjectParameter("SchemeChild3", schemeChild3) :
+                new ObjectParameter("SchemeChild3", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSchemeDesc_Result>("GetSchemeDesc", pSchemeIDParameter, schemeChild1Parameter, schemeChild2Parameter, schemeChild3Parameter);
         }
     }
 }

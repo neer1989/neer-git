@@ -51,14 +51,14 @@
 
                         @foreach (var X in Model.lstDeskTransData)
                         {
-                            CAmtTotal = CAmtTotal + Convert.ToDecimal(X.committee_amount);
-                            SAmtTotal = SAmtTotal + Convert.ToDecimal(X.scheme_amount);
+                            CAmtTotal = CAmtTotal + Convert.ToDecimal(X.actual_allocation_amt);
+                            SAmtTotal = SAmtTotal + Convert.ToDecimal(X.actual_allocation_amt);
                             <tr>
 
                                 <td>@X.desk_name</td>
                                 <td>@X.des_name</td>
-                                <td>@X.committee_amount</td>
-                                <td>@X.scheme_amount</td>
+                                <td>@X.actual_allocation_amt</td>
+                                <td>@X.actual_allocation_amt</td>
 
                             </tr>
                         }

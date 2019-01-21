@@ -42,6 +42,13 @@ namespace MinorityDashboard.Data.Repository
         List<scheme_child1> GetSchemeChild1();
         List<scheme_child2> GetSchemeChild2();
         List<scheme_child3> GetSchemeChild3();
+        List<GetSchemeDesc_Result> GetFilteredSchemeDesc(int ParentId, int Childschm1, int Childschm2, int Childschm3);
+        int InsertSchemeDescMapping(scheme_desc_mapping obj);
 
+
+        List<parent_scheme_amt> GetParentScheme_amt();
+        List<scheme_child1_amt> GetSchemeChild1_amt();
+        List<scheme_child2_amt> GetSchemeChild2_amt();
+        List<scheme_child3_amt> GetSchemeChild3_amt();
     }
 }

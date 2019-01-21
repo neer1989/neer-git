@@ -33,9 +33,8 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="MinorityDashboard.DataModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\MinorityDashboard.DataModel.dll</HintPath>
+    <Reference Include="MinorityDashboard.DataModel">
+      <HintPath>..\MinorityDashboard.DataModel\bin\Debug\MinorityDashboard.DataModel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,11 +63,6 @@
     <Content Include="bin\Debug\EntityFramework.xml" />
     <Content Include="bin\Debug\MinorityDashboard.Data.dll" />
     <Content Include="bin\Debug\MinorityDashboard.Data.pdb" />
-    <Content Include="bin\Debug\MinorityDashboard.DataModel.dll" />
-    <Content Include="bin\Debug\MinorityDashboard.DataModel.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\MinorityDashboard.DataModel.dll.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

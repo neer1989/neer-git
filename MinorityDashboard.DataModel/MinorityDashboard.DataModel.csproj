@@ -104,6 +104,9 @@
     <Compile Include="GetSchemeData_Result.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetSchemeDesc_Result.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetSubjectData_Result.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
@@ -143,6 +146,9 @@
     <Compile Include="parentscheme.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="parent_scheme_amt.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="role_master.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
@@ -150,10 +156,19 @@
     <Compile Include="scheme_child1.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="scheme_child1_amt.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="scheme_child2.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="scheme_child2_amt.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="scheme_child3.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheme_child3_amt.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="scheme_desc_mapping.cs">

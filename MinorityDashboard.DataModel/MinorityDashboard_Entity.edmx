@@ -173,6 +173,16 @@
           <Property Name="updated_by" Type="int" />
           <Property Name="updated_date" Type="datetime" />
         </EntityType>
+        <EntityType Name="parent_scheme_amt">
+          <Key>
+            <PropertyRef Name="allotment_amt_parent_id" />
+          </Key>
+          <Property Name="allotment_amt_parent_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fin_y_id" Type="int" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="int" Nullable="false" />
+          <Property Name="alloted_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="isactive" Type="bit" />
+        </EntityType>
         <EntityType Name="parentscheme">
           <Key>
             <PropertyRef Name="parent_scheme_id" />
@@ -208,6 +218,17 @@
           <Property Name="updated_by" Type="int" />
           <Property Name="updated_date" Type="datetime" />
         </EntityType>
+        <EntityType Name="scheme_child1_amt">
+          <Key>
+            <PropertyRef Name="allotment_amt_child1_id" />
+          </Key>
+          <Property Name="allotment_amt_child1_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fin_y_id" Type="int" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child1" Type="int" Nullable="false" />
+          <Property Name="alloted_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="isactive" Type="bit" />
+        </EntityType>
         <EntityType Name="scheme_child2">
           <Key>
             <PropertyRef Name="scheme_id_child2" />
@@ -223,6 +244,18 @@
           <Property Name="updated_by" Type="int" />
           <Property Name="updated_date" Type="datetime" />
         </EntityType>
+        <EntityType Name="scheme_child2_amt">
+          <Key>
+            <PropertyRef Name="allotment_amt_child2_id" />
+          </Key>
+          <Property Name="allotment_amt_child2_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fin_y_id" Type="int" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child1" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child2" Type="int" Nullable="false" />
+          <Property Name="alloted_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="isactive" Type="bit" />
+        </EntityType>
         <EntityType Name="scheme_child3">
           <Key>
             <PropertyRef Name="scheme_id_child3" />
@@ -231,13 +264,26 @@
           <Property Name="parent_scheme_id" Type="int" Nullable="false" />
           <Property Name="scheme_id_child1" Type="int" Nullable="false" />
           <Property Name="scheme_id_child2" Type="int" Nullable="false" />
-          <Property Name="scheme_description_e" Type="nvarchar" MaxLength="1000" Nullable="false" />
-          <Property Name="scheme_description_m" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="child3_schemename_e" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="child3_schemename_m" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="isactive" Type="bit" />
           <Property Name="created_by" Type="int" />
           <Property Name="created_date" Type="datetime" />
           <Property Name="updated_by" Type="int" />
           <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="scheme_child3_amt">
+          <Key>
+            <PropertyRef Name="allotment_amt_child3_id" />
+          </Key>
+          <Property Name="allotment_amt_child3_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fin_y_id" Type="int" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child1" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child2" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child3" Type="int" Nullable="false" />
+          <Property Name="alloted_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="isactive" Type="bit" />
         </EntityType>
         <EntityType Name="scheme_desc_mapping">
           <Key>
@@ -248,8 +294,8 @@
           <Property Name="scheme_id_child1" Type="int" Nullable="false" />
           <Property Name="scheme_id_child2" Type="int" Nullable="false" />
           <Property Name="scheme_id_child3" Type="int" />
-          <Property Name="child2_schemename_e" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="child2_schemename_m" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="scheme_description_e" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="scheme_description_m" Type="nvarchar(max)" Nullable="false" />
           <Property Name="isactive" Type="bit" />
           <Property Name="created_by" Type="int" />
           <Property Name="created_date" Type="datetime" />
@@ -326,6 +372,12 @@
         <Function Name="GetDeskDocuments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetDeskTransactionData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetSchemeData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSchemeDesc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PSchemeID" Type="int" Mode="In" />
+          <Parameter Name="SchemeChild1" Type="int" Mode="In" />
+          <Parameter Name="SchemeChild2" Type="int" Mode="In" />
+          <Parameter Name="SchemeChild3" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetSubjectData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="LoginByUsernamePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
@@ -345,11 +397,15 @@
           <EntitySet Name="menu_master" EntityType="Self.menu_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="menu_role_mapping" EntityType="Self.menu_role_mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="org_structure" EntityType="Self.org_structure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="parent_scheme_amt" EntityType="Self.parent_scheme_amt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="parentscheme" EntityType="Self.parentscheme" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="role_master" EntityType="Self.role_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheme_child1" EntityType="Self.scheme_child1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="scheme_child1_amt" EntityType="Self.scheme_child1_amt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheme_child2" EntityType="Self.scheme_child2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="scheme_child2_amt" EntityType="Self.scheme_child2_amt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheme_child3" EntityType="Self.scheme_child3" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="scheme_child3_amt" EntityType="Self.scheme_child3_amt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheme_desc_mapping" EntityType="Self.scheme_desc_mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheme_master" EntityType="Self.scheme_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sub_menu_master" EntityType="Self.sub_menu_master" Schema="dbo" store:Type="Tables" />
@@ -461,8 +517,18 @@
           <EntitySet Name="parentschemes" EntityType="MinorityDasboard_DBModel.parentscheme" />
           <EntitySet Name="scheme_child1" EntityType="MinorityDasboard_DBModel.scheme_child1" />
           <EntitySet Name="scheme_child2" EntityType="MinorityDasboard_DBModel.scheme_child2" />
-          <EntitySet Name="scheme_child3" EntityType="MinorityDasboard_DBModel.scheme_child3" />
           <EntitySet Name="scheme_desc_mapping" EntityType="MinorityDasboard_DBModel.scheme_desc_mapping" />
+          <FunctionImport Name="GetSchemeDesc" ReturnType="Collection(MinorityDasboard_DBModel.GetSchemeDesc_Result)">
+            <Parameter Name="PSchemeID" Mode="In" Type="Int32" />
+            <Parameter Name="SchemeChild1" Mode="In" Type="Int32" />
+            <Parameter Name="SchemeChild2" Mode="In" Type="Int32" />
+            <Parameter Name="SchemeChild3" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="scheme_child3" EntityType="MinorityDasboard_DBModel.scheme_child3" />
+          <EntitySet Name="scheme_child1_amt" EntityType="MinorityDasboard_DBModel.scheme_child1_amt" />
+          <EntitySet Name="scheme_child2_amt" EntityType="MinorityDasboard_DBModel.scheme_child2_amt" />
+          <EntitySet Name="parent_scheme_amt" EntityType="MinorityDasboard_DBModel.parent_scheme_amt" />
+          <EntitySet Name="scheme_child3_amt" EntityType="MinorityDasboard_DBModel.scheme_child3_amt" />
         </EntityContainer>
         <EntityType Name="estimation_master">
           <Key>
@@ -755,22 +821,6 @@
           <Property Name="updated_by" Type="Int32" />
           <Property Name="updated_date" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="scheme_child3">
-          <Key>
-            <PropertyRef Name="scheme_id_child3" />
-          </Key>
-          <Property Name="scheme_id_child3" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="parent_scheme_id" Type="Int32" Nullable="false" />
-          <Property Name="scheme_id_child1" Type="Int32" Nullable="false" />
-          <Property Name="scheme_id_child2" Type="Int32" Nullable="false" />
-          <Property Name="scheme_description_e" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="scheme_description_m" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="isactive" Type="Boolean" />
-          <Property Name="created_by" Type="Int32" />
-          <Property Name="created_date" Type="DateTime" Precision="3" />
-          <Property Name="updated_by" Type="Int32" />
-          <Property Name="updated_date" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="scheme_desc_mapping">
           <Key>
             <PropertyRef Name="scheme_des_id" />
@@ -780,13 +830,92 @@
           <Property Name="scheme_id_child1" Type="Int32" Nullable="false" />
           <Property Name="scheme_id_child2" Type="Int32" Nullable="false" />
           <Property Name="scheme_id_child3" Type="Int32" />
-          <Property Name="child2_schemename_e" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="child2_schemename_m" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="scheme_description_e" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="scheme_description_m" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="isactive" Type="Boolean" />
           <Property Name="created_by" Type="Int32" />
           <Property Name="created_date" Type="DateTime" Precision="3" />
           <Property Name="updated_by" Type="Int32" />
           <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="GetSchemeDesc_Result">
+          <Property Type="String" Name="parent_schemename_m" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="child1_schemename_e" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="child1_schemename_m" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="child2_schemename_e" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="child2_schemename_m" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="child3_schemename_e" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="child3_schemename_m" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="scheme_des_id" Nullable="false" />
+          <Property Type="String" Name="scheme_description_e" Nullable="false" />
+          <Property Type="String" Name="scheme_description_m" Nullable="false" />
+          <Property Type="String" Name="parent_schemename_e" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="parent_scheme_id" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child1" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child2" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child3" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="scheme_child3">
+          <Key>
+            <PropertyRef Name="scheme_id_child3" />
+          </Key>
+          <Property Name="scheme_id_child3" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parent_scheme_id" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child1" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child2" Type="Int32" Nullable="false" />
+          <Property Name="child3_schemename_e" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="child3_schemename_m" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="scheme_child1_amt">
+          <Key>
+            <PropertyRef Name="allotment_amt_child1_id" />
+          </Key>
+          <Property Name="allotment_amt_child1_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fin_y_id" Type="Int32" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child1" Type="Int32" Nullable="false" />
+          <Property Name="alloted_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="isactive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="scheme_child2_amt">
+          <Key>
+            <PropertyRef Name="allotment_amt_child2_id" />
+          </Key>
+          <Property Name="allotment_amt_child2_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fin_y_id" Type="Int32" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child1" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child2" Type="Int32" Nullable="false" />
+          <Property Name="alloted_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="isactive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="parent_scheme_amt">
+          <Key>
+            <PropertyRef Name="allotment_amt_parent_id" />
+          </Key>
+          <Property Name="allotment_amt_parent_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fin_y_id" Type="Int32" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="Int32" Nullable="false" />
+          <Property Name="alloted_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="isactive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="scheme_child3_amt">
+          <Key>
+            <PropertyRef Name="allotment_amt_child3_id" />
+          </Key>
+          <Property Name="allotment_amt_child3_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fin_y_id" Type="Int32" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child1" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child2" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child3" Type="Int32" Nullable="false" />
+          <Property Name="alloted_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="isactive" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1174,23 +1303,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="scheme_child3">
-            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.scheme_child3">
-              <MappingFragment StoreEntitySet="scheme_child3">
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="isactive" ColumnName="isactive" />
-                <ScalarProperty Name="scheme_description_m" ColumnName="scheme_description_m" />
-                <ScalarProperty Name="scheme_description_e" ColumnName="scheme_description_e" />
-                <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
-                <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
-                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
-                <ScalarProperty Name="scheme_id_child3" ColumnName="scheme_id_child3" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="scheme_desc_mapping">
             <EntityTypeMapping TypeName="MinorityDasboard_DBModel.scheme_desc_mapping">
               <MappingFragment StoreEntitySet="scheme_desc_mapping">
@@ -1199,13 +1311,101 @@
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
                 <ScalarProperty Name="created_by" ColumnName="created_by" />
                 <ScalarProperty Name="isactive" ColumnName="isactive" />
-                <ScalarProperty Name="child2_schemename_m" ColumnName="child2_schemename_m" />
-                <ScalarProperty Name="child2_schemename_e" ColumnName="child2_schemename_e" />
+                <ScalarProperty Name="scheme_description_m" ColumnName="scheme_description_m" />
+                <ScalarProperty Name="scheme_description_e" ColumnName="scheme_description_e" />
                 <ScalarProperty Name="scheme_id_child3" ColumnName="scheme_id_child3" />
                 <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
                 <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
                 <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
                 <ScalarProperty Name="scheme_des_id" ColumnName="scheme_des_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetSchemeDesc" FunctionName="MinorityDasboard_DBModel.Store.GetSchemeDesc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.GetSchemeDesc_Result">
+                <ScalarProperty Name="parent_schemename_m" ColumnName="parent_schemename_m" />
+                <ScalarProperty Name="child1_schemename_e" ColumnName="child1_schemename_e" />
+                <ScalarProperty Name="child1_schemename_m" ColumnName="child1_schemename_m" />
+                <ScalarProperty Name="child2_schemename_e" ColumnName="child2_schemename_e" />
+                <ScalarProperty Name="child2_schemename_m" ColumnName="child2_schemename_m" />
+                <ScalarProperty Name="child3_schemename_e" ColumnName="child3_schemename_e" />
+                <ScalarProperty Name="child3_schemename_m" ColumnName="child3_schemename_m" />
+                <ScalarProperty Name="scheme_des_id" ColumnName="scheme_des_id" />
+                <ScalarProperty Name="scheme_description_e" ColumnName="scheme_description_e" />
+                <ScalarProperty Name="scheme_description_m" ColumnName="scheme_description_m" />
+                <ScalarProperty Name="parent_schemename_e" ColumnName="parent_schemename_e" />
+                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
+                <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
+                <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
+                <ScalarProperty Name="scheme_id_child3" ColumnName="scheme_id_child3" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="scheme_child3">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.scheme_child3">
+              <MappingFragment StoreEntitySet="scheme_child3">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="child3_schemename_m" ColumnName="child3_schemename_m" />
+                <ScalarProperty Name="child3_schemename_e" ColumnName="child3_schemename_e" />
+                <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
+                <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
+                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
+                <ScalarProperty Name="scheme_id_child3" ColumnName="scheme_id_child3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scheme_child1_amt">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.scheme_child1_amt">
+              <MappingFragment StoreEntitySet="scheme_child1_amt">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="alloted_amount" ColumnName="alloted_amount" />
+                <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
+                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="allotment_amt_child1_id" ColumnName="allotment_amt_child1_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scheme_child2_amt">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.scheme_child2_amt">
+              <MappingFragment StoreEntitySet="scheme_child2_amt">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="alloted_amount" ColumnName="alloted_amount" />
+                <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
+                <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
+                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="allotment_amt_child2_id" ColumnName="allotment_amt_child2_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parent_scheme_amt">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.parent_scheme_amt">
+              <MappingFragment StoreEntitySet="parent_scheme_amt">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="alloted_amount" ColumnName="alloted_amount" />
+                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="allotment_amt_parent_id" ColumnName="allotment_amt_parent_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scheme_child3_amt">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.scheme_child3_amt">
+              <MappingFragment StoreEntitySet="scheme_child3_amt">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="alloted_amount" ColumnName="alloted_amount" />
+                <ScalarProperty Name="scheme_id_child3" ColumnName="scheme_id_child3" />
+                <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
+                <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
+                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="allotment_amt_child3_id" ColumnName="allotment_amt_child3_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

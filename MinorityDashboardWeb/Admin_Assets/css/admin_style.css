@@ -1,0 +1,11 @@
+﻿.bg-dark {
+    background-color: #3c8dbc !important;
+}
+
+#mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
+    background: #ddd !important;
+}
+
+    #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
+        color: #333;
+    }

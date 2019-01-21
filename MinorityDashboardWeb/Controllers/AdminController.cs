@@ -331,7 +331,6 @@ namespace MinorityDashboard.Web.Controllers
             DashboardModel obj = new DashboardModel();
             obj = (DashboardModel)TempData.Peek("DeskTransTemp");
             List<GetDeskTransactionData_Result> newtrans = obj.lstDeskTransData.Where(s => s.tran_id == id).ToList();
-
             deskdata_trans objdesktrans = new deskdata_trans();
             objdesktrans.budgetary_provision_amt = Convert.ToDecimal(newtrans[0].budgetary_provision_amt);
             objdesktrans.desk_id = Convert.ToInt32(newtrans[0].desk_id);
@@ -386,7 +385,7 @@ namespace MinorityDashboard.Web.Controllers
 
         private SchemeModel GetScheme(int id)
         {
-           
+
             SchemeModel obj = new SchemeModel();
             if (TempData.ContainsKey("SchemeList"))
             {
@@ -396,7 +395,7 @@ namespace MinorityDashboard.Web.Controllers
                 obj.scheme_description = Convert.ToString(newtrans[0].scheme_description);
                 obj.scheme_id = Convert.ToInt32(newtrans[0].scheme_id);
                 obj.scheme_name = Convert.ToString(newtrans[0].scheme_name);
-                obj.sub_id = Convert.ToInt32(newtrans[0].sub_id);             
+                obj.sub_id = Convert.ToInt32(newtrans[0].sub_id);
             }
 
             return obj;
@@ -429,6 +428,123 @@ namespace MinorityDashboard.Web.Controllers
         {
             return View();
         }
+
+        private SchemeModel BindParentChildScheme()
+        {
+            SchemeModel sm = new SchemeModel();
+            sm.ddlParentScheme = BindParentScheme(1);
+            sm.ddlChildScheme1 = BlankSelectItem();
+            sm.ddlChildScheme2 = BlankSelectItem();
+            sm.ddlChildScheme3 = BlankSelectItem();
+            sm.lstSchemeDesc = objDashboard.GetFilteredSchemeDesc(0, 0, 0, 0);
+            return sm;
+        }
+
+        [HttpGet]
+        public ActionResult SchemeDescriptionMaster()
+        {   
+            return View(BindParentChildScheme());
+        }
+        [HttpPost]
+        public ActionResult ParentChange(int PSchemeid)
+        {
+            System.Threading.Thread.Sleep(1000);
+            return Json(BindChildScheme1(1, PSchemeid));          
+        }
+
+        [HttpPost]
+        public ActionResult ChildChange1(int ChildSchemeid1)
+        {
+            System.Threading.Thread.Sleep(1000);
+            return Json(BindChildScheme2(1, ChildSchemeid1));
+        }
+
+        [HttpPost]
+        public ActionResult ChildChange2(int ChildSchemeid2)
+        {
+            System.Threading.Thread.Sleep(1000);
+            return Json(BindChildScheme3(1, ChildSchemeid2));
+        }
+
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SchemeDescriptionMaster(SchemeModel sm)
+        {
+            int result = 0;
+            scheme_desc_mapping sdm = new scheme_desc_mapping();
+            sdm.parent_scheme_id = sm.parent_scheme_id;
+            sdm.scheme_id_child1 = sm.scheme_id_child1;
+            sdm.scheme_id_child2 = sm.scheme_id_child2;
+            sdm.scheme_id_child3 = sm.scheme_id_child3;
+            sdm.scheme_description_e = sm.scheme_description_e;
+            sdm.scheme_description_m = sm.scheme_description_m;
+            sdm.created_by = GetUidbyClaim();
+            sdm.created_date = DateTime.Now;
+            sdm.updated_by = GetUidbyClaim();
+            sdm.updated_date = DateTime.Now;
+            System.Threading.Thread.Sleep(1000);
+
+            result = objDashboard.InsertSchemeDescMapping(sdm);
+            if (result > 0)
+            {
+
+                Success(CommonUtility.DeleteMessage);
+            }
+            else
+            {
+                Danger(CommonUtility.ErrorMessage);
+
+            }
+
+            return View(BindParentChildScheme());
+        }
+
+        [HttpGet]
+        public ActionResult SechemeAmountAllotment()
+        {
+            SchemeAmtAllotment obj = new SchemeAmtAllotment();
+            obj.ddlFinancialYear = BindFinancialYear();
+            obj.ddlParentScheme = BindParentScheme(1);
+            obj.lstDistrict = DistrictwithAmt();
+            TempData["SAA"] = obj;
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        public ActionResult SechemeAmountAllotment(SchemeAmtAllotment SAA)
+        {
+            SchemeAmtAllotment obj = new SchemeAmtAllotment();
+            obj.ddlFinancialYear = BindFinancialYear();
+            obj.ddlParentScheme = BindParentScheme(1);
+
+
+           
+            return View(obj);
+        }
+
+        [HttpPost]
+        public ActionResult SaveparentSchemeAmt(SchemeAmtAllotment SAA)
+        {
+            SchemeAmtAllotment obj = new SchemeAmtAllotment();
+            obj.ddlFinancialYear = BindFinancialYear();
+            obj.ddlParentScheme = BindParentScheme(1);
+            return View("SechemeAmountAllotment", obj);
+        }
+
+        [HttpPost]
+        public ActionResult DisctrictSchemeAmt(SchemeAmtAllotment lst)
+        {
+            SchemeAmtAllotment obj111 = (SchemeAmtAllotment)TempData["SAA"];
+            SchemeAmtAllotment obj = new SchemeAmtAllotment();
+            obj.ddlFinancialYear = BindFinancialYear();
+            obj.ddlParentScheme = BindParentScheme(1);
+            return View("SechemeAmountAllotment", obj);
+        }
+
+
+
 
     }
 }

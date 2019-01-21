@@ -55,6 +55,23 @@ namespace MinorityDashboard.Data.Repository
             return ObjCR.GetData<scheme_child3>();
         }
 
+        public List<parent_scheme_amt> GetParentScheme_amt()
+        {
+            return ObjCR.GetData<parent_scheme_amt>();
+        }
+        public List<scheme_child1_amt> GetSchemeChild1_amt()
+        {
+            return ObjCR.GetData<scheme_child1_amt>();
+        }
+        public List<scheme_child2_amt> GetSchemeChild2_amt()
+        {
+            return ObjCR.GetData<scheme_child2_amt>();
+        }
+        public List<scheme_child3_amt> GetSchemeChild3_amt()
+        {
+            return ObjCR.GetData<scheme_child3_amt>();
+        }
+
 
         public List<GetSchemeData_Result> GetSchemeTransaction()
         {
@@ -83,7 +100,7 @@ namespace MinorityDashboard.Data.Repository
 
             return lst;
 
-          //  return ObjCR.GetData<trans_docfile>();
+            //  return ObjCR.GetData<trans_docfile>();
         }
 
         public List<GetDeskTransactionData_Result> GetTransDeskData()
@@ -122,11 +139,33 @@ namespace MinorityDashboard.Data.Repository
             return returnobj.tran_id;
         }
 
+        public int InsertSchemeDescMapping(scheme_desc_mapping obj)
+        {
+            scheme_desc_mapping returnobj = ObjCR.SaveData<scheme_desc_mapping>(obj);
+            return returnobj.scheme_des_id;
+        }
+
         public int InsertDesk(desk_master obj)
         {
             desk_master returnobj = ObjCR.SaveData<desk_master>(obj);
             return returnobj.desk_id;
         }
+
+
+
+        public int InsertParentScheme_amt(parent_scheme_amt obj)
+        {
+            parent_scheme_amt returnobj = ObjCR.SaveData<parent_scheme_amt>(obj);
+            return returnobj.allotment_amt_parent_id;
+        }
+
+        public int InsertScheme_Child1_amt(scheme_child1_amt obj)
+        {
+            scheme_child1_amt returnobj = ObjCR.SaveData<scheme_child1_amt>(obj);
+            return returnobj.;
+        }
+
+
         public int InsertDesk_Doc(deskdocument obj, List<string> doclist)
         {
             deskdocument returnobj = ObjCR.SaveData<deskdocument>(obj);
@@ -201,7 +240,7 @@ namespace MinorityDashboard.Data.Repository
                     desktransobj.scheme_name = obj.scheme_name;
                     desktransobj.sub_id = obj.sub_id;
                     desktransobj.updated_by = obj.updated_by;
-                    desktransobj.updated_date = obj.updated_date;                  
+                    desktransobj.updated_date = obj.updated_date;
                     db.SaveChanges();
                 }
             }
@@ -241,6 +280,24 @@ namespace MinorityDashboard.Data.Repository
                 successflg = 0;
             }
             return successflg;
+        }
+
+
+        public List<GetSchemeDesc_Result> GetFilteredSchemeDesc(int ParentId, int Childschm1, int Childschm2, int Childschm3)
+        {
+            List<GetSchemeDesc_Result> lstsdm = new List<GetSchemeDesc_Result>();
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    lstsdm = db.GetSchemeDesc(ParentId, Childschm1, Childschm2, Childschm3).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return lstsdm;
+            }
+            return lstsdm;
         }
 
         public void testmethod()

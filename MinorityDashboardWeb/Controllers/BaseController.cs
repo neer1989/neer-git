@@ -2,6 +2,7 @@
 using MinorityDashboard.Data.Repository;
 using MinorityDashboard.DataModel;
 using MinorityDashboardWeb;
+using MinorityDashboardWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,6 +115,17 @@ namespace MinorityDashboard.Web.Controllers
             }
             return lstddl;
         }
+        public List<DistrictList> DistrictwithAmt()
+        {
+            List<district_master> lst = objDashboard.GetDistrict();
+            List<DistrictList> lstdistrict = new List<DistrictList>();
+
+            foreach (district_master X in lst)
+            {
+                lstdistrict.Add(new DistrictList() { district_id = X.des_id, districtname = X.des_name,allotedmt=0 });
+            }
+            return lstdistrict;
+        }
 
         public List<SelectListItem> BindFinancialYear()
         {
@@ -125,6 +137,78 @@ namespace MinorityDashboard.Web.Controllers
                 lstddl.Add(new SelectListItem() { Value = X.fin_y_id.ToString(), Text = X.fin_y_name });
             }
             return lstddl;
+        }
+
+        public List<SelectListItem> BindParentScheme(int lang)
+        {
+            List<parentscheme> lst = objDashboard.GetParentScheme();
+            List<SelectListItem> lstddl = new List<SelectListItem>();
+            lstddl.Add(new SelectListItem() { Value = "0", Text = "Select" });
+            if (lang == 0)
+            {
+
+                foreach (parentscheme X in lst)
+                {
+                    lstddl.Add(new SelectListItem() { Value = X.parent_scheme_id.ToString(), Text = X.parent_schemename_e });
+                }
+            }
+            else
+            {
+                foreach (parentscheme X in lst)
+                {
+                    lstddl.Add(new SelectListItem() { Value = X.parent_scheme_id.ToString(), Text = X.parent_schemename_m });
+                }
+            }
+            return lstddl;
+        }
+        public List<SelectListItem> BindChildScheme1(int lang, int PSchemId = 0)
+        {
+            List<scheme_child1> lst = PSchemId == 0 ? objDashboard.GetSchemeChild1() : objDashboard.GetSchemeChild1().Where(s => s.parent_scheme_id == PSchemId).ToList();
+            List<SelectListItem> lstddl = new List<SelectListItem>();
+            //lstddl.Add(new SelectListItem() { Value = "0", Text = "Select" });
+
+
+            foreach (scheme_child1 X in lst)
+            {
+                lstddl.Add(new SelectListItem() { Value = X.scheme_id_child1.ToString(), Text = lang == 0 ? X.child1_schemename_e : X.child1_schemename_m });
+            }
+
+            return lstddl;
+        }
+        public List<SelectListItem> BindChildScheme2(int lang, int ChildSchemId1 = 0)
+        {
+
+            List<scheme_child2> lst = ChildSchemId1 == 0 ? objDashboard.GetSchemeChild2() : objDashboard.GetSchemeChild2().Where(s => s.scheme_id_child1 == ChildSchemId1).ToList();
+            List<SelectListItem> lstddl = new List<SelectListItem>();
+           // lstddl.Add(new SelectListItem() { Value = "0", Text = "Select" });
+            foreach (scheme_child2 X in lst)
+            {
+                lstddl.Add(new SelectListItem() { Value = X.scheme_id_child2.ToString(), Text = lang == 0 ? X.child2_schemename_e : X.child2_schemename_m });
+            }
+
+            return lstddl;
+        }
+        public List<SelectListItem> BindChildScheme3(int lang, int ChildSchemId2 = 0)
+        {
+            List<scheme_child3> lst = ChildSchemId2 == 0 ? objDashboard.GetSchemeChild3() : objDashboard.GetSchemeChild3().Where(s => s.scheme_id_child2 == ChildSchemId2).ToList();
+            List<SelectListItem> lstddl = new List<SelectListItem>();
+           // lstddl.Add(new SelectListItem() { Value = "0", Text = "Select" });
+
+            foreach (scheme_child3 X in lst)
+            {
+                lstddl.Add(new SelectListItem() { Value = X.scheme_id_child3.ToString(), Text = lang == 0 ? X.child3_schemename_e : X.child3_schemename_m });
+            }
+            return lstddl;
+        }
+
+        public List<SelectListItem> BlankSelectItem()
+        {
+            SelectListItem sli = new SelectListItem();
+            sli.Text = "Select";
+            sli.Value = "0";
+            List<SelectListItem> lst = new List<SelectListItem>();
+            lst.Add(sli);
+            return lst;
         }
 
         public ActionResult AccessDenied()
@@ -186,7 +270,6 @@ namespace MinorityDashboard.Web.Controllers
             //}
             // sub_menu_master returnobj = ObjCR.SaveData<sub_menu_master>(obj);
         }
-
 
 
         public int GetUidbyClaim()
@@ -257,7 +340,7 @@ namespace MinorityDashboard.Web.Controllers
             //    cultureOnCookie = langCookie.Value;
             //}
 
-            string cultureOnCookie =  GetCultureOnCookie(filterContext.HttpContext.Request);
+            string cultureOnCookie = GetCultureOnCookie(filterContext.HttpContext.Request);
             //string cultureOnURL = filterContext.RouteData.Values.ContainsKey("lang")
             //    ? (filterContext.RouteData.Values["lang"] == null ? "en-US" : filterContext.RouteData.Values["lang"].ToString())
             //    : LanguageManger.DefaultCulture;

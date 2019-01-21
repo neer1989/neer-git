@@ -101,5 +101,24 @@ namespace MinorityDashboardWeb.Controllers
         }
 
 
-    }
+        [HttpGet]
+        public ActionResult SchemeDescription(string schids)
+        {
+            string[] SchemIdsArr = schids.Split('/');
+            SchemeModel sm = new SchemeModel();
+
+            int ParentID = Convert.ToInt32(SchemIdsArr[0]);
+
+            int Childschm1 = Convert.ToInt32(SchemIdsArr[1]);
+            int Childschm2 = Convert.ToInt32(SchemIdsArr[2]);
+            int Childschm3 = Convert.ToInt32(SchemIdsArr[3]);
+
+           sm.lstSchemeDesc =  objDashboard.GetFilteredSchemeDesc(ParentID, Childschm1, Childschm2, Childschm3);
+
+
+            return View(sm);
+        }
+
+
+        }
 }

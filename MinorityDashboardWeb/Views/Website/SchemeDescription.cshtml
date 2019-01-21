@@ -1,0 +1,56 @@
+﻿@model MinorityDashboardWeb.Models.SchemeModel
+@{
+    ViewBag.Title = "SchemeDescription";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+
+
+<div class="container">
+    <div class="content allullia">
+        @if (Model.lstSchemeDesc.Count > 0)
+        {
+            <div id="SitePH_CmsContent_BreadCrum_breadcrumb" class="breadcrumbDiv">
+                <ul class="breadcrumb">
+                    <li><b>You are here :</b></li>
+
+                    <li><a href="#">@Model.lstSchemeDesc[0].parent_schemename_m</a></li>
+                    <li><a href="#">@Model.lstSchemeDesc[0].child1_schemename_m</a></li>
+                    <li><a href="#">@Model.lstSchemeDesc[0].child2_schemename_m</a></li>
+                    <li><a href="#">@Model.lstSchemeDesc[0].child3_schemename_m</a></li>
+                </ul>
+
+            </div>
+            <h2>
+                @Model.lstSchemeDesc[0].child3_schemename_m
+            </h2>
+            @Html.Raw(Model.lstSchemeDesc[0].scheme_description_m);
+        }
+        else
+        {
+
+            <h1> Scheme Description not available. </h1>
+
+
+        }
+
+    </div>
+</div>
+<style>
+    .content ul {
+        line-height: 28px;
+        margin-left: 20px;
+    }
+
+    a {
+        color: #42A5F5;
+    }
+
+        a:hover {
+            color: #1976D2;
+        }
+
+    .breadcrumb {
+        margin-left: 0px !important;
+    }
+</style>
+
