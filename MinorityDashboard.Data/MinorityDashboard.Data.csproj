@@ -50,7 +50,9 @@
     <Compile Include="CommonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Dashboard.cs" />
+    <Compile Include="Repository\DistrictAdmin.cs" />
     <Compile Include="Repository\IDashboard.cs" />
+    <Compile Include="Repository\IDistrictAdmin.cs" />
     <Compile Include="Repository\ILoginRegister.cs" />
     <Compile Include="Repository\IMenuManager.cs" />
     <Compile Include="Repository\IRoleManager.cs" />

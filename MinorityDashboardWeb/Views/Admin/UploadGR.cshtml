@@ -1,0 +1,133 @@
+﻿@model MinorityDashboardWeb.Models.GRModel
+@{
+    /**/
+
+    ViewBag.Title = "UploadGR";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="card mx-1 mt-12">
+    <div class="card-header">Upload GR</div>
+    <div class="card-body">
+        @*@using (Html.BeginForm("SubjectMaster", "Admin", FormMethod.Post, new AjaxOptions { LoadingElementId = "progress" }))*@
+        @using (Html.BeginForm("UploadGR", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "myform" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Title English</label>
+
+                        @Html.TextBoxFor(model => model.keywords_e, new { @class = "form-control", id = "subname", placeholder = "Enter Tiltle English" })
+
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Title Marathi</label>
+
+                        @Html.TextBoxFor(model => model.keywords_m, new { @class = "form-control", id = "subname", placeholder = "Enter Tiltle Marathi" })
+
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <label for="exampleInputName">Unique Code English</label>
+
+                        @Html.TextBoxFor(model => model.unique_code_e, new { @class = "form-control", id = "subname", placeholder = "Enter Unique Code English" })
+
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <label for="exampleInputName">Unique Code Marathi</label>
+
+                        @Html.TextBoxFor(a => a.unique_code_m, new { @class = "form-control", id = "subname", placeholder = "Enter Unique Code Marathi" })
+
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <label for="exampleInputName">GR Date</label>
+
+                        @Html.TextBoxFor(a => a.gr_date, "", new { @class = "form-control", @readonly = "readonly" })
+
+
+                    </div>
+
+
+
+
+                    <div class="col-md-6">
+                        <label for="exampleInputName">GR File</label>
+                        @Html.TextBoxFor(a => a.GrFile, new { @class = "form-control", @type = "file" })
+                    </div>
+
+                    <div class="col-md-1" style="margin-top:3%">
+                        <label for="exampleInputName">Is Active</label>
+
+                    </div>
+                    <div class="col-md-1" style="margin-top:3.5%">
+
+                        @Html.CheckBoxFor(model => model.isactive, new { @class = "form-control", id = "is_active" })
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+                        <label for="exampleInputName"></label>
+
+                        @if (Model.gr_id > 0)
+                        {
+                            <input type="submit" value="Update" class="btn btn-primary btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                        }
+                        else
+                        {
+                            <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <a href=@Url.Action("UploadGR","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Bootstrap -->
+            <!-- Bootstrap DatePicker -->
+
+
+
+        }
+
+        <!-- Bootstrap DatePicker -->
+        <script type="text/javascript">
+            $(function () {
+                $('#gr_date').datepicker({
+                    changeMonth: true,
+                    changeYear: true,                   
+                    language: "tr"
+                });
+            });
+        </script>
+
+
+    </div>
+</div>
+

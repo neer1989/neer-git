@@ -1,4 +1,4 @@
-﻿@model MinorityDashboardWeb.Models.DashboardModel
+﻿@model MinorityDashboardWeb.Models.DistrictAdminModel
 @{
     ViewBag.Title = "DeskData";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -68,117 +68,118 @@
 
                     @Html.HiddenFor(s => s.tran_id)
 
-                <div class="card-body">
+                    <div class="card-body">
 
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputName">District</label>
+                                    @Html.DropDownListFor(s => s.des_id, Model.lstDistrict, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exampleInputName">Financil Year</label>
 
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="exampleInputName">Desk Name</label>
+                                    @Html.DropDownListFor(s => s.fin_y_id, Model.lstFinancialYear, new { @class = "form-control" })
 
-                                @Html.DropDownListFor(s => s.desk_id, Model.lstDesk, new { @class = "form-control" })
-                            </div>
-                            <div class="col-md-6">
-                                <label for="exampleInputName">Scheme Name</label>
-                                @Html.DropDownListFor(s => s.scheme_id, Model.lstScheme, new { @class = "form-control" })
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="exampleInputName">District</label>
-                                @Html.DropDownListFor(s => s.des_id, Model.lstDistrict, new { @class = "form-control" })
-                            </div>
-                            <div class="col-md-6">
-                                <label for="exampleInputName">Financil Year</label>
-
-                                @Html.DropDownListFor(s => s.fin_y_id, Model.lstFinancialYear, new { @class = "form-control" })
+                                </div>
 
 
                             </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    <label for="exampleInputName">Main Scheme</label>
+                                    @Html.DropDownListFor(s => s.parent_scheme_id, Model.ddlParentScheme, new { @class = "form-control" })
+
+                                </div>
+                                <div class="col-md-3">
+
+                                    <label for="exampleInputName">Scheme Child1</label>
+                                    @Html.DropDownListFor(s => s.scheme_id_child1, Model.ddlChildScheme1, new { @class = "form-control" })
 
 
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="exampleInputName">Subject</label>
 
-                                @Html.DropDownListFor(s => s.sub_id, Model.lstSubject, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="exampleInputName">Scheme Child2</label>
+                                    @Html.DropDownListFor(s => s.scheme_id_child2, Model.ddlChildScheme2, new { @class = "form-control" })
+
+                                </div>
+                                <div class="col-md-3">
+
+                                    <label for="exampleInputName">Scheme Child3</label>
+                                    @Html.DropDownListFor(s => s.scheme_id_child3, Model.ddlChildScheme3, new { @class = "form-control" })
 
 
-                            </div>
-                            <div class="col-md-6">
-                                <label for="exampleInputName">Estimation</label>
-                                @Html.DropDownListFor(s => s.est_id, Model.lstEstimatipn, new { @class = "form-control" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="exampleInputName">Budgetary Provision Amount</label>
-
-                                @Html.TextBoxFor(model => model.budgetary_provision_amt, new { @class = "form-control", id = "budgetary_provision_amt", placeholder = "Budgetary Provision Amount" })
-
-                            </div>
-                            <div class="col-md-6">
-                                <label for="exampleInputName">Actual Allocation Amount</label>
-
-                                @Html.TextBoxFor(model => model.actual_allocation_amt, new { @class = "form-control", id = "actual_allocation_amt", placeholder = "Actual Allocation Amount" })
-
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="exampleInputName">Actual Expenditure Amount</label>
 
-                                @Html.TextBoxFor(model => model.actual_expenditure_amt, new { @class = "form-control", id = "actual_expenditure_amt", placeholder = "Actual Expenditure Amount" })
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <label for="exampleInputName">Implementation Agency</label>
 
-                            </div>
-                            <div class="col-md-6">
-                                <label for="exampleInputName">Actual Remaining Amount</label>
+                                    @Html.DropDownListFor(s => s.fin_y_id, Model.lstImplementationAgency, new { @class = "form-control" })
 
-                                @Html.TextBoxFor(model => model.actual_remaining_amt, new { @class = "form-control", id = "actual_remaining_amt", placeholder = "Actual Remaining Amount", @readonly=true })
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="exampleInputName">Budgetary Provision Amount</label>
+
+                                    @Html.TextBoxFor(model => model.budgetary_provision_amt, new { @class = "form-control", id = "budgetary_provision_amt", placeholder = "Budgetary Provision Amount" })
+
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="exampleInputName">Actual Allocation Amount</label>
+
+                                    @Html.TextBoxFor(model => model.actual_allocation_amt, new { @class = "form-control", id = "actual_allocation_amt", placeholder = "Actual Allocation Amount" })
+
+                                </div>
+
+                                @*<div class="col-md-3">
+                                        <label for="exampleInputName">Actual Expenditure Amount</label>
+
+                                        @Html.TextBoxFor(model => model.actual_expenditure_amt, new { @class = "form-control", id = "actual_expenditure_amt", placeholder = "Actual Expenditure Amount" })
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="exampleInputName">Actual Remaining Amount</label>
+
+                                        @Html.TextBoxFor(model => model.actual_remaining_amt, new { @class = "form-control", id = "actual_remaining_amt", placeholder = "Actual Remaining Amount" })
+
+                                    </div>*@
 
                             </div>
                         </div>
-                    </div>
 
 
 
 
-                    <div class="form-group">
-                        <div class="form-row">
+                        <div class="form-group">
+                            <div class="form-row">
 
-                            <div class="col-md-6">
-                                <label for="exampleInputName"></label>
+                                <div class="col-md-6">
+                                    <label for="exampleInputName"></label>
 
-                                @if (Model.tran_id > 0)
-                                {
-                                    <input type="submit" value="Update" class="btn btn-primary btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
-                                }
-                                else
-                                {
-                                    <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
-                                }
+                                    @if (Model.tran_id > 0)
+                                    {
+                                        <input type="submit" value="Update" class="btn btn-primary btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                                    }
+                                </div>
+                                <div class="col-md-6">
+                                    <a href=@Url.Action("DeskData","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
+                                </div>
+
                             </div>
-                            <div class="col-md-6">
-                                <a href=@Url.Action("DeskData","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
-                            </div>
-
                         </div>
+
+
                     </div>
-
-
-                </div>
 
                 }
             </div>
@@ -214,15 +215,15 @@
                                         ExpendAmtTotal = ExpendAmtTotal + Convert.ToDecimal(X.actual_expenditure_amt);
                                         ActualAmtTotal = ActualAmtTotal + Convert.ToDecimal(X.actual_remaining_amt);
 
-                                    <tr>
+                                        <tr>
 
-                                        <td>@X.desk_name</td>
-                                        <td>@X.budgetary_provision_amt</td>
-                                        <td>@X.actual_allocation_amt</td>
-                                        <td>@X.actual_expenditure_amt</td>
-                                        <td>@X.actual_remaining_amt</td>
-                                        <td> @Html.ActionLink("Edit", "EditDeskTrans", new { id = X.tran_id })  |  @Html.ActionLink("Delete", "DeletDeskTrans", new { id = X.tran_id }) </td>
-                                    </tr>
+                                            <td>@X.desk_name</td>
+                                            <td>@X.budgetary_provision_amt</td>
+                                            <td>@X.actual_allocation_amt</td>
+                                            <td>@X.actual_expenditure_amt</td>
+                                            <td>@X.actual_remaining_amt</td>
+                                            <td> @Html.ActionLink("Edit", "EditDeskTrans", new { id = X.tran_id })  |  @Html.ActionLink("Delete", "DeletDeskTrans", new { id = X.tran_id }) </td>
+                                        </tr>
                                     }
 
                                 </tbody>
@@ -273,11 +274,90 @@
             var actual_rem_amt = $("#actual_remaining_amt").val();
 
             if (actual_alloc_amt != "" && actual_alloc_amt > 0 && actual_alloc_amt > actual_exp_amt) {
-             
+
                 //$("#actual_remaining_amt").value = 0;
-                if (actual_exp_amt != "")                
-                $('#actual_remaining_amt').val((parseFloat(actual_alloc_amt) - parseFloat(actual_exp_amt)).toString());
+                if (actual_exp_amt != "")
+                    $('#actual_remaining_amt').val((parseFloat(actual_alloc_amt) - parseFloat(actual_exp_amt)).toString());
             }
         });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+        $("#parent_scheme_id").on("change", function () {
+            $(".modal1212").show();
+            $.ajax(
+                {
+                    url: '/Base/ParentChange?PSchemeid=' + $("#parent_scheme_id").val(),
+                    type: 'POST',
+                    data: "",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        var markup = "<option value='0'>Select</option>";
+
+                        $("#scheme_id_child2").html(markup).show();
+                        $("#scheme_id_child3").html(markup).show();
+
+                        for (var x = 0; x < data.length; x++) {
+                            markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                        }
+                        $("#scheme_id_child1").html(markup).show();
+                        $(".modal1212").hide();
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+        });
+
+
+        $("#scheme_id_child1").on("change", function () {
+            $(".modal1212").show();
+            $.ajax(
+                {
+                    url: '/Base/ChildChange1?ChildSchemeid1=' + $("#scheme_id_child1").val(),
+                    type: 'POST',
+                    data: "",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        var markup = "<option value='0'>Select</option>";
+
+                        $("#scheme_id_child3").html(markup).show();
+                        for (var x = 0; x < data.length; x++) {
+                            markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                        }
+                        $("#scheme_id_child2").html(markup).show();
+                        $(".modal1212").hide();
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+        });
+
+        $("#scheme_id_child2").on("change", function () {
+            $(".modal1212").show();
+            $.ajax(
+                {
+                    url: '/Base/ChildChange2?ChildSchemeid2=' + $("#scheme_id_child2").val(),
+                    type: 'POST',
+                    data: "",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        var markup = "<option value='0'>Select</option>";
+                        for (var x = 0; x < data.length; x++) {
+                            markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                        }
+                        $("#scheme_id_child3").html(markup).show();
+                        $(".modal1212").hide();
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+        });
+
     });
 </script>

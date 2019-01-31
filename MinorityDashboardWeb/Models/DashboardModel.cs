@@ -63,6 +63,28 @@ namespace MinorityDashboardWeb.Models
        
     }
 
+    public class GRModel
+    {
+        public int gr_id { get; set; }
+        public string keywords_e { get; set; }
+        public string keywords_m { get; set; }
+        public DateTime gr_date { get; set; }
+
+
+        public DateTime grfrom_date { get; set; }
+        public DateTime grto_date { get; set; }
+
+
+        public string unique_code_e { get; set; }
+        public string unique_code_m { get; set; }
+        public bool isactive { get; set; }
+        [Display(Name = "Browse File")]
+        public HttpPostedFileBase[] GrFile { get; set; }
+
+        public List<grdetail> lstGRList { get; set; }
+
+    }
+
     public class SchemeModel
     {
         public int scheme_id { get; set; }

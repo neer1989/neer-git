@@ -2,6 +2,7 @@
 using MinorityDashboard.DataModel;
 using MinorityDashboardWeb;
 using MinorityDashboardWeb.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,14 +20,16 @@ namespace MinorityDashboard.Web.Controllers
     {
         // GET: Admin
         IDashboard objDashboard; // = new Dashboard();
-
+        IDistrictAdmin objDistrictAdmin;
         IUnityContainer unitycontainer = new UnityContainer();
 
 
         public AdminController()
         {
             unitycontainer.RegisterType<IDashboard, Dashboard>();
+            unitycontainer.RegisterType<IDistrictAdmin, DistrictAdmin>();
             objDashboard = unitycontainer.Resolve<Dashboard>();
+            objDistrictAdmin = unitycontainer.Resolve<DistrictAdmin>();
 
         }
 
@@ -35,8 +38,93 @@ namespace MinorityDashboard.Web.Controllers
         {
             //  Success(string.Format("<b>{0}</b> was successfully added to the database.", "neer..."), true);
 
-            return View();
+            //List<district_master> lst = objDashboard.GetDistrict();
+
+            //JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+
+
+            //ViewBag.DataPoints = JsonConvert.SerializeObject(lst, _jsonSetting);
+
+            //List<object> iData = new List<object>();
+            //List<int> lststr1 = new List<int>();
+            //List<string> lststr2 = new List<string>();
+            //foreach (district_master dm in lst)
+            //{
+            //    List<object> x = new List<object>();
+            //    lststr1.Add(dm.des_id);
+            //    lststr2.Add(dm.des_name.Trim());
+
+            //}
+            //iData.Add(lststr1);
+            //iData.Add(lststr2);
+
+            //ViewBag.DataPointsChart1 = JsonConvert.SerializeObject(lststr1, _jsonSetting).Trim('"');
+            // ViewBag.DataPointsChart2 = JsonConvert.SerializeObject(lststr2, _jsonSetting).Trim('"');
+
+
+         List<gp_district_scheme_details_Result> lstdsd = objDistrictAdmin.SPDistrictSchemeDetails(0);
+
+
+
+            return View(lstdsd);
         }
+
+        [HttpPost]
+        public JsonResult NewChart()
+        {
+            List<object> iData = new List<object>();
+            List<gp_amount_districtname_Result> lst = objDistrictAdmin.SPAmountDistrictName();
+
+
+            List<gp_amount_schemename_Result> lstSchemeB = objDistrictAdmin.SPSchemeName();
+
+
+            JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+
+
+            ViewBag.DataPoints = JsonConvert.SerializeObject(lst, _jsonSetting);
+
+
+            List<decimal> lststr1 = new List<decimal>();
+            List<string> lststr2 = new List<string>();
+            List<string> lststr3 = new List<string>();
+
+            List<decimal> lststr4 = new List<decimal>();
+            List<string> lststr5 = new List<string>();
+            int icolorid = 0;
+            foreach (gp_amount_districtname_Result dm in lst)
+            {
+                List<object> x = new List<object>();
+                lststr1.Add(Convert.ToInt32(dm.amt));
+                lststr2.Add(dm.des_name.Trim());
+                //  lststr3.Add("rgb(255, 99, 132)");
+                  lststr3.Add(PickColor(icolorid));
+
+               // lststr3.Add("#00FF00");
+                icolorid++;
+
+            }
+
+            foreach (gp_amount_schemename_Result dm in lstSchemeB)
+            {
+                List<object> x = new List<object>();
+                lststr4.Add(Convert.ToDecimal(dm.amt));
+                lststr5.Add(dm.parent_schemename_m.Trim());
+
+
+            }
+
+
+            iData.Add(lststr1);
+            iData.Add(lststr2);
+            iData.Add(lststr3);
+            iData.Add(lststr4);
+            iData.Add(lststr5);
+            return Json(iData, JsonRequestBehavior.AllowGet);
+        }
+
+
+
 
         [HttpGet]
         //  [Authorize(Roles ="2")]
@@ -80,10 +168,23 @@ namespace MinorityDashboard.Web.Controllers
         [HttpGet]
         public ActionResult DeskData()
         {
-            DashboardModel objDashboardM = BindDropdowns();
-            objDashboardM.lstDeskTransData = objDashboard.GetTransDeskData();
-            TempData["DeskTransTemp"] = objDashboardM;
-            return View(objDashboardM);
+            //DashboardModel objDashboardM = BindDropdowns();
+            //objDashboardM.lstDeskTransData = objDashboard.GetTransDeskData();
+            //TempData["DeskTransTemp"] = objDashboardM;
+            //return View(objDashboardM);
+
+            DistrictAdminModel sm = new DistrictAdminModel();
+            sm.ddlParentScheme = BindParentScheme(1);
+            sm.ddlChildScheme1 = BlankSelectItem();
+            sm.ddlChildScheme2 = BlankSelectItem();
+            sm.ddlChildScheme3 = BlankSelectItem();
+            sm.lstFinancialYear = BindFinancialYear();
+            sm.lstDistrict = BindDistrict();
+            sm.lstDeskTransData = objDashboard.GetTransDeskData();
+            sm.lstImplementationAgency = BindImplementationAgency();
+
+            return View(sm);
+
         }
 
 
@@ -154,30 +255,34 @@ namespace MinorityDashboard.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeskData(DashboardModel obj)
+        public ActionResult DeskData(DistrictAdminModel obj)
         {
             int result = 0; string sucessmsg = "";
-            deskdata_trans objdesktrans = new deskdata_trans();
-            objdesktrans.est_id = obj.est_id;
-            objdesktrans.desk_id = obj.desk_id;
+            scheme_amount_allocation objdesktrans = new scheme_amount_allocation();
             objdesktrans.des_id = obj.des_id;
             objdesktrans.fin_y_id = obj.fin_y_id;
             objdesktrans.budgetary_provision_amt = obj.budgetary_provision_amt;
             objdesktrans.actual_allocation_amt = obj.actual_allocation_amt;
-            objdesktrans.actual_expenditure_amt = obj.actual_expenditure_amt;
-            objdesktrans.actual_remaining_amt = obj.actual_remaining_amt;
-            objdesktrans.scheme_id = obj.scheme_id;
-            objdesktrans.sub_id = obj.sub_id;
-            objdesktrans.tran_id = obj.tran_id;
+
+            objdesktrans.imp_agency_id = obj.imp_agency_id;
+            objdesktrans.parent_scheme_id = obj.parent_scheme_id;
+            objdesktrans.scheme_id_child1 = obj.scheme_id_child1;
+            objdesktrans.scheme_id_child2 = obj.scheme_id_child2;
+            objdesktrans.scheme_id_child3 = obj.scheme_id_child3;
+            objdesktrans.created_by = GetUidbyClaim();
+            objdesktrans.created_date = DateTime.Now;
+            objdesktrans.updated_by = GetUidbyClaim();
+            objdesktrans.updated_date = DateTime.Now;
 
             if (obj.tran_id > 0)
             {
-                result = objDashboard.UpdateDeskTrans(objdesktrans);
+                // result = objDashboard.UpdateDeskTrans(objdesktrans);
                 sucessmsg = CommonUtility.EditMessage;
             }
             else
             {
-                result = objDashboard.InsertDeskTrans(objdesktrans);
+                // result = objDashboard.InsertDeskTrans(objdesktrans);
+                result = objDashboard.InsertSchemeAllotment(objdesktrans);
                 sucessmsg = CommonUtility.SucessMessage;
             }
 
@@ -191,9 +296,21 @@ namespace MinorityDashboard.Web.Controllers
                 Danger(CommonUtility.ErrorMessage);
             }
 
-            DashboardModel objDashboardM = BindDropdowns();
-            objDashboardM.lstDeskTransData = objDashboard.GetTransDeskData();
-            return View(objDashboardM);
+            //DashboardModel objDashboardM = BindDropdowns();
+            //objDashboardM.lstDeskTransData = objDashboard.GetTransDeskData();
+
+
+            DistrictAdminModel sm = new DistrictAdminModel();
+            sm.ddlParentScheme = BindParentScheme(1);
+            sm.ddlChildScheme1 = BlankSelectItem();
+            sm.ddlChildScheme2 = BlankSelectItem();
+            sm.ddlChildScheme3 = BlankSelectItem();
+            sm.lstFinancialYear = BindFinancialYear();
+            sm.lstDistrict = BindDistrict();
+            sm.lstDeskTransData = objDashboard.GetTransDeskData();
+            sm.lstImplementationAgency = BindImplementationAgency();
+
+            return View(sm);
         }
         [HttpGet]
         public ActionResult SubjectMaster()
@@ -442,29 +559,10 @@ namespace MinorityDashboard.Web.Controllers
 
         [HttpGet]
         public ActionResult SchemeDescriptionMaster()
-        {   
+        {
             return View(BindParentChildScheme());
         }
-        [HttpPost]
-        public ActionResult ParentChange(int PSchemeid)
-        {
-            System.Threading.Thread.Sleep(1000);
-            return Json(BindChildScheme1(1, PSchemeid));          
-        }
 
-        [HttpPost]
-        public ActionResult ChildChange1(int ChildSchemeid1)
-        {
-            System.Threading.Thread.Sleep(1000);
-            return Json(BindChildScheme2(1, ChildSchemeid1));
-        }
-
-        [HttpPost]
-        public ActionResult ChildChange2(int ChildSchemeid2)
-        {
-            System.Threading.Thread.Sleep(1000);
-            return Json(BindChildScheme3(1, ChildSchemeid2));
-        }
 
 
         [HttpPost]
@@ -520,7 +618,7 @@ namespace MinorityDashboard.Web.Controllers
             obj.ddlParentScheme = BindParentScheme(1);
 
 
-           
+
             return View(obj);
         }
 
@@ -541,6 +639,47 @@ namespace MinorityDashboard.Web.Controllers
             obj.ddlFinancialYear = BindFinancialYear();
             obj.ddlParentScheme = BindParentScheme(1);
             return View("SechemeAmountAllotment", obj);
+        }
+
+        [HttpPost]
+        public ActionResult UploadGR(GRModel obj)
+        {
+            int result = 0;
+            grdetail grd = new grdetail();
+            grd.keywords_e = obj.keywords_e;
+            grd.keywords_m = obj.keywords_m;
+            grd.unique_code_e = obj.unique_code_e;
+            grd.unique_code_m = obj.unique_code_m;
+            grd.gr_date = obj.gr_date;
+            grd.isactive = obj.isactive;
+            grd.created_by = GetUidbyClaim();
+            grd.created_date = DateTime.Now;
+            grd.updated_by = GetUidbyClaim();
+            grd.updated_date = DateTime.Now;
+            grd.gr_file = SaveFileinFolder(obj.GrFile, ConfigurationManager.AppSettings["GRFolder"].ToString(), obj.gr_id)[0];
+
+            result = objDashboard.InsertGR(grd);
+            if (result > 0)
+            {
+
+                Success(CommonUtility.SucessMessage);
+            }
+            else
+            {
+                Danger(CommonUtility.ErrorMessage);
+
+            }
+            GRModel grm = new GRModel();
+
+            return View(grm);
+        }
+
+        [HttpGet]
+        public ActionResult UploadGR()
+        {
+            GRModel grm = new GRModel();
+
+            return View(grm);
         }
 
 

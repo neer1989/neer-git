@@ -33,6 +33,10 @@
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.scheme_child2_amt" Width="1.5" PointX="15.375" PointY="0.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.parent_scheme_amt" Width="1.5" PointX="14.75" PointY="4.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.scheme_child3_amt" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.implementation_agency_master" Width="1.5" PointX="15.375" PointY="10.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.district_scheme_details" Width="1.5" PointX="5.375" PointY="15.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.scheme_amount_allocation" Width="1.5" PointX="15.375" PointY="14.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.grdetail" Width="1.5" PointX="7.375" PointY="16.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

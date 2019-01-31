@@ -18,7 +18,60 @@
 
     <link href="../Admin_Assets/css/admin_style.css" rel="stylesheet" />
 
+    <style type="text/css">
+        .form-control {
+            border: 1px solid #728590;
+            padding: 0.175rem .75rem;
+            font-size: .9rem;
+        }
 
+        select.form-control:not([size]):not([multiple]) {
+            height: calc(1.75rem + 2px);
+        }
+
+        .form-control:focus {
+            border-color: #3c8dbc;
+            box-shadow: none;
+        }
+
+        .table-bordered {
+            border: 1px solid #728590;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 1px solid #728590;
+        }
+
+        .table-bordered td, .table-bordered th {
+            border: 1px solid #728590;
+        }
+
+        .table td, .table th {
+            padding: .4rem;
+            vertical-align: top;
+            border-top: 1px solid #728590;
+        }
+
+        table.dataTable {
+            clear: both;
+            margin-top: 6px !important;
+            margin-bottom: 6px !important;
+            max-width: none !important;
+            border-collapse: separate !important;
+            border-radius: 5px;
+            font-size: .9rem;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #3c8dbc;
+            border-color: #3c8dbc;
+        }
+        .btn {
+            padding: .175rem .75rem;
+        }
+    </style>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <!-- Navigation-->
@@ -177,22 +230,22 @@
         </a>
         <!-- Logout Modal-->
         @*<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="login.html">Logout</a>
-                        </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
                     </div>
                 </div>
-            </div>*@
+            </div>
+        </div>*@
         <!-- Bootstrap core JavaScript-->
         <script src="../../Admin_Assets/vendor/jquery/jquery.min.js"></script>
         <script src="../../Admin_Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -207,7 +260,8 @@
         <!-- Custom scripts for this page-->
         <script src="../../Admin_Assets/js/sb-admin-datatables.min.js"></script>
         <script src="../../Admin_Assets/js/sb-admin-charts.min.js"></script>
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" type="text/css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
         @*<style type="text/css">
             #mainNav.navbar-dark .navbar-collapse .navbar-sidenav {

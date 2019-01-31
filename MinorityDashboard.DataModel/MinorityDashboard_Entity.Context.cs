@@ -54,6 +54,10 @@ namespace MinorityDashboard.DataModel
         public virtual DbSet<scheme_child2_amt> scheme_child2_amt { get; set; }
         public virtual DbSet<parent_scheme_amt> parent_scheme_amt { get; set; }
         public virtual DbSet<scheme_child3_amt> scheme_child3_amt { get; set; }
+        public virtual DbSet<implementation_agency_master> implementation_agency_master { get; set; }
+        public virtual DbSet<district_scheme_details> district_scheme_details { get; set; }
+        public virtual DbSet<scheme_amount_allocation> scheme_amount_allocation { get; set; }
+        public virtual DbSet<grdetail> grdetails { get; set; }
     
         public virtual ObjectResult<GetDeskTransactionData_Result> GetDeskTransactionData()
         {
@@ -120,6 +124,54 @@ namespace MinorityDashboard.DataModel
                 new ObjectParameter("SchemeChild3", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSchemeDesc_Result>("GetSchemeDesc", pSchemeIDParameter, schemeChild1Parameter, schemeChild2Parameter, schemeChild3Parameter);
+        }
+    
+        public virtual ObjectResult<gp_amount_districtname_Result> gp_amount_districtname()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<gp_amount_districtname_Result>("gp_amount_districtname");
+        }
+    
+        public virtual ObjectResult<gp_amount_schemename_Result> gp_amount_schemename()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<gp_amount_schemename_Result>("gp_amount_schemename");
+        }
+    
+        public virtual ObjectResult<gp_district_scheme_details_Result> gp_district_scheme_details(Nullable<int> des_id)
+        {
+            var des_idParameter = des_id.HasValue ?
+                new ObjectParameter("des_id", des_id) :
+                new ObjectParameter("des_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<gp_district_scheme_details_Result>("gp_district_scheme_details", des_idParameter);
+        }
+    
+        public virtual ObjectResult<gp_GetAmount_Scheme_Result> gp_GetAmount_Scheme(Nullable<int> parent_scheme_id, Nullable<int> scheme_id_child1, Nullable<int> scheme_id_child2, Nullable<int> scheme_id_child3, Nullable<int> des_id, Nullable<int> fin_y_id)
+        {
+            var parent_scheme_idParameter = parent_scheme_id.HasValue ?
+                new ObjectParameter("parent_scheme_id", parent_scheme_id) :
+                new ObjectParameter("parent_scheme_id", typeof(int));
+    
+            var scheme_id_child1Parameter = scheme_id_child1.HasValue ?
+                new ObjectParameter("scheme_id_child1", scheme_id_child1) :
+                new ObjectParameter("scheme_id_child1", typeof(int));
+    
+            var scheme_id_child2Parameter = scheme_id_child2.HasValue ?
+                new ObjectParameter("scheme_id_child2", scheme_id_child2) :
+                new ObjectParameter("scheme_id_child2", typeof(int));
+    
+            var scheme_id_child3Parameter = scheme_id_child3.HasValue ?
+                new ObjectParameter("scheme_id_child3", scheme_id_child3) :
+                new ObjectParameter("scheme_id_child3", typeof(int));
+    
+            var des_idParameter = des_id.HasValue ?
+                new ObjectParameter("des_id", des_id) :
+                new ObjectParameter("des_id", typeof(int));
+    
+            var fin_y_idParameter = fin_y_id.HasValue ?
+                new ObjectParameter("fin_y_id", fin_y_id) :
+                new ObjectParameter("fin_y_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<gp_GetAmount_Scheme_Result>("gp_GetAmount_Scheme", parent_scheme_idParameter, scheme_id_child1Parameter, scheme_id_child2Parameter, scheme_id_child3Parameter, des_idParameter, fin_y_idParameter);
         }
     }
 }

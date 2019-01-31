@@ -5,6 +5,8 @@ using MinorityDashboardWeb;
 using MinorityDashboardWeb.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
@@ -17,6 +19,7 @@ namespace MinorityDashboard.Web.Controllers
     {
         IDashboard objDashboard = new Dashboard();
         IMenuManager objMenuManager = new MenuManager();
+        IDistrictAdmin objDistrictAdmin = new DistrictAdmin();
 
         //private static string _cookieLangName = "LangChange";
 
@@ -40,6 +43,57 @@ namespace MinorityDashboard.Web.Controllers
         {
             AddAlert(AlertStyles.Danger, message, dismissable);
         }
+
+        [HttpPost]
+        public ActionResult ParentChange(int PSchemeid)
+        {
+            System.Threading.Thread.Sleep(1000);
+            return Json(BindChildScheme1(1, PSchemeid));
+        }
+
+        [HttpPost]
+        public ActionResult ChildChange1(int ChildSchemeid1)
+        {
+            System.Threading.Thread.Sleep(1000);
+            return Json(BindChildScheme2(1, ChildSchemeid1));
+        }
+
+        [HttpPost]
+        public ActionResult ChildChange2(int ChildSchemeid2)
+        {
+            System.Threading.Thread.Sleep(1000);
+            return Json(BindChildScheme3(1, ChildSchemeid2));
+        }
+
+
+        public List<string> SaveFileinFolder(HttpPostedFileBase[] inputstr, string folderName, int id = 0)
+        {
+            string InputFileName = "";
+            List<string> lstDoc = new List<string>();
+            if (inputstr != null)
+            {
+                foreach (var HPF in inputstr)
+                {
+                    string str1 = DateTime.Today.ToString("yyyyMMdd");
+                    string str2 = DateTime.Now.ToString("HH:mm:ss").Replace(":", "");
+                    string str = str1 + str2;
+                    if(id>0)
+                    {
+                        InputFileName = id + "_" + str + "_" + Path.GetFileName(HPF.FileName);
+                    }
+                    else
+                    {
+                        InputFileName = str + "_" + Path.GetFileName(HPF.FileName);
+                    }               
+                    var ServerSavePath = Path.Combine(Server.MapPath(folderName) + InputFileName);
+                    HPF.SaveAs(ServerSavePath);
+                    lstDoc.Add(InputFileName);
+                }
+            }
+            return lstDoc;
+        }
+
+       
 
         private void AddAlert(string alertStyle, string message, bool dismissable)
         {
@@ -135,6 +189,18 @@ namespace MinorityDashboard.Web.Controllers
             foreach (financialyear_master X in lst)
             {
                 lstddl.Add(new SelectListItem() { Value = X.fin_y_id.ToString(), Text = X.fin_y_name });
+            }
+            return lstddl;
+        }
+
+        public List<SelectListItem> BindImplementationAgency()
+        {
+            List<implementation_agency_master> lst = objDistrictAdmin.GetImplementationAgency();
+            List<SelectListItem> lstddl = new List<SelectListItem>();
+            lstddl.Add(new SelectListItem() { Value = "0", Text = "Select" });
+            foreach (implementation_agency_master X in lst)
+            {
+                lstddl.Add(new SelectListItem() { Value = X.imp_agency_id.ToString(), Text = X.agency_name });
             }
             return lstddl;
         }
@@ -278,6 +344,59 @@ namespace MinorityDashboard.Web.Controllers
 
             return Convert.ToInt32(lst[2].Value);
         }
+
+
+        public string PickColor(int id)
+        {
+            List<string> lstcolr = new List<string>();
+            lstcolr.Add("#99CCFF");
+            lstcolr.Add("#0000FF");
+            lstcolr.Add("#FFFF00");
+            lstcolr.Add("#FF00FF");
+            lstcolr.Add("#00FFFF");
+            lstcolr.Add("#800000");
+            lstcolr.Add("#008000");
+            lstcolr.Add("#000080");
+            lstcolr.Add("#808000");
+            lstcolr.Add("#800080");
+            lstcolr.Add("#008080");
+            lstcolr.Add("#C0C0C0");
+            lstcolr.Add("#808080");
+            lstcolr.Add("#9999FF");
+            lstcolr.Add("#993366");
+            lstcolr.Add("#FFFFCC");
+            lstcolr.Add("#CCFFFF");
+            lstcolr.Add("#660066");
+            lstcolr.Add("#FF8080");
+            lstcolr.Add("#0066CC");
+            lstcolr.Add("#CCCCFF");
+            lstcolr.Add("#000080");
+            lstcolr.Add("#FF00FF");
+            lstcolr.Add("#FFFF00");
+            lstcolr.Add("#00FFFF");
+            lstcolr.Add("#800080");
+            lstcolr.Add("#800000");
+            lstcolr.Add("#008080");
+            lstcolr.Add("#0000FF");
+            lstcolr.Add("#00CCFF");
+            lstcolr.Add("#CCFFFF");
+            lstcolr.Add("#CCFFCC");
+            lstcolr.Add("#FFFF99");
+            lstcolr.Add("#99CCFF");
+            lstcolr.Add("#FF99CC");
+            lstcolr.Add("#CC99FF");
+            lstcolr.Add("#FFCC99");
+            lstcolr.Add("#3366FF");
+            lstcolr.Add("#33CCCC");
+            lstcolr.Add("#99CC00");
+            lstcolr.Add("#FFCC00");
+            lstcolr.Add("#FF9900");
+
+            return lstcolr[id].ToString();
+
+
+        }
+
 
 
         //protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)

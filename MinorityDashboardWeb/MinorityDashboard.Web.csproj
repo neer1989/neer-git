@@ -244,6 +244,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonUtility.cs" />
     <Compile Include="Models\DashboardModel.cs" />
+    <Compile Include="Models\DistrictAdminModel.cs" />
     <Compile Include="Models\RoleManagementModel.cs" />
     <Compile Include="MultiLanguageViewEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -3523,9 +3524,16 @@
     <Content Include="Views\Admin\_DistrictAmtAllotment.cshtml" />
     <Content Include="Views\Shared\_LayoutDistrictAdmin.cshtml" />
     <Content Include="Views\DistrictAdmin\Index.cshtml" />
+    <Content Include="Views\DistrictAdmin\ShowUpdate.cshtml" />
+    <Content Include="Views\DistrictAdmin\SchemeDetails.cshtml" />
+    <Content Include="Views\DistrictAdmin\_DistrictBudgetaryAmount.cshtml" />
+    <Content Include="Views\Admin\UploadGR.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DeskDoc\" />
+    <Folder Include="DisAdminDoc\" />
+    <Folder Include="GRFiles\" />
+    <Folder Include="UCDoc\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,8 +1,182 @@
-﻿
+﻿@model MinorityDashboardWeb.Models.GRModel
 @{
     ViewBag.Title = "GRandAct";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
 
-<h2>GRandAct</h2>
 
+<style type="text/css">
+    .form-control {
+        width: 100%;
+    }
+</style>
+
+<style type="text/css">
+    .form-control {
+        border: 1px solid #728590;
+        padding: 0.175rem .75rem;
+        font-size: 1.4rem;
+    }
+
+    select.form-control:not([size]):not([multiple]) {
+        height: calc(2.75rem + 2px);
+    }
+
+    .form-control:focus {
+        border-color: #3c8dbc;
+        box-shadow: none;
+    }
+
+    .table-bordered {
+        border: 1px solid #728590;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 1px solid #728590;
+    }
+
+    .table-bordered td, .table-bordered th {
+        border: 1px solid #728590;
+    }
+
+    .table td, .table th {
+        padding: .4rem;
+        vertical-align: top;
+        border-top: 1px solid #728590;
+    }
+
+    table.dataTable {
+        clear: both;
+        margin-top: 6px !important;
+        margin-bottom: 6px !important;
+        max-width: none !important;
+        border-collapse: separate !important;
+        border-radius: 5px;
+        font-size: 1.4rem;
+        
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #2275d2;
+        border-color: #2275d2;
+    }
+
+    .btn {
+        padding: .175rem .75rem;
+    }
+</style>
+
+<link href="../../Admin_Assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+<div class="container">
+    <div class="content">
+
+        @using (Html.BeginForm("GRandAct", "Website", FormMethod.Post))
+        {
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 brd-left pleft25">
+                    <div class="headingBg">
+
+                        <div class="breadcrumbDiv">
+                            <ul class="breadcrumb">
+                                <li><b>You are here :</b></li>
+                                <li><a href="#">Home</a></li>
+                                <li>Government Resolutions</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="grfrom_date">From Date</label>
+                    @Html.TextBoxFor(a => a.grfrom_date, "", new { @class = "form-control", @readonly = "readonly" })
+                </div>
+                <div class="col-md-4">
+                    <label for="grto_date">To Date</label>
+                    @Html.TextBoxFor(a => a.grto_date, "", new { @class = "form-control", @readonly = "readonly" })
+                </div>
+
+                <div class="col-md-4">
+
+                    <label for="unique_code_e">Unique Code</label>
+
+                    @Html.TextBoxFor(a => a.unique_code_e, "", new { @class = "form-control", @maxlength = "20" })
+
+
+                </div>
+
+            </div>
+            <div class="clear">
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <label for="exampleInputName"></label>
+
+                    <input type="submit" value="Search" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
+
+                </div>
+                <div class="col-md-6">
+                    <a href=@Url.Action("GRandAct", "Website") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Reset</a>
+                </div>
+            </div>
+
+        }
+            <br />
+            <br />
+            <div class="row">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Title English</th>
+                                    <th>Title Marathi</th>
+                                    <th>Unique Code</th>
+                                    <th>Download GR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var X in Model.lstGRList)
+                                {
+                                    string docpath = "../../GRFiles/" + X.gr_file;
+                                    <tr>
+                                        <td>@X.keywords_e</td>
+                                        <td>@X.keywords_m</td>
+                                        <td>@X.unique_code_e</td>
+                                        <td> <a target="_blank" href=@docpath> Download </a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#grfrom_date').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            language: "tr"
+        });
+
+        $('#grto_date').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            language: "tr"
+        });
+
+    });
+</script>

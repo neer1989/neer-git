@@ -60,9 +60,39 @@ namespace MinorityDashboardWeb.Controllers
         {
             return View();
         }
+        [HttpGet]
         public ActionResult GRandAct()
         {
-            return View();
+            GRModel GRM = new GRModel();
+
+            GRM.grfrom_date = DateTime.Now;
+            GRM.grto_date = DateTime.Now;
+
+            GRM.lstGRList = objDashboard.GetGRList();
+            return View(GRM);
+        }
+        [HttpPost]
+        public ActionResult GRandAct(GRModel obj)
+        {
+            GRModel GRM = new GRModel();
+
+            GRM.grfrom_date = DateTime.Now;
+            GRM.grto_date = DateTime.Now;
+
+            if (obj.keywords_e != "" && obj.keywords_e != null)
+            {
+                GRM.lstGRList = objDashboard.GetGRList().Where(s => s.unique_code_e == obj.keywords_e).ToList();
+            }
+            if (Convert.ToString(obj.grfrom_date) != "")
+            {
+                GRM.lstGRList = objDashboard.GetGRList().Where(s => s.gr_date< obj.grfrom_date).ToList();
+            }
+            if (Convert.ToString(obj.grto_date) != "")
+            {
+                GRM.lstGRList = objDashboard.GetGRList().Where(s => s.gr_date > obj.grto_date).ToList();
+            }
+
+            return View(GRM);
         }
 
         public ActionResult OrganizationStructure()
@@ -113,12 +143,12 @@ namespace MinorityDashboardWeb.Controllers
             int Childschm2 = Convert.ToInt32(SchemIdsArr[2]);
             int Childschm3 = Convert.ToInt32(SchemIdsArr[3]);
 
-           sm.lstSchemeDesc =  objDashboard.GetFilteredSchemeDesc(ParentID, Childschm1, Childschm2, Childschm3);
+            sm.lstSchemeDesc = objDashboard.GetFilteredSchemeDesc(ParentID, Childschm1, Childschm2, Childschm3);
 
 
             return View(sm);
         }
 
 
-        }
+    }
 }

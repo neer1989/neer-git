@@ -10,7 +10,7 @@
             <PropertyRef Name="desk_id" />
           </Key>
           <Property Name="desk_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="desk_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="desk_name" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="created_by" Type="int" />
           <Property Name="created_date" Type="datetime" />
           <Property Name="updated_by" Type="int" />
@@ -77,6 +77,30 @@
           <Property Name="updated_by" Type="int" />
           <Property Name="updated_date" Type="datetime" />
         </EntityType>
+        <EntityType Name="district_scheme_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fin_y_id" Type="int" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child1" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child2" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child3" Type="int" Nullable="false" />
+          <Property Name="imp_agency_id" Type="int" Nullable="false" />
+          <Property Name="des_id" Type="int" />
+          <Property Name="budgetary_provision_amt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="actual_allocation_amt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="actual_expenditure_amt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="actual_remaining_amt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="work_progress_desc" Type="nvarchar(max)" />
+          <Property Name="file_upload" Type="nvarchar" MaxLength="1500" />
+          <Property Name="utilization_certificate" Type="nvarchar" MaxLength="1500" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
         <EntityType Name="estimation_master">
           <Key>
             <PropertyRef Name="est_id" />
@@ -111,6 +135,35 @@
           <Property Name="created_date" Type="datetime" />
           <Property Name="updated_by" Type="int" />
           <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="grdetails">
+          <Key>
+            <PropertyRef Name="gr_id" />
+          </Key>
+          <Property Name="gr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="keywords_e" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="keywords_m" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="gr_date" Type="datetime" Nullable="false" />
+          <Property Name="unique_code_e" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="unique_code_m" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="isactive" Type="bit" Nullable="false" />
+          <Property Name="gr_file" Type="nvarchar" MaxLength="1000" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="implementation_agency_master">
+          <Key>
+            <PropertyRef Name="imp_agency_id" />
+          </Key>
+          <Property Name="imp_agency_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="agency_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="createdby" Type="int" />
+          <Property Name="createddate" Type="datetime" />
+          <Property Name="updatedby" Type="int" />
+          <Property Name="updateddate" Type="datetime" />
         </EntityType>
         <EntityType Name="login">
           <Key>
@@ -203,6 +256,25 @@
           <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="role_name" Type="nvarchar" MaxLength="200" />
           <Property Name="isactive" Type="bit" />
+        </EntityType>
+        <EntityType Name="scheme_amount_allocation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fin_y_id" Type="int" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child1" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child2" Type="int" Nullable="false" />
+          <Property Name="scheme_id_child3" Type="int" Nullable="false" />
+          <Property Name="imp_agency_id" Type="int" Nullable="false" />
+          <Property Name="des_id" Type="int" />
+          <Property Name="budgetary_provision_amt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="actual_allocation_amt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
         </EntityType>
         <EntityType Name="scheme_child1">
           <Key>
@@ -379,6 +451,19 @@
           <Parameter Name="SchemeChild3" Type="int" Mode="In" />
         </Function>
         <Function Name="GetSubjectData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="gp_amount_districtname" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="gp_amount_schemename" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="gp_district_scheme_details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="des_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="gp_GetAmount_Scheme" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="parent_scheme_id" Type="int" Mode="In" />
+          <Parameter Name="scheme_id_child1" Type="int" Mode="In" />
+          <Parameter Name="scheme_id_child2" Type="int" Mode="In" />
+          <Parameter Name="scheme_id_child3" Type="int" Mode="In" />
+          <Parameter Name="des_id" Type="int" Mode="In" />
+          <Parameter Name="fin_y_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="LoginByUsernamePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
           <Parameter Name="password" Type="varchar" Mode="In" />
@@ -389,9 +474,12 @@
           <EntitySet Name="deskdata_trans_bak" EntityType="Self.deskdata_trans_bak" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="deskdocuments" EntityType="Self.deskdocuments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="district_master" EntityType="Self.district_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="district_scheme_details" EntityType="Self.district_scheme_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="estimation_master" EntityType="Self.estimation_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="financialyear_master" EntityType="Self.financialyear_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="gallery_master" EntityType="Self.gallery_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="grdetails" EntityType="Self.grdetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="implementation_agency_master" EntityType="Self.implementation_agency_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="main_menu_master" EntityType="Self.main_menu_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="menu_master" EntityType="Self.menu_master" Schema="dbo" store:Type="Tables" />
@@ -400,6 +488,7 @@
           <EntitySet Name="parent_scheme_amt" EntityType="Self.parent_scheme_amt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="parentscheme" EntityType="Self.parentscheme" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="role_master" EntityType="Self.role_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="scheme_amount_allocation" EntityType="Self.scheme_amount_allocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheme_child1" EntityType="Self.scheme_child1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheme_child1_amt" EntityType="Self.scheme_child1_amt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheme_child2" EntityType="Self.scheme_child2" Schema="dbo" store:Type="Tables" />
@@ -425,7 +514,7 @@
             <PropertyRef Name="desk_id" />
           </Key>
           <Property Name="desk_id" Type="Int32" Nullable="false" />
-          <Property Name="desk_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="desk_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="created_by" Type="Int32" />
           <Property Name="created_date" Type="DateTime" Precision="3" />
           <Property Name="updated_by" Type="Int32" />
@@ -529,6 +618,23 @@
           <EntitySet Name="scheme_child2_amt" EntityType="MinorityDasboard_DBModel.scheme_child2_amt" />
           <EntitySet Name="parent_scheme_amt" EntityType="MinorityDasboard_DBModel.parent_scheme_amt" />
           <EntitySet Name="scheme_child3_amt" EntityType="MinorityDasboard_DBModel.scheme_child3_amt" />
+          <EntitySet Name="implementation_agency_master" EntityType="MinorityDasboard_DBModel.implementation_agency_master" />
+          <EntitySet Name="district_scheme_details" EntityType="MinorityDasboard_DBModel.district_scheme_details" />
+          <FunctionImport Name="gp_amount_districtname" ReturnType="Collection(MinorityDasboard_DBModel.gp_amount_districtname_Result)" />
+          <FunctionImport Name="gp_amount_schemename" ReturnType="Collection(MinorityDasboard_DBModel.gp_amount_schemename_Result)" />
+          <EntitySet Name="scheme_amount_allocation" EntityType="MinorityDasboard_DBModel.scheme_amount_allocation" />
+          <FunctionImport Name="gp_district_scheme_details" ReturnType="Collection(MinorityDasboard_DBModel.gp_district_scheme_details_Result)">
+          <Parameter Name="des_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="gp_GetAmount_Scheme" ReturnType="Collection(MinorityDasboard_DBModel.gp_GetAmount_Scheme_Result)">
+            <Parameter Name="parent_scheme_id" Mode="In" Type="Int32" />
+            <Parameter Name="scheme_id_child1" Mode="In" Type="Int32" />
+            <Parameter Name="scheme_id_child2" Mode="In" Type="Int32" />
+            <Parameter Name="scheme_id_child3" Mode="In" Type="Int32" />
+            <Parameter Name="des_id" Mode="In" Type="Int32" />
+            <Parameter Name="fin_y_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="grdetails" EntityType="MinorityDasboard_DBModel.grdetail" />
         </EntityContainer>
         <EntityType Name="estimation_master">
           <Key>
@@ -916,6 +1022,113 @@
           <Property Name="scheme_id_child3" Type="Int32" Nullable="false" />
           <Property Name="alloted_amount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="isactive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="implementation_agency_master">
+          <Key>
+            <PropertyRef Name="imp_agency_id" />
+          </Key>
+          <Property Name="imp_agency_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="agency_name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="createdby" Type="Int32" />
+          <Property Name="createddate" Type="DateTime" Precision="3" />
+          <Property Name="updatedby" Type="Int32" />
+          <Property Name="updateddate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="district_scheme_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fin_y_id" Type="Int32" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child1" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child2" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child3" Type="Int32" Nullable="false" />
+          <Property Name="imp_agency_id" Type="Int32" Nullable="false" />
+          <Property Name="budgetary_provision_amt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="actual_allocation_amt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="actual_expenditure_amt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="actual_remaining_amt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="work_progress_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="file_upload" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Name="utilization_certificate" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+          <Property Name="des_id" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="gp_amount_districtname_Result">
+          <Property Type="String" Name="des_name" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="amt" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="gp_amount_schemename_Result">
+          <Property Type="String" Name="parent_schemename_m" Nullable="false" MaxLength="1000" />
+          <Property Type="Decimal" Name="amt" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <EntityType Name="scheme_amount_allocation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fin_y_id" Type="Int32" Nullable="false" />
+          <Property Name="parent_scheme_id" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child1" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child2" Type="Int32" Nullable="false" />
+          <Property Name="scheme_id_child3" Type="Int32" Nullable="false" />
+          <Property Name="imp_agency_id" Type="Int32" Nullable="false" />
+          <Property Name="des_id" Type="Int32" />
+          <Property Name="budgetary_provision_amt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="actual_allocation_amt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="gp_district_scheme_details_Result">
+          <Property Type="Int32" Name="des_id" Nullable="false" />
+          <Property Type="String" Name="des_name" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="fin_y_id" Nullable="false" />
+          <Property Type="Int32" Name="parent_scheme_id" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child1" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child2" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child3" Nullable="false" />
+          <Property Type="Int32" Name="imp_agency_id" Nullable="false" />
+          
+          <Property Type="Decimal" Name="budgetary_provision_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="actual_allocation_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="actual_expenditure_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="actual_remaining_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="work_progress_desc" Nullable="true" />
+          <Property Type="String" Name="file_upload" Nullable="true" MaxLength="1500" />
+          <Property Type="String" Name="utilization_certificate" Nullable="true" MaxLength="1500" />
+         
+          <Property Type="String" Name="parent_schemename_e" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="parent_schemename_m" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="agency_name" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="gp_GetAmount_Scheme_Result">
+          <Property Type="Decimal" Name="BPA" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AAA" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <EntityType Name="grdetail">
+          <Key>
+            <PropertyRef Name="gr_id" />
+          </Key>
+          <Property Name="gr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="keywords_e" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="keywords_m" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="gr_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="unique_code_e" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="unique_code_m" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="gr_file" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1406,6 +1619,133 @@
                 <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
                 <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
                 <ScalarProperty Name="allotment_amt_child3_id" ColumnName="allotment_amt_child3_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="implementation_agency_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.implementation_agency_master">
+              <MappingFragment StoreEntitySet="implementation_agency_master">
+                <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="agency_name" ColumnName="agency_name" />
+                <ScalarProperty Name="imp_agency_id" ColumnName="imp_agency_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="district_scheme_details">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.district_scheme_details">
+              <MappingFragment StoreEntitySet="district_scheme_details">
+                <ScalarProperty Name="des_id" ColumnName="des_id" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="utilization_certificate" ColumnName="utilization_certificate" />
+                <ScalarProperty Name="file_upload" ColumnName="file_upload" />
+                <ScalarProperty Name="work_progress_desc" ColumnName="work_progress_desc" />
+                <ScalarProperty Name="actual_remaining_amt" ColumnName="actual_remaining_amt" />
+                <ScalarProperty Name="actual_expenditure_amt" ColumnName="actual_expenditure_amt" />
+                <ScalarProperty Name="actual_allocation_amt" ColumnName="actual_allocation_amt" />
+                <ScalarProperty Name="budgetary_provision_amt" ColumnName="budgetary_provision_amt" />
+                <ScalarProperty Name="imp_agency_id" ColumnName="imp_agency_id" />
+                <ScalarProperty Name="scheme_id_child3" ColumnName="scheme_id_child3" />
+                <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
+                <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
+                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="gp_amount_districtname" FunctionName="MinorityDasboard_DBModel.Store.gp_amount_districtname">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.gp_amount_districtname_Result">
+                <ScalarProperty Name="des_name" ColumnName="des_name" />
+                <ScalarProperty Name="amt" ColumnName="amt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="gp_amount_schemename" FunctionName="MinorityDasboard_DBModel.Store.gp_amount_schemename">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.gp_amount_schemename_Result">
+                <ScalarProperty Name="parent_schemename_m" ColumnName="parent_schemename_m" />
+                <ScalarProperty Name="amt" ColumnName="amt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="scheme_amount_allocation">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.scheme_amount_allocation">
+              <MappingFragment StoreEntitySet="scheme_amount_allocation">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="actual_allocation_amt" ColumnName="actual_allocation_amt" />
+                <ScalarProperty Name="budgetary_provision_amt" ColumnName="budgetary_provision_amt" />
+                <ScalarProperty Name="des_id" ColumnName="des_id" />
+                <ScalarProperty Name="imp_agency_id" ColumnName="imp_agency_id" />
+                <ScalarProperty Name="scheme_id_child3" ColumnName="scheme_id_child3" />
+                <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
+                <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
+                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="gp_district_scheme_details" FunctionName="MinorityDasboard_DBModel.Store.gp_district_scheme_details">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.gp_district_scheme_details_Result">
+                <ScalarProperty Name="des_id" ColumnName="des_id" />
+                <ScalarProperty Name="des_name" ColumnName="des_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
+                <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
+                <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
+                <ScalarProperty Name="scheme_id_child3" ColumnName="scheme_id_child3" />
+                <ScalarProperty Name="imp_agency_id" ColumnName="imp_agency_id" />
+              
+                <ScalarProperty Name="budgetary_provision_amt" ColumnName="budgetary_provision_amt" />
+                <ScalarProperty Name="actual_allocation_amt" ColumnName="actual_allocation_amt" />
+                <ScalarProperty Name="actual_expenditure_amt" ColumnName="actual_expenditure_amt" />
+                <ScalarProperty Name="actual_remaining_amt" ColumnName="actual_remaining_amt" />
+                <ScalarProperty Name="work_progress_desc" ColumnName="work_progress_desc" />
+                <ScalarProperty Name="file_upload" ColumnName="file_upload" />
+                <ScalarProperty Name="utilization_certificate" ColumnName="utilization_certificate" />
+              
+                <ScalarProperty Name="parent_schemename_e" ColumnName="parent_schemename_e" />
+                <ScalarProperty Name="parent_schemename_m" ColumnName="parent_schemename_m" />
+                <ScalarProperty Name="agency_name" ColumnName="agency_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="gp_GetAmount_Scheme" FunctionName="MinorityDasboard_DBModel.Store.gp_GetAmount_Scheme">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.gp_GetAmount_Scheme_Result">
+                <ScalarProperty Name="BPA" ColumnName="BPA" />
+                <ScalarProperty Name="AAA" ColumnName="AAA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="grdetails">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.grdetail">
+              <MappingFragment StoreEntitySet="grdetails">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="gr_file" ColumnName="gr_file" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="unique_code_m" ColumnName="unique_code_m" />
+                <ScalarProperty Name="unique_code_e" ColumnName="unique_code_e" />
+                <ScalarProperty Name="gr_date" ColumnName="gr_date" />
+                <ScalarProperty Name="keywords_m" ColumnName="keywords_m" />
+                <ScalarProperty Name="keywords_e" ColumnName="keywords_e" />
+                <ScalarProperty Name="gr_id" ColumnName="gr_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

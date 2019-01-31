@@ -133,10 +133,27 @@ namespace MinorityDashboard.Data.Repository
             return lst;
         }
 
+        public int InsertGR(grdetail obj)
+        {
+            grdetail returnobj = ObjCR.SaveData<grdetail>(obj);
+            return returnobj.gr_id;
+        }
+
         public int InsertDeskTrans(deskdata_trans obj)
         {
             deskdata_trans returnobj = ObjCR.SaveData<deskdata_trans>(obj);
             return returnobj.tran_id;
+        }
+
+        public List<grdetail> GetGRList()
+        {
+            return ObjCR.GetData<grdetail>();
+        }
+
+        public int InsertSchemeAllotment(scheme_amount_allocation obj)
+        {
+            scheme_amount_allocation returnobj = ObjCR.SaveData<scheme_amount_allocation>(obj);
+            return returnobj.id;
         }
 
         public int InsertSchemeDescMapping(scheme_desc_mapping obj)
@@ -162,7 +179,7 @@ namespace MinorityDashboard.Data.Repository
         public int InsertScheme_Child1_amt(scheme_child1_amt obj)
         {
             scheme_child1_amt returnobj = ObjCR.SaveData<scheme_child1_amt>(obj);
-            return returnobj.;
+            return returnobj.allotment_amt_child1_id;
         }
 
 

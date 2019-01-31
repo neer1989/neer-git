@@ -34,6 +34,8 @@
     </script>
     <!-- start-smooth-scrolling -->
 
+    
+
 </head>
 <body>
     <!-- header -->
@@ -43,7 +45,7 @@
             <ul class="other_links">
 
                 <li class="m_hide">
-                    <a href=@Url.Action("Login","Account") ><span id="HeaderMain1_lbl_skipToNav">  Login</span></a>
+                    <a href=@Url.Action("Login","Account")><span id="HeaderMain1_lbl_skipToNav">  Login</span></a>
                 </li>
 
 
@@ -241,7 +243,8 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script src="../../Website_Assets/js/bootstrap.min.js"></script>
     <script src="../../Website_Assets/js/responsive-carousel.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#DDL_Language").on("change", function () {
@@ -268,5 +271,12 @@
         $('.carousel').BannerSlide(args);
 
     </script>
+
+    <script src="../../Admin_Assets/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../../Admin_Assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <script src="../../Admin_Assets/js/sb-admin-datatables.min.js"></script>
+    <script src="../../Admin_Assets/js/sb-admin-charts.min.js"></script>
+
 </body>
 </html>

@@ -35,7 +35,7 @@ namespace MinorityDashboard.Data.Repository
         int DeleteDeskTrans(deskdata_trans obj);
 
         int InsertScheme(scheme_master obj);
-
+        int InsertSchemeAllotment(scheme_amount_allocation obj);
         List<trans_docfile> GetTransactionFile(int deskdocid);
 
         List<parentscheme> GetParentScheme();
@@ -50,5 +50,10 @@ namespace MinorityDashboard.Data.Repository
         List<scheme_child1_amt> GetSchemeChild1_amt();
         List<scheme_child2_amt> GetSchemeChild2_amt();
         List<scheme_child3_amt> GetSchemeChild3_amt();
+
+
+        int InsertGR(grdetail obj);
+        List<grdetail> GetGRList();
+
     }
 }
