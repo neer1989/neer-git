@@ -3246,12 +3246,15 @@
     <Content Include="Website_Assets\css\dashboard.css" />
     <Content Include="Website_Assets\css\expandcollapse.css" />
     <Content Include="Website_Assets\css\layout.css" />
+    <Content Include="Website_Assets\css\newstickercustom.css" />
     <Content Include="Website_Assets\css\mdstyle.css" />
     <Content Include="Website_Assets\css\orgchart.css" />
     <Content Include="Website_Assets\css\responsive-carousel.css" />
     <Content Include="Website_Assets\css\sb-admin.css" />
+    <Content Include="Website_Assets\css\style-ticker.css" />
     <Content Include="Website_Assets\css\style.css" />
     <Content Include="Website_Assets\css\swipebox.css" />
+    <Content Include="Website_Assets\css\ticker-style.css" />
     <Content Include="Website_Assets\images\1.jpg" />
     <Content Include="Website_Assets\images\10.jpg" />
     <Content Include="Website_Assets\images\11.jpg" />
@@ -3282,6 +3285,7 @@
     <Content Include="Website_Assets\images\8.jpg" />
     <Content Include="Website_Assets\images\9.jpg" />
     <Content Include="Website_Assets\images\arr.png" />
+    <Content Include="Website_Assets\images\controls.png" />
     <Content Include="Website_Assets\images\icons.svg" />
     <Content Include="Website_Assets\images\MahaIT_Trans.png" />
     <Content Include="Website_Assets\images\master\cm.jpg" />
@@ -3317,9 +3321,11 @@
     <Content Include="Website_Assets\js\jquery.min.js" />
     <Content Include="Website_Assets\js\jquery.mixitup.min.js" />
     <Content Include="Website_Assets\js\jquery.swipebox.min.js" />
+    <Content Include="Website_Assets\js\jquery.ticker.js" />
     <Content Include="Website_Assets\js\move-top.js" />
     <Content Include="Website_Assets\js\responsive-carousel.js" />
     <Content Include="Website_Assets\js\responsiveslides.min.js" />
+    <Content Include="Website_Assets\js\site.js" />
     <Content Include="Website_Assets\Pictures\1.jpg" />
     <Content Include="Website_Assets\Pictures\2.jpg" />
     <Content Include="Website_Assets\Pictures\3.jpg" />

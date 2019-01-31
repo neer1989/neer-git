@@ -151,15 +151,15 @@
 }
 
 .conthome {
-    background: #42A5F5;
+    background: #fff;
     border-radius: 3px;
     padding: 20px;
-    border: 1px solid #42A5F5;
+    border: 1px solid #1976D2;
     margin-bottom: 20px;
     font-size: 18px;
     font-weight: bold;
     text-align: justify;
-    color: #fff;
+    color: #1976D2;
     margin: 30px;
     line-height: 36px;
 }
@@ -1402,7 +1402,7 @@ h1 {
 		text-align: center;
 	}
 	.event-list > li > .info > .title {
-		font-size: 17pt;
+		font-size: 16pt;
 		font-weight: 700;
 		margin: 0px;
 	}
@@ -1749,10 +1749,117 @@ body {
         }
 
     /*NAVBAR CSS START*/
-    .navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li,  .navbar-default .navbar-nav > li > a:focus {
+    .navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li, .navbar-default .navbar-nav > li > a:focus {
         color: #fff;
         background-color: transparent;
         display: block;
     }
 
     /*NAVBAR CSS END*/
+
+    /*News feeds css starts here*/
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+    @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+    .onoffswitch3 {
+        position: relative;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .onoffswitch3-checkbox {
+        display: none;
+    }
+
+    .onoffswitch3-label {
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        border: 0px solid #999999;
+        border-radius: 0px;
+    }
+
+    .onoffswitch3-inner {
+        display: block;
+        width: 200%;
+        margin-left: -100%;
+        -moz-transition: margin 0.3s ease-in 0s;
+        -webkit-transition: margin 0.3s ease-in 0s;
+        -o-transition: margin 0.3s ease-in 0s;
+        transition: margin 0.3s ease-in 0s;
+    }
+
+        .onoffswitch3-inner > span {
+            display: block;
+            float: left;
+            position: relative;
+            width: 50%;
+            height: 30px;
+            padding: 0;
+            line-height: 30px;
+            font-size: 14px;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .onoffswitch3-inner .onoffswitch3-active {
+            padding-left: 10px;
+            background-color: #EEEEEE;
+            color: #FFFFFF;
+        }
+
+        .onoffswitch3-inner .onoffswitch3-inactive {
+            width: 100px;
+            padding-left: 16px;
+            background-color: #333;
+            color: #FFFFFF;
+            text-align: right;
+        }
+
+    .onoffswitch3-switch {
+        display: block;
+        width: 50%;
+        margin: 0px;
+        text-align: center;
+        border: 0px solid #999999;
+        border-radius: 0px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+    }
+
+    .onoffswitch3-active .onoffswitch3-switch {
+        background: #27A1CA;
+        left: 0;
+        width: 160px;
+    }
+
+    .onoffswitch3-inactive {
+        background: #A1A1A1;
+        right: 0;
+        width: 20px;
+    }
+
+    .onoffswitch3-checkbox:checked + .onoffswitch3-label .onoffswitch3-inner {
+        margin-left: 0;
+    }
+
+    .glyphicon-remove {
+        padding: 3px 0px 0px 0px;
+        color: #fff;
+        background-color: #000;
+        height: 25px;
+        width: 25px;
+        border-radius: 15px;
+        border: 2px solid #fff;
+    }
+
+    .scroll-text {
+        color: #000;
+    }
+    /*News feeds css ends here*/

@@ -3145,3 +3145,41 @@ table th {
     color: #000;
     text-decoration: none;
 }
+
+
+
+
+
+
+/*News ticker css ends here*/
+#ticker_container {
+    margin-top: 6px;
+}
+
+#newscontent {
+    margin-right: 10px;
+    float: left;
+}
+
+    #newscontent a {
+        color: #585858;
+    }
+
+#news {
+    display: none;
+}
+
+#controls {
+    float: right;
+    height: 16px;
+}
+
+#news {
+    display: none;
+}
+
+.news_tricker {
+    width: 50%;
+}
+
+/*News ticker css ends here*/
