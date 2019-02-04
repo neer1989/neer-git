@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "LatestNews";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card mx-1 mt-12">
+    <div class="card-header">Desk Master</div>
+    <div class="card-body">
+        @using (Html.BeginForm("DeskMaster", "Admin", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-9">
+                        <label for="exampleInputName">Desk Name</label>
+                        @Html.TextBoxFor(model => model.desk_name, new { @class = "form-control", id = "deskname", placeholder = "Desk Name" })
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+                        <label for="exampleInputName"></label>
+
+                        @if (Model.desk_id > 0)
+                        {
+                            <input type="submit" value="Update" class="btn btn-primary btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                        }
+                        else
+                        {
+                            <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <a href=@Url.Action("DeskMaster","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+
+    </div>
+</div>

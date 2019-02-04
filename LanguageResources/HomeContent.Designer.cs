@@ -124,7 +124,7 @@ namespace LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MAHARASHTRA STATE MINORITY DEVELOPMENT DEPARTMENT.
+        ///   Looks up a localized string similar to MINORITY DEVELOPMENT DEPARTMENT.
         /// </summary>
         public static string lblHeaderTitle {
             get {

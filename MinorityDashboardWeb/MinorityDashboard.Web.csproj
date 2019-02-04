@@ -3534,6 +3534,7 @@
     <Content Include="Views\DistrictAdmin\SchemeDetails.cshtml" />
     <Content Include="Views\DistrictAdmin\_DistrictBudgetaryAmount.cshtml" />
     <Content Include="Views\Admin\UploadGR.cshtml" />
+    <Content Include="Views\Admin\LatestNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DeskDoc\" />

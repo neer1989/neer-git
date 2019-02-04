@@ -682,6 +682,14 @@ namespace MinorityDashboard.Web.Controllers
             return View(grm);
         }
 
+        public ActionResult LatestNews()
+        {
+          
+            return View();
+        }
+
+        
+
 
 
 

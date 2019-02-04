@@ -79,17 +79,19 @@ namespace MinorityDashboardWeb.Controllers
             GRM.grfrom_date = DateTime.Now;
             GRM.grto_date = DateTime.Now;
 
+            GRM.lstGRList = objDashboard.GetGRList();
+
             if (obj.keywords_e != "" && obj.keywords_e != null)
             {
-                GRM.lstGRList = objDashboard.GetGRList().Where(s => s.unique_code_e == obj.keywords_e).ToList();
+                GRM.lstGRList = GRM.lstGRList.Where(s => s.unique_code_e == obj.keywords_e).ToList();
             }
             if (Convert.ToString(obj.grfrom_date) != "")
             {
-                GRM.lstGRList = objDashboard.GetGRList().Where(s => s.gr_date< obj.grfrom_date).ToList();
+                GRM.lstGRList = GRM.lstGRList.Where(s => s.gr_date>= obj.grfrom_date).ToList();
             }
             if (Convert.ToString(obj.grto_date) != "")
             {
-                GRM.lstGRList = objDashboard.GetGRList().Where(s => s.gr_date > obj.grto_date).ToList();
+                GRM.lstGRList = GRM.lstGRList.Where(s => s.gr_date <= obj.grto_date).ToList();
             }
 
             return View(GRM);

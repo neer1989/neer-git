@@ -10,7 +10,7 @@
 
         <div class="headingBg">
             <!--  <h2>
-    <span id="SitePH_CmsContent_lblHeading">About Us</span></h2> -->
+            <span id="SitePH_CmsContent_lblHeading">About Us</span></h2> -->
             <div id="SitePH_CmsContent_BreadCrum_breadcrumb" class="breadcrumbDiv">
                 <ul class="breadcrumb">
                     <li><b>You are here :</b></li>
@@ -22,114 +22,126 @@
             <h2>Organization Chart</h2>
         </div>
 
-      
+
         <div id="chart" class="form-group" style="width: 650px;margin: 0  auto;">
         </div>
     </div>
-    </div>
+</div>
 
 
 
-    @*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>*@
-    @*<script type="text/javascript" src="https://www.google.com/jsapi"></script>*@
-    <script src="../../Scripts/jsapi.js"></script>
-    @*<link href="../../Website_Assets/css/orgchart.css" rel="stylesheet" />*@
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>*@
+@*<script type="text/javascript" src="https://www.google.com/jsapi"></script>*@
+<script src="../../Scripts/jsapi.js"></script>
+@*<link href="../../Website_Assets/css/orgchart.css" rel="stylesheet" />*@
 
 
 
 
-    <script type="text/javascript">
-        google.load("visualization", "1", { packages: ["orgchart"] });
-        google.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var newrec = [[1, "Nancy Davolio", "Sales Representative", 5],
-                [2, "Andrew Fuller", "CEO", 3],
-                [3, "Janet Leverling", "Managing Director", null],
-                [4, "Margaret Peacock", "Sales Representative", 9],
-                [5, "Steven Buchanan", "Sales Manager", 2],
-                [6, "Michael Suyama", "Sales Representative", 8],
-                [7, "Robert King", "Sales Representative", 8],
-                [8, "Laura Callahan", "Sales Manager", 2],
-                [9, "Anne Dodsworth", "Sales Representative", 2]];
-            //$.ajax({
+<script type="text/javascript">
+    google.load("visualization", "1", { packages: ["orgchart"] });
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var newrec = [[1, "श्री. एस.सी. ताडवी", "सह सचिव", 3],
+            [2, "श्री. डी.एम. सोनावणे", "उप सचिव", 3],
 
-            //    type: "POST",
-            //    url: "/Home/AjaxMethod",
-            //    data: newrec,
-            //    contentType: "application/json; charset=utf-8",
-            //    dataType: "json",
-            //    success: function (r) {
+            [3, "श्री. श्याम तागडे", "प्रधान सचिव", null],
+
+        [4, "श्री. एम एस चौफेकर", "अवर सचिव", 2],
+        [5, "रीमती राजेश्री श्याहरलेकर", "अवर सचिव", 2],
+        [6, "श्री. आर.एम. गेंजे", "अवर सचिव", 2],
+        [7, "श्री. जीवी मकदूम", "कक्ष अधिकारी", 4],
+        [8, "श्री. टी. डी. राठोड", "कक्ष अधिकारी", 4],
+        [9, "श्री. एस. एम. क्षीरसागर", "कक्ष अधिकारी", 4],
+        [10, "श्री. व्ही. एम. डिसोझा", "कक्ष अधिकारी", 5],
+        [11, "श्री. व्ही. एम. डिसोझा", "कक्ष अधिकारी", 5],
+        [12, "श्री. पी.डी अंधेरे", "कक्ष अधिकारी", 5],
+        [13, "श्री. एस के सोनावणे", "कक्ष अधिकारी", 6],
+        [14, "श्री. व्ही. ए. काकडे", "कक्ष अधिकारी", 6]
+          
+        ];
+            
+
+        //$.ajax({
+
+        //    type: "POST",
+        //    url: "/Home/AjaxMethod",
+        //    data: newrec,
+        //    contentType: "application/json; charset=utf-8",
+        //    dataType: "json",
+        //    success: function (r) {
 
 
 
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Entity');
-            data.addColumn('string', 'ParentEntity');
-            data.addColumn('string', 'ToolTip');
-            for (var i = 0; i < newrec.length; i++) {
-                var employeeId = newrec[i][0].toString();
-                var employeeName = newrec[i][1];
-                var designation = newrec[i][2];
-                var reportingManager = newrec[i][3] != null ? newrec[i][3].toString() : '';
-                data.addRows([[{
-                    v: employeeId,
-                    f: employeeName + '<div><span>(' + designation + ')</span></div><img src = "/Pictures/' + employeeId + '.jpg" />'
-                }, reportingManager, designation]]);
-            }
-            var chart = new google.visualization.OrgChart($("#chart")[0]);
-            chart.draw(data, { allowHtml: true });
-            //},
-            //failure: function (r) {
-            //    alert(r);
-            //},
-            //error: function (r) {
-            //    alert(r);
-            //}
-            // });
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Entity');
+        data.addColumn('string', 'ParentEntity');
+        data.addColumn('string', 'ToolTip');
+        for (var i = 0; i < newrec.length; i++) {
+            var employeeId = newrec[i][0].toString();
+            var employeeName = newrec[i][1];
+            var designation = newrec[i][2];
+            var reportingManager = newrec[i][3] != null ? newrec[i][3].toString() : '';
+            data.addRows([[{
+                v: employeeId,
+                //f: employeeName + '<div><span>(' + designation + ')</span></div><img src = "/Pictures/' + employeeId + '.jpg" />'
+
+                f: employeeName + '<div><span>(' + designation + ')</span></div>'
+            }, reportingManager, designation]]);
         }
-    </script>
+        var chart = new google.visualization.OrgChart($("#chart")[0]);
+        chart.draw(data, { allowHtml: true });
+        //},
+        //failure: function (r) {
+        //    alert(r);
+        //},
+        //error: function (r) {
+        //    alert(r);
+        //}
+        // });
+    }
+</script>
 
 
-    <style type="text/css">
+<style type="text/css">
 
 
-        .google-visualization-orgchart-node {
-            text-align: center;
-            vertical-align: middle;
-            font-family: arial,helvetica;
-            cursor: default;
-            border: 0px solid #b5d9ea;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            /* -webkit-box-shadow: rgba(0, 0, 0, 0.5) 3px 3px 3px; */
-            -moz-box-shadow: rgba(0, 0, 0, 0.5) 3px 3px 3px;
-            background: #ccc;
-            /* background: -webkit-gradient(linear, left top, left bottom, from(#edf7ff), to(#cde7ee)); */
-        }
+    .google-visualization-orgchart-node {
+        text-align: center;
+        vertical-align: middle;
+        font-family: arial,helvetica;
+        cursor: default;
+        border: 0px solid #b5d9ea;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        /* -webkit-box-shadow: rgba(0, 0, 0, 0.5) 3px 3px 3px; */
+        -moz-box-shadow: rgba(0, 0, 0, 0.5) 3px 3px 3px;
+        background: #ccc;
+        /* background: -webkit-gradient(linear, left top, left bottom, from(#edf7ff), to(#cde7ee)); */
+    }
 
-        .google-visualization-orgchart-table {
-            font-size: 18px;
-            font-weight: bold;
-            color: #2888e5;
-        }
+    .google-visualization-orgchart-table {
+        font-size: 18px;
+        font-weight: bold;
+        color: #2888e5;
+    }
 
 
-        .google-visualization-orgchart-node google-visualization-orgchart-node-medium google-visualization-orgchart-nodesel {
-            background-color: #eee;
-            border-radius: 0px;
-        }
-        .google-visualization-orgchart-node {
-            background-color: #eee;
-            border-radius: 0px;
-            box-shadow:none;
-           
-        }
+    .google-visualization-orgchart-node google-visualization-orgchart-node-medium google-visualization-orgchart-nodesel {
+        background-color: #eee;
+        border-radius: 0px;
+    }
 
-        span {
-            font-size: 12px;
-            color: #666;
-            font-weight:normal
-        }
+    .google-visualization-orgchart-node {
+        background-color: #eee;
+        border-radius: 0px;
+        box-shadow: none;
+    }
 
-    </style>
+    span {
+        font-size: 12px;
+        color: #666;
+        font-weight: normal
+    }
+</style>
 
