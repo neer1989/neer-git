@@ -62,7 +62,7 @@ namespace MinorityDashboard.Web.Controllers
             // ViewBag.DataPointsChart2 = JsonConvert.SerializeObject(lststr2, _jsonSetting).Trim('"');
 
 
-         List<gp_district_scheme_details_Result> lstdsd = objDistrictAdmin.SPDistrictSchemeDetails(0);
+            List<gp_district_scheme_details_Result> lstdsd = objDistrictAdmin.SPDistrictSchemeDetails(0);
 
 
 
@@ -98,9 +98,9 @@ namespace MinorityDashboard.Web.Controllers
                 lststr1.Add(Convert.ToInt32(dm.amt));
                 lststr2.Add(dm.des_name.Trim());
                 //  lststr3.Add("rgb(255, 99, 132)");
-                  lststr3.Add(PickColor(icolorid));
+                lststr3.Add(PickColor(icolorid));
 
-               // lststr3.Add("#00FF00");
+                // lststr3.Add("#00FF00");
                 icolorid++;
 
             }
@@ -678,20 +678,105 @@ namespace MinorityDashboard.Web.Controllers
         public ActionResult UploadGR()
         {
             GRModel grm = new GRModel();
-
+            grm.gr_date = DateTime.Now;
             return View(grm);
         }
-
+        [HttpGet]
         public ActionResult LatestNews()
         {
-          
-            return View();
+            LatestNews obj = new LatestNews();
+            obj.news_date = DateTime.Now;
+            obj.lstLatestNews = objDashboard.GetLatestNewsList();
+
+            TempData["NewsList"] = obj;
+
+            return View(obj);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult LatestNews(LatestNews LN)
+        {
+            int result = 0;
+            latest_news obj = new latest_news();
+            obj.isactive = LN.isactive;
+            obj.news_date = LN.news_date;
+            obj.news_description_e = LN.news_description_e;
+            obj.news_description_m = LN.news_description_m;
+            obj.news_e = LN.latest_news_e;
+            obj.news_m = LN.latest_news_m;
+            obj.updated_by = GetUidbyClaim();
+            obj.updated_date = DateTime.Now;
+
+            if (LN.latest_news_id > 0)
+            {
+                obj.latest_news_id = LN.latest_news_id;
+                result = objDashboard.UpdateDeleteLatestNews(obj);
+            }
+            else
+            {
+                obj.created_by = GetUidbyClaim();
+                obj.created_date = DateTime.Now;
+                result = objDashboard.InsertLatestNews(obj);
+            }
+
+            if (result > 0)
+            {
+                Success(CommonUtility.SucessMessage);
+            }
+            else
+            {
+                Danger(CommonUtility.ErrorMessage);
+            }
+            LatestNews LNObj = new LatestNews();
+            LNObj.lstLatestNews = objDashboard.GetLatestNewsList();
+            return View(LNObj);
         }
 
-        
+
+        public ActionResult DeleteLatestNews(int id)
+        {
+            int result = 0;
+            LatestNews obj = new LatestNews();
+            if (TempData["NewsList"] != null)
+            {
+                obj = (LatestNews)TempData["NewsList"];
+            }
+            List<latest_news> latestnews = obj.lstLatestNews.Where(s => s.latest_news_id == id).ToList();  //objDashboard.GetLatestNewsById(id);
+            latestnews[0].isactive = false;
+            result = objDashboard.UpdateDeleteLatestNews(latestnews[0]);
+
+            if (result > 0)
+            {
+                Success(CommonUtility.DeleteMessage);
+            }
+            else
+            {
+                Danger(CommonUtility.ErrorMessage);
+            }
+            LatestNews LNObj = new LatestNews();
+            LNObj.lstLatestNews = objDashboard.GetLatestNewsList();
+
+            return View("LatestNews", LNObj);
+        }
 
 
-
+        public ActionResult EditLatestNews(int id)
+        {
+            LatestNews obj = new LatestNews();
+            if (TempData["NewsList"] != null)
+            {
+                obj = (LatestNews)TempData["NewsList"];
+            }
+            List<latest_news> latestnews = obj.lstLatestNews.Where(s => s.latest_news_id == id).ToList();  //objDashboard.GetLatestNewsById(id);
+            obj.isactive = latestnews[0].isactive;
+            obj.latest_news_e = latestnews[0].news_e;
+            obj.latest_news_m = latestnews[0].news_m;
+            obj.news_description_e = latestnews[0].news_description_e;
+            obj.news_description_m = latestnews[0].news_description_m;
+            obj.latest_news_id = latestnews[0].latest_news_id;
+            TempData["NewsList"] = obj;
+            return View("LatestNews", obj);
+        }
 
     }
 }

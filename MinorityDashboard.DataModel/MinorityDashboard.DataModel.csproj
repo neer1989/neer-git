@@ -131,6 +131,9 @@
     <Compile Include="implementation_agency_master.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="latest_news.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="login.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>

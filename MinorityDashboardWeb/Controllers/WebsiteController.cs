@@ -32,12 +32,20 @@ namespace MinorityDashboardWeb.Controllers
                 Response.Redirect("/Website/Home");
             }
 
+            //LatestNews LNObj = new LatestNews();
+            //LNObj.lstLatestNews = objDashboard.GetLatestNewsList();
+
+
+            //return View("../Website/Home", LNObj);
+
             return View();
         }
 
         public ActionResult Home()
         {
-            return View();
+            LatestNews LNObj = new LatestNews();
+            LNObj.lstLatestNews = objDashboard.GetLatestNewsList();
+            return View(LNObj);
         }
 
         public ActionResult About()
@@ -150,6 +158,18 @@ namespace MinorityDashboardWeb.Controllers
 
             return View(sm);
         }
+
+
+        public ActionResult ViewLatestNews(int id)
+        {
+            LatestNews obj = new LatestNews();
+
+            obj.lstLatestNews = objDashboard.GetLatestNewsById(id);
+
+            return View(obj);
+          
+        }
+
 
 
     }

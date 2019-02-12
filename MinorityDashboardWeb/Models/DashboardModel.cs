@@ -85,6 +85,22 @@ namespace MinorityDashboardWeb.Models
 
     }
 
+    public class LatestNews
+    {
+        public int latest_news_id { get; set; }
+        public string latest_news_e { get; set; }
+        public string latest_news_m { get; set; }
+
+        public string news_description_e { get; set; }
+        public string news_description_m { get; set; }
+        public DateTime news_date { get; set; }
+        public bool isactive { get; set; }
+
+        public List<latest_news> lstLatestNews { get; set; }
+
+    }
+
+
     public class SchemeModel
     {
         public int scheme_id { get; set; }

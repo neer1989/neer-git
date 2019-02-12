@@ -1,0 +1,10 @@
+﻿@model MinorityDashboardWeb.Models.LatestNews
+@{
+    ViewBag.Title = "ViewLatestNews";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+
+<h2>ViewLatestNews</h2>
+
+<h3>@Model.lstLatestNews[0].news_e</h3>
+<h2>@Html.Raw(Model.lstLatestNews[0].news_description_e)</h2>

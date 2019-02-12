@@ -58,6 +58,7 @@ namespace MinorityDashboard.DataModel
         public virtual DbSet<district_scheme_details> district_scheme_details { get; set; }
         public virtual DbSet<scheme_amount_allocation> scheme_amount_allocation { get; set; }
         public virtual DbSet<grdetail> grdetails { get; set; }
+        public virtual DbSet<latest_news> latest_news { get; set; }
     
         public virtual ObjectResult<GetDeskTransactionData_Result> GetDeskTransactionData()
         {

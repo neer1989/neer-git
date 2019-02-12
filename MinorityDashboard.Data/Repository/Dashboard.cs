@@ -267,7 +267,31 @@ namespace MinorityDashboard.Data.Repository
             }
             return successflg;
         }
-
+        public int UpdateDeleteLatestNews(latest_news obj)
+        {
+            int successflg = 1;
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    var LNobj = db.latest_news.FirstOrDefault(x => x.latest_news_id == obj.latest_news_id);
+                    LNobj.isactive = obj.isactive;
+                    LNobj.news_date = obj.news_date;
+                    LNobj.news_description_e = obj.news_description_e;
+                    LNobj.news_description_m = obj.news_description_m;
+                    LNobj.news_e = obj.news_e;
+                    LNobj.news_m = obj.news_m;
+                    LNobj.updated_by = obj.updated_by;
+                    LNobj.updated_date = obj.updated_date;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                successflg = 0;
+            }
+            return successflg;
+        }
 
         public int DeleteDeskTrans(deskdata_trans obj)
         {
@@ -315,6 +339,23 @@ namespace MinorityDashboard.Data.Repository
                 return lstsdm;
             }
             return lstsdm;
+        }
+
+
+        public int InsertLatestNews(latest_news obj)
+        {
+            latest_news returnobj = ObjCR.SaveData<latest_news>(obj);
+            return returnobj.latest_news_id;
+        }
+
+        public List<latest_news> GetLatestNewsList()
+        {
+            return ObjCR.GetData<latest_news>().Where(s =>s.isactive==true).ToList();
+        }
+
+        public List<latest_news> GetLatestNewsById(int id)
+        {
+            return ObjCR.GetData<latest_news>().Where(s => s.latest_news_id == id).ToList();
         }
 
         public void testmethod()

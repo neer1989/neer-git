@@ -55,5 +55,11 @@ namespace MinorityDashboard.Data.Repository
         int InsertGR(grdetail obj);
         List<grdetail> GetGRList();
 
+        int InsertLatestNews(latest_news obj);
+        List<latest_news> GetLatestNewsList();
+        List<latest_news> GetLatestNewsById(int id);
+
+        int UpdateDeleteLatestNews(latest_news obj);
+
     }
 }
