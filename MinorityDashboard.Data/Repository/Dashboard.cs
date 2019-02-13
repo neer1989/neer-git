@@ -139,6 +139,34 @@ namespace MinorityDashboard.Data.Repository
             return returnobj.gr_id;
         }
 
+        public int UpdateDeleteGR(grdetail obj)
+        {
+            int successflg = 1;
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    var GRobj = db.grdetails.FirstOrDefault(x => x.gr_id == obj.gr_id);
+                    GRobj.isactive = obj.isactive;
+                    GRobj.gr_date = obj.gr_date;
+                    GRobj.gr_file = obj.gr_file;
+                    GRobj.keywords_e = obj.keywords_e;
+                    GRobj.keywords_m = obj.keywords_m;
+                    GRobj.unique_code_e = obj.unique_code_e;
+                    GRobj.unique_code_m = obj.unique_code_m;                   
+                    GRobj.updated_by = obj.updated_by;
+                    GRobj.updated_date = obj.updated_date;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                successflg = 0;
+            }
+            return successflg;
+        }
+
+
         public int InsertDeskTrans(deskdata_trans obj)
         {
             deskdata_trans returnobj = ObjCR.SaveData<deskdata_trans>(obj);

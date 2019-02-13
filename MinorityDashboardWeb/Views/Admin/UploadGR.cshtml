@@ -14,7 +14,7 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
 
-
+            @Html.HiddenFor(s => s.gr_id)
 
             <div class="form-group">
                 <div class="form-row">
@@ -52,10 +52,7 @@
 
                         @Html.TextBoxFor(a => a.unique_code_m, new { @class = "form-control", id = "subname", placeholder = "Enter Unique Code Marathi" })
 
-
                     </div>
-
-
                     <div class="col-md-4">
 
                         <label for="exampleInputName">GR Date</label>
@@ -64,9 +61,6 @@
 
 
                     </div>
-
-
-
 
                     <div class="col-md-6">
                         <label for="exampleInputName">GR File</label>
@@ -106,14 +100,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <!-- Bootstrap -->
-            <!-- Bootstrap DatePicker -->
-
-
-
         }
 
         <!-- Bootstrap DatePicker -->
@@ -121,7 +107,7 @@
             $(function () {
                 $('#gr_date').datepicker({
                     changeMonth: true,
-                    changeYear: true,                   
+                    changeYear: true,
                     language: "tr"
                 });
             });
@@ -131,3 +117,48 @@
     </div>
 </div>
 
+<br />
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> GR View
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>GR ID</th>
+                        <th>Title English</th>
+                        <th>Title Marathi</th>
+                        <th>Unique Code</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model.lstGRList != null)
+                    {
+                        foreach (var X in Model.lstGRList)
+                        {
+
+                    <tr>
+                        <td>@X.gr_id </td>
+                        <td>@X.keywords_e</td>
+                        <td>@X.keywords_m</td>
+                        <td>@X.unique_code_e</td>                    
+                        <td>
+                            @Html.ActionLink("Edit", "EditGR", new { id = X.gr_id })  |
+                            @Html.ActionLink("Delete", "DeleteGR", new { id = X.gr_id }, new { onclick = "return confirm('Are you sure?');" })
+
+                        </td>
+                    </tr>
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

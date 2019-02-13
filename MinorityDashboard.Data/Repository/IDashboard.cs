@@ -60,6 +60,6 @@ namespace MinorityDashboard.Data.Repository
         List<latest_news> GetLatestNewsById(int id);
 
         int UpdateDeleteLatestNews(latest_news obj);
-
+        int UpdateDeleteGR(grdetail obj);
     }
 }

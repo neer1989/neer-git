@@ -652,25 +652,36 @@ namespace MinorityDashboard.Web.Controllers
             grd.unique_code_m = obj.unique_code_m;
             grd.gr_date = obj.gr_date;
             grd.isactive = obj.isactive;
-            grd.created_by = GetUidbyClaim();
-            grd.created_date = DateTime.Now;
             grd.updated_by = GetUidbyClaim();
             grd.updated_date = DateTime.Now;
-            grd.gr_file = SaveFileinFolder(obj.GrFile, ConfigurationManager.AppSettings["GRFolder"].ToString(), obj.gr_id)[0];
 
-            result = objDashboard.InsertGR(grd);
+            if(obj.GrFile.Length >1)
+            { 
+            grd.gr_file = SaveFileinFolder(obj.GrFile, ConfigurationManager.AppSettings["GRFolder"].ToString(), obj.gr_id)[0];
+            }
+
+            if (obj.gr_id > 0)
+            {
+                grd.gr_file = grd.gr_file == null ? TempData["GRFileName"].ToString() : grd.gr_file;
+                grd.gr_id = obj.gr_id;
+                result = objDashboard.UpdateDeleteGR(grd);                
+            }
+            else
+            {
+                grd.created_by = GetUidbyClaim();
+                grd.created_date = DateTime.Now;
+                result = objDashboard.InsertGR(grd);
+            }
             if (result > 0)
             {
-
                 Success(CommonUtility.SucessMessage);
             }
             else
             {
                 Danger(CommonUtility.ErrorMessage);
-
             }
             GRModel grm = new GRModel();
-
+            grm.lstGRList = objDashboard.GetGRList();
             return View(grm);
         }
 
@@ -679,6 +690,11 @@ namespace MinorityDashboard.Web.Controllers
         {
             GRModel grm = new GRModel();
             grm.gr_date = DateTime.Now;
+
+            grm.lstGRList = objDashboard.GetGRList();
+
+            TempData["GRList"] = grm;
+
             return View(grm);
         }
         [HttpGet]
@@ -777,6 +793,27 @@ namespace MinorityDashboard.Web.Controllers
             TempData["NewsList"] = obj;
             return View("LatestNews", obj);
         }
+
+        public ActionResult EditGR(int id)
+        {
+            GRModel obj = new GRModel();
+            if (TempData["GRList"] != null)
+            {
+                obj = (GRModel)TempData["GRList"];
+            }
+            List<grdetail> lst = obj.lstGRList.Where(s => s.gr_id == id).ToList();  //objDashboard.GetLatestNewsById(id);
+            obj.isactive = lst[0].isactive;
+            obj.gr_date = lst[0].gr_date;
+            obj.keywords_e = lst[0].keywords_e;
+            obj.keywords_m = lst[0].keywords_m;
+            obj.unique_code_e = lst[0].unique_code_e;
+            obj.unique_code_m = lst[0].unique_code_m;
+            obj.gr_id = lst[0].gr_id;
+            TempData["GRFileName"] = lst[0].gr_file;
+            TempData["GRList"] = obj;
+            return View("UploadGR", obj);
+        }
+
 
     }
 }

@@ -43,7 +43,6 @@ namespace MinorityDashboard.DataModel
         public virtual DbSet<main_menu_master> main_menu_master { get; set; }
         public virtual DbSet<sub_menu_master> sub_menu_master { get; set; }
         public virtual DbSet<menu_role_mapping> menu_role_mapping { get; set; }
-        public virtual DbSet<gallery_master> gallery_master { get; set; }
         public virtual DbSet<org_structure> org_structure { get; set; }
         public virtual DbSet<parentscheme> parentschemes { get; set; }
         public virtual DbSet<scheme_child1> scheme_child1 { get; set; }
@@ -59,6 +58,7 @@ namespace MinorityDashboard.DataModel
         public virtual DbSet<scheme_amount_allocation> scheme_amount_allocation { get; set; }
         public virtual DbSet<grdetail> grdetails { get; set; }
         public virtual DbSet<latest_news> latest_news { get; set; }
+        public virtual DbSet<gallery_master> gallery_master { get; set; }
     
         public virtual ObjectResult<GetDeskTransactionData_Result> GetDeskTransactionData()
         {

@@ -21,7 +21,6 @@
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.main_menu_master" Width="1.5" PointX="10.375" PointY="4.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.sub_menu_master" Width="1.5" PointX="10.375" PointY="8.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.menu_role_mapping" Width="1.5" PointX="11.375" PointY="0.75" />
-        <EntityTypeShape EntityType="MinorityDasboard_DBModel.gallery_master" Width="1.5" PointX="7.375" PointY="11.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.org_structure" Width="1.5" PointX="3.375" PointY="12.75" />
         <AssociationConnector Association="MinorityDasboard_DBModel.FK_login" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.parentscheme" Width="1.5" PointX="12.375" PointY="4.75" />
@@ -38,6 +37,7 @@
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.scheme_amount_allocation" Width="1.5" PointX="15.375" PointY="14.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.grdetail" Width="1.5" PointX="7.375" PointY="16.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.latest_news" Width="1.5" PointX="9.375" PointY="16.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.gallery_master" Width="1.5" PointX="17.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

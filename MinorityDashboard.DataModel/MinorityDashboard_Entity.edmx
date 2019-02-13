@@ -127,10 +127,12 @@
           <Key>
             <PropertyRef Name="gallery_id" />
           </Key>
-          <Property Name="gallery_id" Type="int" Nullable="false" />
-          <Property Name="title" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="file_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="gallery_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title_e" Type="nvarchar" MaxLength="2500" Nullable="false" />
+          <Property Name="title_m" Type="nvarchar" MaxLength="2500" />
+          <Property Name="file_name" Type="nvarchar" MaxLength="2000" Nullable="false" />
           <Property Name="file_extension" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="isactive" Type="bit" />
           <Property Name="created_by" Type="int" />
           <Property Name="created_date" Type="datetime" />
           <Property Name="updated_by" Type="int" />
@@ -614,7 +616,6 @@
           </FunctionImport>
           <EntitySet Name="menu_role_mapping" EntityType="MinorityDasboard_DBModel.menu_role_mapping" />
           <FunctionImport Name="GetSchemeData" ReturnType="Collection(MinorityDasboard_DBModel.GetSchemeData_Result)" />
-          <EntitySet Name="gallery_master" EntityType="MinorityDasboard_DBModel.gallery_master" />
           <EntitySet Name="org_structure" EntityType="MinorityDasboard_DBModel.org_structure" />
           <AssociationSet Name="FK_login" Association="MinorityDasboard_DBModel.FK_login">
             <End Role="role_master" EntitySet="role_master" />
@@ -653,6 +654,7 @@
           </FunctionImport>
           <EntitySet Name="grdetails" EntityType="MinorityDasboard_DBModel.grdetail" />
           <EntitySet Name="latest_news" EntityType="MinorityDasboard_DBModel.latest_news" />
+          <EntitySet Name="gallery_master" EntityType="MinorityDasboard_DBModel.gallery_master" />
         </EntityContainer>
         <EntityType Name="estimation_master">
           <Key>
@@ -863,19 +865,6 @@
           <Property Type="String" Name="sub_name" Nullable="true" />
         </ComplexType>
         <ComplexType Name="ComplexType1" />
-        <EntityType Name="gallery_master">
-          <Key>
-            <PropertyRef Name="gallery_id" />
-          </Key>
-          <Property Name="gallery_id" Type="Int32" Nullable="false" />
-          <Property Name="title" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="file_name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="file_extension" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="created_by" Type="Int32" />
-          <Property Name="created_date" Type="DateTime" Precision="3" />
-          <Property Name="updated_by" Type="Int32" />
-          <Property Name="updated_date" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="org_structure">
           <Key>
             <PropertyRef Name="org_id" />
@@ -1159,6 +1148,21 @@
           <Property Name="news_description_m" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="news_date" Type="DateTime" Precision="3" />
           <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="gallery_master">
+          <Key>
+            <PropertyRef Name="gallery_id" />
+          </Key>
+          <Property Name="gallery_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title_e" Type="String" Nullable="false" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="title_m" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="file_name" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="file_extension" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" />
           <Property Name="created_by" Type="Int32" />
           <Property Name="created_date" Type="DateTime" Precision="3" />
           <Property Name="updated_by" Type="Int32" />
@@ -1475,20 +1479,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="gallery_master">
-            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.gallery_master">
-              <MappingFragment StoreEntitySet="gallery_master">
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="file_extension" ColumnName="file_extension" />
-                <ScalarProperty Name="file_name" ColumnName="file_name" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="gallery_id" ColumnName="gallery_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="org_structure">
             <EntityTypeMapping TypeName="MinorityDasboard_DBModel.org_structure">
               <MappingFragment StoreEntitySet="org_structure">
@@ -1797,6 +1787,22 @@
                 <ScalarProperty Name="news_m" ColumnName="news_m" />
                 <ScalarProperty Name="news_e" ColumnName="news_e" />
                 <ScalarProperty Name="latest_news_id" ColumnName="latest_news_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gallery_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.gallery_master">
+              <MappingFragment StoreEntitySet="gallery_master">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="file_extension" ColumnName="file_extension" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="title_m" ColumnName="title_m" />
+                <ScalarProperty Name="title_e" ColumnName="title_e" />
+                <ScalarProperty Name="gallery_id" ColumnName="gallery_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
