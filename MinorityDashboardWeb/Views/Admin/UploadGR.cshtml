@@ -88,15 +88,15 @@
 
                         @if (Model.gr_id > 0)
                         {
-                            <input type="submit" value="Update" class="btn btn-primary btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                            <input type="submit" value="Update" class="btn btn-info btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
                         }
                         else
                         {
-                            <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                            <input type="submit" value="Save" class="btn btn-info btn-block" style="margin-top:7px; width: 50%;float: right;" />
                         }
                     </div>
                     <div class="col-md-6">
-                        <a href=@Url.Action("UploadGR","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
+                        <a href=@Url.Action("UploadGR","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-info btn-block">Cancel</a>
                     </div>
                 </div>
             </div>
@@ -149,8 +149,19 @@
                         <td>@X.keywords_m</td>
                         <td>@X.unique_code_e</td>                    
                         <td>
-                            @Html.ActionLink("Edit", "EditGR", new { id = X.gr_id })  |
-                            @Html.ActionLink("Delete", "DeleteGR", new { id = X.gr_id }, new { onclick = "return confirm('Are you sure?');" })
+
+                            <a href="@Url.Action("EditGR", "Admin",new { id = X.gr_id })" title="Edit GR">
+                                <i class="fa fa-edit btn_ico"></i>
+
+                            </a>
+
+                            <a href="@Url.Action("DeleteGR", "Admin",new { id = X.gr_id })" onclick="return confirm('Are you sure?');" title="Delete GR">
+                                <i class="fa fa-trash btn_ico"></i>
+
+                            </a>
+
+                            @*@Html.ActionLink("Edit", "EditGR", new { id = X.gr_id })  |
+                            @Html.ActionLink("Delete", "DeleteGR", new { id = X.gr_id }, new { onclick = "return confirm('Are you sure?');" })*@
 
                         </td>
                     </tr>

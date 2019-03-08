@@ -1,23 +1,33 @@
 ﻿@model MinorityDashboardWeb.Models.SchemeModel
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "SchemeDescriptionMaster";
-                Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "SchemeDescriptionMaster";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
+<style type="text/css">
+    .activetab {
+        background-color: #f9dfb3;
+    }
+</style>
+
+
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />*@
+
 <div class="card mx-1 mt-12">
 
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs" id="ulclr">
-            <li class="btnxxx activetab"><a href="#fa-icons" data-toggle="tab" style="position: relative;display: block;padding: 10px 15px;">Insert Data</a></li>
-            <li class="btnxxx"><a href="#glyphicons" data-toggle="tab" style="position: relative;display: block; padding: 10px 15px;">View Data</a></li>
+            <li class="btnxxx activetab"><a href="#fa-icons" data-toggle="tab" class="btn btn-info">Insert Data</a></li>
+            <li class="btnxxx"><a href="#glyphicons" data-toggle="tab" class="btn btn-info">View Data</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="fa-icons">
                 <div class="card-header">Scheme Description Master</div>
                 @using (Html.BeginForm("SchemeDescriptionMaster", "Admin", FormMethod.Post, new { id = "myform" }))
                 {
-                    @Html.HiddenFor(s => s.scheme_id)
+                    @Html.HiddenFor(s => s.scheme_des_id)
                     <div class="card-body">
 
                         <div class="form-group">
@@ -44,13 +54,13 @@
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="exampleInputName">Parent Scheme</label>
+                                    <label for="exampleInputName">Scheme Child2</label>
                                     @Html.DropDownListFor(s => s.scheme_id_child2, Model.ddlChildScheme2, new { @class = "form-control" })
 
                                 </div>
                                 <div class="col-md-6">
 
-                                    <label for="exampleInputName">Scheme Child1</label>
+                                    <label for="exampleInputName">Scheme Child3</label>
                                     @Html.DropDownListFor(s => s.scheme_id_child3, Model.ddlChildScheme3, new { @class = "form-control" })
 
 
@@ -85,17 +95,17 @@
                                 <div class="col-md-6">
                                     <label for="exampleInputName"></label>
 
-                                    @if (Model.scheme_id > 0)
+                                    @if (Model.scheme_des_id > 0)
                                     {
-                                        <input type="submit" value="Update" class="btn btn-primary btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                                        <input type="submit" value="Update" class="btn btn-info btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
                                     }
                                     else
                                     {
-                                        <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                                        <input type="submit" value="Save" class="btn btn-info btn-block" style="margin-top:7px; width: 50%;float: right;" />
                                     }
                                 </div>
                                 <div class="col-md-6">
-                                    <a href=@Url.Action("SchemeMaster", "Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
+                                    <a href=@Url.Action("SchemeMaster", "Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-info btn-block">Cancel</a>
                                 </div>
                             </div>
                         </div>
@@ -117,8 +127,10 @@
                                     <th>Child Schemes1</th>
                                     <th>Child Schemes2</th>
                                     <th>Child Schemes3</th>
-                                    <th>Scheme Desc MR</th>
-                                    <th>Scheme Desc EN</th>
+                                    <th>Desc English</th>
+                                    <th>Desc Marathi</th>
+
+                                    <th>Action</th>
 
 
                                 </tr>
@@ -140,40 +152,33 @@
 
 
                                         <td>
-                                            <a href="#" data-toggle="modal" data-target='#@X.scheme_des_id'>Secheme Desc </a>
-
-                                            <a href="#@X.scheme_des_id" class="btn scheme"><i class="fas fa-angle-right fa-lg"></i> Secheme Desc </a>
-                                            <div id=@X.scheme_des_id class="overlay">
-                                                <div class="popup">
-                                                    <h3>@X.parent_schemename_m</h3>
-                                                    <a class="close" href="#">×</a>
-                                                    <div class="content">
-                                                        @Html.Raw(X.scheme_description_m)
-                                                    </div>
-
-                                                </div>
+                                            <div id="ex1" class="modal123" style="font-size: 15px;">
+                                                @Html.Raw(X.scheme_description_e)
+                                                @*<a href="#" rel="modal:close">Close</a>*@
                                             </div>
 
+                                            <!-- Link to open the modal -->
+                                            <p><a href="#ex1" rel="modal:open" title="View Scheme Description in English"><i class="fa fa-eye btn_ico"></i></a></p>
 
-                                            @*<div class="modal fade" id=@X.scheme_des_id role="dialog">
-                                                    <div class="modal-dialog modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                <h4 class="modal-title">@X.parent_schemename_m</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                @Html.Raw(X.scheme_description_e)
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>*@
+
+
+
                                         </td>
                                         <td>
-                                            <a href="#" data-toggle="popover" title="Popover Header" data-content='@X.scheme_description_m'>Secheme Desc </a>
+                                            <div id="ex2" class="modal123" style="font-size: 15px;">
+                                                <p>@Html.Raw(X.scheme_description_m)</p>
+                                                @*<a href="#" rel="modal:close">Close</a>*@
+                                            </div>
+
+                                            <!-- Link to open the modal -->
+                                            <p><a href="#ex2" rel="modal:open" title="View Scheme Description in Marathi"><i class="fa fa-eye btn_ico"></i></a></p>
+
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("EditSchemeDesc", "Admin",new { id = X.scheme_des_id })" title="Edit Scheme">
+                                                <i class="fa fa-edit btn_ico"></i>
+
+                                            </a>
 
                                         </td>
 
@@ -186,11 +191,16 @@
 
             </div>
 
+
+
         </div>
     </div>
 </div>
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
-@*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
 
 
@@ -207,6 +217,19 @@
         //bootstrap WYSIHTML5 - text editor
 
     })
+</script>
+
+<script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("ulclr");
+    var btns = header.getElementsByClassName("btnxxx");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("activetab");
+            current[0].className = current[0].className.replace(" activetab", "");
+            this.className += " activetab";
+        });
+    }
 </script>
 
 

@@ -124,6 +124,7 @@ namespace MinorityDashboardWeb.Models
         public int scheme_id_child3 { get; set; }
         public string scheme_description_e { get; set; }
         public string scheme_description_m { get; set; }
+        public int scheme_des_id { get; set; }
 
 
         public List<SelectListItem> ddlParentScheme { get; set; }

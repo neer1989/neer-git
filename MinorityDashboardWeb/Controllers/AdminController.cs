@@ -554,6 +554,8 @@ namespace MinorityDashboard.Web.Controllers
             sm.ddlChildScheme2 = BlankSelectItem();
             sm.ddlChildScheme3 = BlankSelectItem();
             sm.lstSchemeDesc = objDashboard.GetFilteredSchemeDesc(0, 0, 0, 0);
+            TempData["SchemeDescList"] = sm;
+
             return sm;
         }
 
@@ -570,29 +572,49 @@ namespace MinorityDashboard.Web.Controllers
         public ActionResult SchemeDescriptionMaster(SchemeModel sm)
         {
             int result = 0;
-            scheme_desc_mapping sdm = new scheme_desc_mapping();
-            sdm.parent_scheme_id = sm.parent_scheme_id;
-            sdm.scheme_id_child1 = sm.scheme_id_child1;
-            sdm.scheme_id_child2 = sm.scheme_id_child2;
-            sdm.scheme_id_child3 = sm.scheme_id_child3;
-            sdm.scheme_description_e = sm.scheme_description_e;
-            sdm.scheme_description_m = sm.scheme_description_m;
-            sdm.created_by = GetUidbyClaim();
-            sdm.created_date = DateTime.Now;
-            sdm.updated_by = GetUidbyClaim();
-            sdm.updated_date = DateTime.Now;
-            System.Threading.Thread.Sleep(1000);
 
-            result = objDashboard.InsertSchemeDescMapping(sdm);
-            if (result > 0)
+            int check_scdesc = objDashboard.CheckSchemeDescription(sm.parent_scheme_id, sm.scheme_id_child1, sm.scheme_id_child2, sm.scheme_id_child3);
+
+
+            if (check_scdesc > 0)
             {
-
-                Success(CommonUtility.DeleteMessage);
+                Success("Scheme description already exists. you can only update the scheme.");
             }
             else
             {
-                Danger(CommonUtility.ErrorMessage);
 
+                scheme_desc_mapping sdm = new scheme_desc_mapping();
+                sdm.parent_scheme_id = sm.parent_scheme_id;
+                sdm.scheme_id_child1 = sm.scheme_id_child1;
+                sdm.scheme_id_child2 = sm.scheme_id_child2;
+                sdm.scheme_id_child3 = sm.scheme_id_child3;
+                sdm.scheme_description_e = sm.scheme_description_e;
+                sdm.scheme_description_m = sm.scheme_description_m;
+                sdm.created_by = GetUidbyClaim();
+                sdm.created_date = DateTime.Now;
+                sdm.updated_by = GetUidbyClaim();
+                sdm.updated_date = DateTime.Now;
+                System.Threading.Thread.Sleep(1000);
+
+                if (sm.scheme_des_id > 0)
+                {
+                    sdm.scheme_des_id = sm.scheme_des_id;
+                    result = objDashboard.UpdateDeleteSchemDesc(sdm);
+                }
+                else
+                {
+                    result = objDashboard.InsertSchemeDescMapping(sdm);
+                }
+                if (result > 0)
+                {
+
+                    Success(CommonUtility.DeleteMessage);
+                }
+                else
+                {
+                    Danger(CommonUtility.ErrorMessage);
+
+                }
             }
 
             return View(BindParentChildScheme());
@@ -655,16 +677,16 @@ namespace MinorityDashboard.Web.Controllers
             grd.updated_by = GetUidbyClaim();
             grd.updated_date = DateTime.Now;
 
-            if(obj.GrFile.Length >1)
-            { 
-            grd.gr_file = SaveFileinFolder(obj.GrFile, ConfigurationManager.AppSettings["GRFolder"].ToString(), obj.gr_id)[0];
+            if (obj.GrFile.Length > 1)
+            {
+                grd.gr_file = SaveFileinFolder(obj.GrFile, ConfigurationManager.AppSettings["GRFolder"].ToString(), obj.gr_id)[0];
             }
 
             if (obj.gr_id > 0)
             {
                 grd.gr_file = grd.gr_file == null ? TempData["GRFileName"].ToString() : grd.gr_file;
                 grd.gr_id = obj.gr_id;
-                result = objDashboard.UpdateDeleteGR(grd);                
+                result = objDashboard.UpdateDeleteGR(grd);
             }
             else
             {
@@ -813,6 +835,43 @@ namespace MinorityDashboard.Web.Controllers
             TempData["GRList"] = obj;
             return View("UploadGR", obj);
         }
+
+        public ActionResult EditSchemeDesc(int id)
+        {
+            SchemeModel obj = new SchemeModel();
+            if (TempData["SchemeDescList"] != null)
+            {
+                obj = (SchemeModel)TempData["SchemeDescList"];
+            }
+            List<GetSchemeDesc_Result> lst = obj.lstSchemeDesc.Where(s => s.scheme_des_id == id).ToList();  //objDashboard.GetLatestNewsById(id);
+            obj.parent_scheme_id = lst[0].parent_scheme_id;
+            obj.scheme_id_child1 = lst[0].scheme_id_child1;
+            obj.scheme_id_child2 = lst[0].scheme_id_child2;
+            obj.scheme_id_child3 = lst[0].scheme_id_child3;
+            obj.scheme_description_e = lst[0].scheme_description_e;
+            obj.scheme_description_m = lst[0].scheme_description_m;
+
+            obj.scheme_des_id = lst[0].scheme_des_id;
+
+            obj.ddlChildScheme1 = BindChildScheme1(1, obj.parent_scheme_id);
+
+            obj.ddlChildScheme2 = obj.scheme_id_child1 == 0 ? BlankSelectItem() : BindChildScheme2(1, obj.scheme_id_child1);
+
+            if (obj.ddlChildScheme2.Count < 1)
+                obj.ddlChildScheme2.Add(new SelectListItem() { Value = "0", Text = "Select" });
+
+            obj.ddlChildScheme3 = obj.scheme_id_child2 == 0 ? BlankSelectItem() : BindChildScheme3(1, obj.scheme_id_child2);
+
+            if (obj.ddlChildScheme3.Count < 1)
+                obj.ddlChildScheme3.Add(new SelectListItem() { Value = "0", Text = "Select" });
+
+            TempData["SchemeDescList"] = obj;
+            return View("SchemeDescriptionMaster", obj);
+        }
+
+
+
+
 
 
     }

@@ -50,15 +50,15 @@
 
                             @if (Model.parent_scheme_id > 0)
                             {
-                                <input type="submit" value="Update" class="btn btn-primary btn-block" formaction="SechemeAmountAllotment" formmethod="post" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                                <input type="submit" value="Update" class="btn btn-info btn-block" formaction="SechemeAmountAllotment" formmethod="post" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
                             }
                             else
                             {
-                                <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                                <input type="submit" value="Save" class="btn btn-info btn-block" style="margin-top:7px; width: 50%;float: right;" />
                             }
                         </div>
                         <div class="col-md-6">
-                            <a href=@Url.Action("DeskData","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
+                            <a href=@Url.Action("DeskData","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-info btn-block">Cancel</a>
                         </div>
 
                     </div>
@@ -100,7 +100,7 @@
                         </tbody>
                     </table>
                 </div>
-                <input type="submit" value="SaveDistrictAllotment" id="DistricrtAmountSave" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" formaction="SaveparentSchemeAmt" formmethod="post" />
+                <input type="submit" value="SaveDistrictAllotment" id="DistricrtAmountSave" class="btn btn-info btn-block" style="margin-top:7px; width: 50%;float: right;" formaction="SaveparentSchemeAmt" formmethod="post" />
             </div>
         }
     </div>

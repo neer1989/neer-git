@@ -251,9 +251,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin_Assets\css\admin_custom.css" />
     <Content Include="Admin_Assets\css\admin_style.css" />
     <Content Include="Admin_Assets\css\sb-admin.css" />
     <Content Include="Admin_Assets\css\sb-admin.min.css" />
+    <Content Include="Admin_Assets\images\cancel.svg" />
     <Content Include="Admin_Assets\js\sb-admin-charts.js" />
     <Content Include="Admin_Assets\js\sb-admin-charts.min.js" />
     <Content Include="Admin_Assets\js\sb-admin-datatables.js" />
@@ -3303,6 +3305,7 @@
     <Content Include="Website_Assets\images\master\smm.png" />
     <Content Include="Website_Assets\images\minus.svg" />
     <Content Include="Website_Assets\images\minus1.svg" />
+    <Content Include="Website_Assets\images\new_arrow.gif" />
     <Content Include="Website_Assets\images\plus.png" />
     <Content Include="Website_Assets\images\plus.svg" />
     <Content Include="Website_Assets\images\plus1.svg" />

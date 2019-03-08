@@ -61,5 +61,7 @@ namespace MinorityDashboard.Data.Repository
 
         int UpdateDeleteLatestNews(latest_news obj);
         int UpdateDeleteGR(grdetail obj);
+        int UpdateDeleteSchemDesc(scheme_desc_mapping obj);
+        int CheckSchemeDescription(int ParentId, int Childschm1, int Childschm2, int Childschm3);
     }
 }

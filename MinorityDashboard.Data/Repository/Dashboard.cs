@@ -153,7 +153,7 @@ namespace MinorityDashboard.Data.Repository
                     GRobj.keywords_e = obj.keywords_e;
                     GRobj.keywords_m = obj.keywords_m;
                     GRobj.unique_code_e = obj.unique_code_e;
-                    GRobj.unique_code_m = obj.unique_code_m;                   
+                    GRobj.unique_code_m = obj.unique_code_m;
                     GRobj.updated_by = obj.updated_by;
                     GRobj.updated_date = obj.updated_date;
                     db.SaveChanges();
@@ -165,6 +165,34 @@ namespace MinorityDashboard.Data.Repository
             }
             return successflg;
         }
+
+        public int UpdateDeleteSchemDesc(scheme_desc_mapping obj)
+        {
+            int successflg = 1;
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    var SDobj = db.scheme_desc_mapping.FirstOrDefault(x => x.scheme_des_id == obj.scheme_des_id);
+                    SDobj.isactive = obj.isactive;
+                    SDobj.parent_scheme_id = obj.parent_scheme_id;
+                    SDobj.scheme_description_e = obj.scheme_description_e;
+                    SDobj.scheme_description_m = obj.scheme_description_m;
+                    SDobj.scheme_id_child1 = obj.scheme_id_child1;
+                    SDobj.scheme_id_child2 = obj.scheme_id_child2;
+                    SDobj.scheme_id_child3 = obj.scheme_id_child3;
+                    SDobj.updated_by = obj.updated_by;
+                    SDobj.updated_date = obj.updated_date;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                successflg = 0;
+            }
+            return successflg;
+        }
+
 
 
         public int InsertDeskTrans(deskdata_trans obj)
@@ -378,13 +406,27 @@ namespace MinorityDashboard.Data.Repository
 
         public List<latest_news> GetLatestNewsList()
         {
-            return ObjCR.GetData<latest_news>().Where(s =>s.isactive==true).ToList();
+            return ObjCR.GetData<latest_news>().Where(s => s.isactive == true).ToList();
         }
 
         public List<latest_news> GetLatestNewsById(int id)
         {
             return ObjCR.GetData<latest_news>().Where(s => s.latest_news_id == id).ToList();
         }
+
+
+        public int CheckSchemeDescription(int ParentId, int Childschm1, int Childschm2, int Childschm3)
+        {
+            try
+            {
+                return ObjCR.GetData<scheme_desc_mapping>().Where(s => s.parent_scheme_id == ParentId && s.scheme_id_child1 == Childschm1 && s.scheme_id_child2 == Childschm2 && s.scheme_id_child3 == Childschm3).ToList().Count();
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
 
         public void testmethod()
         {

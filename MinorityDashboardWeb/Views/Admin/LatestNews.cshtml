@@ -4,6 +4,25 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<style type="text/css">
+    .btn_ico {
+        background: #ccc;
+        border: 1px solid #999;
+        color: #000;
+        padding: 5px 8px;
+        border-radius: 0px;
+    }
+
+        .btn_ico:hover {
+            background: #42A5F5;
+            border: 1px solid #269abc;
+            color: #fff;
+            padding: 5px 8px;
+            border-radius: 0px;
+        }
+</style>
+
+
 <div class="card mx-1 mt-12">
     <div class="card-header">Latest News</div>
     <div class="card-body">
@@ -65,15 +84,15 @@
 
                         @if (Model.latest_news_id > 0)
                         {
-                            <input type="submit" value="Update" class="btn btn-primary btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                            <input type="submit" value="Update" class="btn btn-info btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
                         }
                         else
                         {
-                            <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                            <input type="submit" value="Save" class="btn btn-info btn-block" style="margin-top:7px; width: 50%;float: right;" />
                         }
                     </div>
                     <div class="col-md-6">
-                        <a href=@Url.Action("LatestNews","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
+                        <a href=@Url.Action("LatestNews","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-info btn-block">Cancel</a>
                     </div>
                 </div>
             </div>
@@ -114,9 +133,21 @@
                                 <td>@X.latest_news_id </td>
                                 <td>@X.news_e</td>
                                 <td>@X.news_m</td>
-                                <td>@Html.ActionLink("Edit", "EditLatestNews", new { id = X.latest_news_id })  |  
-                                @Html.ActionLink("Delete", "DeleteLatestNews", new { id = X.latest_news_id }, new { onclick = "return confirm('Are you sure?');" }) 
-                                                                 
+                                <td>
+                                 
+                                    <a href="@Url.Action("EditLatestNews", "Admin",new { id = X.latest_news_id })" title="Edit Latest News">
+                                        <i class="fa fa-edit btn_ico"></i>
+
+                                    </a>
+                                  
+                                    <a href="@Url.Action("DeleteLatestNews", "Admin",new { id = X.latest_news_id })" onclick = "return confirm('Are you sure?');" title="Delete Latest News">
+                                        <i class="fa fa-trash btn_ico"></i>
+
+                                    </a>
+
+
+
+
                                 </td>
 
                             </tr>

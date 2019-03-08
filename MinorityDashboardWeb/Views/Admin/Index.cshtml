@@ -7,11 +7,11 @@
 
 <div class="container-fluid">
 
-    <button type="button" class="btn btn-primary" onclick="ShowDistrictBud()">District-Budgetary Amount</button>
+    <button type="button" class="btn btn-info" onclick="ShowDistrictBud()">District-Budgetary Amount</button>
 
-    <button type="button" class="btn btn-primary" onclick="SchemeDistrictBud()">Scheme-Budgetary Amount</button>
+    <button type="button" class="btn btn-info" onclick="SchemeDistrictBud()">Scheme-Budgetary Amount</button>
 
-    <button type="button" class="btn btn-primary" onclick="HideGraphs()">Hide Graph</button>
+    <button type="button" class="btn btn-info" onclick="HideGraphs()">Hide Graph</button>
 
 
     @using (Html.BeginForm("Index", "Admin", null, FormMethod.Post))
@@ -138,7 +138,7 @@
 
                                 <td>@X.work_progress_desc</td>
 
-                                <td> <a target="_blank" href=@docpath> Download </a></td>
+                                <td> <a target="_blank" href=@docpath> <i class="fa fa-download btn_ico"></i> </a></td>
 
 
                             </tr>
