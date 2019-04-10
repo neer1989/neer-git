@@ -280,7 +280,7 @@
 
     .navbar-nav > li {
         float: none;
-       /* background: #55332a;*/
+        /* background: #55332a;*/
         background: #b3b1b1;
         border-bottom: 1px solid #441E1E
     }
@@ -360,8 +360,19 @@
     .related-links {
         padding: 9px 15px 10px;
     }
-	
-	/* Login css start */
+
+    /* Login css start */
+
+    .req {
+        color: #f44336;
+        font-weight: 500;
+    }
+
+    .thead {
+    color: #fff;
+    background-color: #42A5F5;
+    border-color: #ddd;
+    }
 	.form-heading { color:#fff; font-size:23px;}
 .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
 .panel p { color:#777777; font-size:14px; /*margin-bottom:30px;*/ line-height:24px;}

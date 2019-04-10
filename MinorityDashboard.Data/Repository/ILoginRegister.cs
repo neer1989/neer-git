@@ -10,6 +10,11 @@ namespace MinorityDashboard.Data.Repository
    public interface ILoginRegister
     {
         List<LoginByUsernamePassword_Result> GetLoginDetails(string uname, string pwd);
+        List<login> GetLogin();
+        int InsertLogin(login obj);
+        int UpdateLogin(login obj);
+        int InsertError(error_log obj);
+        int InsertLoginTrail(login_trail obj);
 
     }
 }

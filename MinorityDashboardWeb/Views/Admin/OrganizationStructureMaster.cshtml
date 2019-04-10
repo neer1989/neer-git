@@ -1,8 +1,179 @@
-﻿
+﻿@model MinorityDashboardWeb.Models.OrganizationStructureModel
 @{
     ViewBag.Title = "OrganizationStructureMaster";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>OrganizationStructureMaster</h2>
+
+<div class="card mx-1 mt-12">
+    <div class="card-header">Organization Structure</div>
+    <div class="card-body">
+
+        @using (Html.BeginForm("OrganizationStructureMaster", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "myform" }))
+        {
+
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            @Html.HiddenFor(s => s.employee_id)
+
+            <div class="form-group">
+                <div class="form-row">
+
+
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Employee Name<span class="req">*</span></label>
+
+                        @Html.TextBoxFor(model => model.name, new { @class = "form-control", id = "subname", placeholder = "Enter Employee Name", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.name)
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Designation<span class="req">*</span></label>
+
+                        @Html.TextBoxFor(model => model.designation, new { @class = "form-control", id = "subname", placeholder = "Enter Employee Name", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.designation)
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <label for="exampleInputName">Reporting Manager<span class="req">*</span></label>
+
+                        @Html.DropDownListFor(s => s.reporting_manager, Model.lstReportingManager, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.reporting_manager)
+
+                        @Html.HiddenFor(s => s.reporting_manager_name, new { @id = "reporting_manager_name" })
+
+                    </div>
+
+
+
+                    <div class="col-md-1" style="margin-top:3%">
+                        <label for="exampleInputName">Is Active</label>
+
+                    </div>
+                    <div class="col-md-1" style="margin-top:3.5%">
+
+                        @Html.CheckBoxFor(model => model.isactive, new { @class = "form-control", id = "is_active" })
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+                        <label for="exampleInputName"></label>
+
+                        @if (Model.employee_id > 0)
+                        {
+                            <input type="submit" value="Update" class="btn btn-info btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                        }
+                        else
+                        {
+                            <input type="submit" value="Save" class="btn btn-info btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <a href=@Url.Action("OrganizationStructureMaster","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-info btn-block">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <!-- Bootstrap DatePicker -->
+        <script type="text/javascript">
+            $(function () {
+                $('#posted_date').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    language: "tr"
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            $("body").on("change", "#reporting_manager", function () {
+                $("#reporting_manager_name").val($(this).find("option:selected").text());
+            });
+        </script>
+
+
+
+    </div>
+</div>
+
+<br />
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Organization Structure View
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name </th>
+                        <th>Designation</th>
+                        <th>Reporting Manager</th>
+                        <th>Is Active</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model.lstOrgStructure != null)
+                    {
+                        foreach (var X in Model.lstOrgStructure)
+                        {
+
+                            <tr>
+                                <td>@X.employee_id </td>
+                                <td>@X.name</td>
+                                <td>@X.designation</td>
+                                <td>@X.reporting_manager_name</td>
+                                <td>
+                                    @if (X.isactive == true)
+                                    {
+                                        <span class="btn_active">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="btn_inactive">In Active</span>
+                                    }
+                                </td>
+
+
+
+                                <td>
+
+                                    <a href="@Url.Action("EditOrgStructure", "Admin",new { id = X.employee_id })" title="Edit Gallery">
+                                        <i class="fa fa-edit btn_ico"></i>
+
+                                    </a>
+
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
 

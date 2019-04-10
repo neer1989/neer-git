@@ -64,7 +64,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="advertisement_master.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="CheckAuthorizeMenu_Result.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="citizen_charter.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
@@ -83,16 +89,25 @@
     <Compile Include="desk_master.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="district_GetUsedSchemeAmount_Result.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="district_master.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="district_scheme_details.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="error_log.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="estimation_master.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="financialyear_master.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="front_slider.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="gallery_master.cs">
@@ -102,6 +117,9 @@
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetDeskTransactionData_Result.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetSchemeAmountAllocation_Result.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="GetSchemeData_Result.cs">
@@ -131,6 +149,9 @@
     <Compile Include="implementation_agency_master.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="keyperson_master.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="latest_news.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
@@ -138,6 +159,9 @@
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="LoginByUsernamePassword_Result.cs">
+      <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="login_trail.cs">
       <DependentUpon>MinorityDashboard_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="main_menu_master.cs">

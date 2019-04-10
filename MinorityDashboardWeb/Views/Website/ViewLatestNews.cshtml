@@ -3,8 +3,54 @@
     ViewBag.Title = "ViewLatestNews";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
+<link href="~/Website_Assets/css/mdstyle.css" rel="stylesheet" />
+<style>
+    .card {
+        margin-top: 20px;
+        border-right: 5px solid #fccb48;
+    }
 
-<h2>ViewLatestNews</h2>
+    #topline {
+        background-color: #32bcb8;
+    }
+</style>
+<div class="container">
+    <div class="content">
+        <div class="row">
 
-<h3>@Model.lstLatestNews[0].news_e</h3>
-<h2>@Html.Raw(Model.lstLatestNews[0].news_description_e)</h2>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 brd-left pleft25">
+                <div class="headingBg">
+                    <!--  <h2>
+                    <span id="SitePH_CmsContent_lblHeading">About Us</span></h2> -->
+                    <div id="SitePH_CmsContent_BreadCrum_breadcrumb" class="breadcrumbDiv">
+                        <ul class="breadcrumb">
+                            <li><b>You are here :</b></li>
+                            <li><a href="index.html">Home</a></li>
+                            <li>Latest News</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <h2>Latest News</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <p class="card-text" style="font-weight: 500;color:#5a5a5a;line-height:30px;font-size: 20px;">
+                        <b>@Model.lstLatestNews[0].news_m </b>
+                    </p>
+                    <p class="card-text" style="font-size: 13px;line-height: 24px;color: #58595b;font-weight: 200;">
+                        @Html.Raw(Model.lstLatestNews[0].news_description_m)
+
+                </div>
+                <hr />
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

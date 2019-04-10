@@ -139,6 +139,12 @@ namespace MinorityDashboard.Data.Repository
             return returnobj.gr_id;
         }
 
+        public int InsertGallery(gallery_master obj)
+        {
+            gallery_master returnobj = ObjCR.SaveData<gallery_master>(obj);
+            return returnobj.gallery_id;
+        }
+
         public int UpdateDeleteGR(grdetail obj)
         {
             int successflg = 1;
@@ -165,6 +171,33 @@ namespace MinorityDashboard.Data.Repository
             }
             return successflg;
         }
+
+        public int UpdateDeleteGallery(gallery_master obj)
+        {
+            int successflg = 1;
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    var Galleryobj = db.gallery_master.FirstOrDefault(x => x.gallery_id == obj.gallery_id);
+                    Galleryobj.isactive = obj.isactive;
+                    Galleryobj.file_extension = obj.file_extension;
+                    Galleryobj.file_name = obj.file_name;
+                    Galleryobj.posted_date = obj.posted_date;
+                    Galleryobj.title_e = obj.title_e;
+                    Galleryobj.title_m = obj.title_m;                   
+                    Galleryobj.updated_by = obj.updated_by;
+                    Galleryobj.updated_date = obj.updated_date;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                successflg = 0;
+            }
+            return successflg;
+        }
+
 
         public int UpdateDeleteSchemDesc(scheme_desc_mapping obj)
         {
@@ -204,6 +237,11 @@ namespace MinorityDashboard.Data.Repository
         public List<grdetail> GetGRList()
         {
             return ObjCR.GetData<grdetail>();
+        }
+
+        public List<gallery_master> GetGalleryList()
+        {
+            return ObjCR.GetData<gallery_master>();
         }
 
         public int InsertSchemeAllotment(scheme_amount_allocation obj)
@@ -299,6 +337,36 @@ namespace MinorityDashboard.Data.Repository
             }
             return successflg;
         }
+        public int UpdateSchemeAllotment(scheme_amount_allocation obj)
+        {
+            int successflg = 1;
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    var desktransobj = db.scheme_amount_allocation.FirstOrDefault(x => x.id == obj.id);                    
+                    desktransobj.fin_y_id = obj.fin_y_id;
+                    desktransobj.des_id = obj.des_id;
+                    desktransobj.imp_agency_id = obj.imp_agency_id;               
+                    desktransobj.actual_allocation_amt = obj.actual_allocation_amt;
+                    desktransobj.budgetary_provision_amt = obj.budgetary_provision_amt;
+                    desktransobj.parent_scheme_id = obj.parent_scheme_id;
+                    desktransobj.scheme_id_child1 = obj.scheme_id_child1;
+                    desktransobj.scheme_id_child2 = obj.scheme_id_child2;
+                    desktransobj.scheme_id_child3 = obj.scheme_id_child3;
+                    desktransobj.updated_by = obj.updated_by;
+                    desktransobj.updated_date = obj.updated_date;
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                successflg = 0;
+            }
+            return successflg;
+        }
+
 
         public int UpdateSchems(scheme_master obj)
         {
@@ -425,6 +493,206 @@ namespace MinorityDashboard.Data.Repository
             {
                 return 0;
             }
+        }
+
+        public List<GetSchemeAmountAllocation_Result> GetSchemeAmountAllocation()
+        {
+            List<GetSchemeAmountAllocation_Result> lst = new List<GetSchemeAmountAllocation_Result>();
+            using (MinorityDasboard_DBEntities entities = new MinorityDasboard_DBEntities())
+            {
+                lst = entities.GetSchemeAmountAllocation().ToList();
+            }
+            return lst;
+        }
+
+
+
+        public List<org_structure> GetOrgList()
+        {
+            return ObjCR.GetData<org_structure>();
+        }
+
+        public int InsertOrgStructure(org_structure obj)
+        {
+            org_structure returnobj = ObjCR.SaveData<org_structure>(obj);
+            return returnobj.employee_id;
+        }
+
+        public int UpdateDeleteOrgStructure(org_structure obj)
+        {
+            int successflg = 1;
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    var upobj = db.org_structure.FirstOrDefault(x => x.employee_id == obj.employee_id);
+                    upobj.name = obj.name;
+                    upobj.designation = obj.designation;
+                    upobj.reporting_manager = obj.reporting_manager;
+                    upobj.reporting_manager_name = obj.reporting_manager_name;
+                    upobj.employee_id = obj.employee_id;
+                    upobj.updated_by = obj.updated_by;
+                    upobj.updated_date = obj.updated_date;
+                    upobj.isactive = obj.isactive;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                successflg = 0;
+            }
+            return successflg;
+        }
+
+
+
+
+        public List<keyperson_master> GetKeyPerson()
+        {
+            return ObjCR.GetData<keyperson_master>();
+        }
+
+        public int InsertKeyPerson(keyperson_master obj)
+        {
+            keyperson_master returnobj = ObjCR.SaveData<keyperson_master>(obj);
+            return returnobj.keyperson_id;
+        }
+
+        public int UpdateKeyPerson(keyperson_master obj)
+        {
+            int successflg = 1;
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    var upobj = db.keyperson_master.FirstOrDefault(x => x.keyperson_id == obj.keyperson_id);
+                    upobj.designation_e = obj.designation_e;
+                    upobj.designation_m = obj.designation_m;
+                    upobj.display_order = obj.display_order;
+                    upobj.person_image = obj.person_image;
+                    upobj.person_name_e = obj.person_name_e;
+                    upobj.person_name_m = obj.person_name_m;
+                    upobj.updated_by = obj.updated_by;
+                    upobj.updated_date = obj.updated_date;
+                    upobj.isactive = obj.isactive;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                successflg = 0;
+            }
+            return successflg;
+        }
+
+
+        public List<front_slider> GetFrontSlider()
+        {
+            return ObjCR.GetData<front_slider>();
+        }
+
+        public int InsertFrontSlider(front_slider obj)
+        {
+            front_slider returnobj = ObjCR.SaveData<front_slider>(obj);
+            return returnobj.slider_id;
+        }
+
+        public int UpdateFrontSlider(front_slider obj)
+        {
+            int successflg = 1;
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    var upobj = db.front_slider.FirstOrDefault(x => x.slider_id == obj.slider_id);
+                    upobj.slider_img = obj.slider_img;
+                    upobj.slide_order = obj.slide_order;
+                    upobj.title_e = obj.title_e;
+                    upobj.title_m = obj.title_m;
+                    upobj.updated_by = obj.updated_by;
+                    upobj.updated_date = obj.updated_date;
+                    upobj.isactive = obj.isactive;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                successflg = 0;
+            }
+            return successflg;
+        }
+
+
+
+        public List<citizen_charter> GetCitizenCharter()
+        {
+            return ObjCR.GetData<citizen_charter>();
+        }
+
+        public int InsertCitizenCharter(citizen_charter obj)
+        {
+            citizen_charter returnobj = ObjCR.SaveData<citizen_charter>(obj);
+            return returnobj.cc_id;
+        }
+
+        public int UpdateCitizenCharter(citizen_charter obj)
+        {
+            int successflg = 1;
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    var upobj = db.citizen_charter.FirstOrDefault(x => x.cc_id == obj.cc_id);
+                    upobj.file_path = obj.file_path;
+                    upobj.name_e = obj.name_e;
+                    upobj.name_m = obj.name_m;               
+                    upobj.updated_by = obj.updated_by;
+                    upobj.updated_date = obj.updated_date;
+                    upobj.isactive = obj.isactive;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                successflg = 0;
+            }
+            return successflg;
+        }
+
+
+        public List<advertisement_master> GetAdvertisement()
+        {
+            return ObjCR.GetData<advertisement_master>();
+        }
+
+        public int InsertAdvertisement(advertisement_master obj)
+        {
+            advertisement_master returnobj = ObjCR.SaveData<advertisement_master>(obj);
+            return returnobj.adv_id;
+        }
+
+        public int UpdateAdvertisement(advertisement_master obj)
+        {
+            int successflg = 1;
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    var upobj = db.advertisement_master.FirstOrDefault(x => x.adv_id == obj.adv_id);
+                    upobj.adv_title_e = obj.adv_title_e;
+                    upobj.adv_title_m = obj.adv_title_m;
+                    upobj.file_name = obj.file_name;
+                    upobj.updated_by = obj.updated_by;
+                    upobj.updated_date = obj.updated_date;
+                    upobj.isactive = obj.isactive;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                successflg = 0;
+            }
+            return successflg;
         }
 
 

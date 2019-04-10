@@ -23,7 +23,7 @@
 </style>
 
 
-<div class="card mx-1 mt-12">
+<div class="container-fluid">
     <div class="card-header">Latest News</div>
     <div class="card-body">
         @using (Html.BeginForm("LatestNews", "Admin", FormMethod.Post))
@@ -36,32 +36,32 @@
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-6">
-                        <label for="latest_news_e">News Title English</label>
-                        @Html.TextBoxFor(model => model.latest_news_e, new { @class = "form-control", placeholder = "News Title English" })
-
+                        <label for="latest_news_e">News Title English<span class="req">*</span></label>
+                        @Html.TextBoxFor(model => model.latest_news_e, new { @class = "form-control", placeholder = "News Title English" , @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.latest_news_e)
                     </div>
 
                     <div class="col-md-6">
-                        <label for="latest_news_m">News Title Marathi</label>
-                        @Html.TextBoxFor(model => model.latest_news_m, new { @class = "form-control", placeholder = "News Title Marathi" })
-
+                        <label for="latest_news_m">News Title Marathi<span class="req">*</span></label>
+                        @Html.TextBoxFor(model => model.latest_news_m, new { @class = "form-control", placeholder = "News Title Marathi", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.latest_news_m)
                     </div>
 
                     <div class="col-md-6">
-                        <label for="news_description_e">News Description English</label>
+                        <label for="news_description_e">News Description English<span class="req">*</span></label>
                         @Html.TextAreaFor(model => model.news_description_e, new { @class = "form-control", placeholder = "News Description English", id = "news_description_e", name = "news_description_e", rows = "10", cols = "80" })
-
+                        @Html.ValidationMessageFor(model => model.news_description_e)
                     </div>
                     <div class="col-md-6">
-                        <label for="news_description_m">News Description Marathi</label>
+                        <label for="news_description_m">News Description Marathi<span class="req">*</span></label>
                         @Html.TextAreaFor(model => model.news_description_m, new { @class = "form-control", placeholder = "News Description Marathi", id = "news_description_m", name = "news_description_m", rows = "10", cols = "80" })
-
+                        @Html.ValidationMessageFor(model => model.news_description_m)
                     </div>
 
                     <div class="col-md-6">
-                        <label for="news_date">News Date</label>
+                        <label for="news_date">News Date<span class="req">*</span></label>
                         @Html.TextBoxFor(model => model.news_date, new { @class = "form-control", placeholder = "News Date" })
-
+                        @Html.ValidationMessageFor(model => model.news_date)
                     </div>
                     <div class="col-md-1" style="margin-top:3%">
                         <label for="exampleInputName">Is Active</label>
@@ -78,7 +78,6 @@
 
             <div class="form-group">
                 <div class="form-row">
-
                     <div class="col-md-6">
                         <label for="exampleInputName"></label>
 
@@ -105,7 +104,7 @@
 
 <br /> 
 
-<div class="card mb-3">
+<div class="container-fluid">
     <div class="card-header">
         <i class="fa fa-table"></i> News View
     </div>
@@ -133,23 +132,14 @@
                                 <td>@X.latest_news_id </td>
                                 <td>@X.news_e</td>
                                 <td>@X.news_m</td>
-                                <td>
-                                 
+                                <td>                                 
                                     <a href="@Url.Action("EditLatestNews", "Admin",new { id = X.latest_news_id })" title="Edit Latest News">
                                         <i class="fa fa-edit btn_ico"></i>
-
-                                    </a>
-                                  
+                                    </a>                                 
                                     <a href="@Url.Action("DeleteLatestNews", "Admin",new { id = X.latest_news_id })" onclick = "return confirm('Are you sure?');" title="Delete Latest News">
                                         <i class="fa fa-trash btn_ico"></i>
-
                                     </a>
-
-
-
-
                                 </td>
-
                             </tr>
                         }
                     }

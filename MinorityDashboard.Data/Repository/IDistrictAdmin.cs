@@ -21,5 +21,7 @@ namespace MinorityDashboard.Data.Repository
 
         List<gp_GetAmount_Scheme_Result> SPGetAmounts(int? descid, int? fyid, int? pscheme, int? childsch1, int? childsch2, int? childsch3);
 
+        List<district_GetUsedSchemeAmount_Result> GetUsedSchemeAmount();
+
     }
 }

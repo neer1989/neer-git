@@ -3,9 +3,9 @@
 }
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
-    background: #ddd !important;
+    background: #1C445F !important;
 }
 
     #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
-        color: #333;
+        color: #fff;
     }

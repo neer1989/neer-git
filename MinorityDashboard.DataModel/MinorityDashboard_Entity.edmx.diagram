@@ -21,7 +21,6 @@
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.main_menu_master" Width="1.5" PointX="10.375" PointY="4.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.sub_menu_master" Width="1.5" PointX="10.375" PointY="8.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.menu_role_mapping" Width="1.5" PointX="11.375" PointY="0.75" />
-        <EntityTypeShape EntityType="MinorityDasboard_DBModel.org_structure" Width="1.5" PointX="3.375" PointY="12.75" />
         <AssociationConnector Association="MinorityDasboard_DBModel.FK_login" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.parentscheme" Width="1.5" PointX="12.375" PointY="4.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.scheme_child1" Width="1.5" PointX="12.375" PointY="8.75" />
@@ -38,6 +37,13 @@
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.grdetail" Width="1.5" PointX="7.375" PointY="16.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.latest_news" Width="1.5" PointX="9.375" PointY="16.75" />
         <EntityTypeShape EntityType="MinorityDasboard_DBModel.gallery_master" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.org_structure" Width="1.5" PointX="17.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.front_slider" Width="1.5" PointX="17.375" PointY="8.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.keyperson_master" Width="1.5" PointX="11.375" PointY="17.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.advertisement_master" Width="1.5" PointX="17.375" PointY="12.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.citizen_charter" Width="1.5" PointX="17.375" PointY="16.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.error_log" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MinorityDasboard_DBModel.login_trail" Width="1.5" PointX="0.75" PointY="19.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

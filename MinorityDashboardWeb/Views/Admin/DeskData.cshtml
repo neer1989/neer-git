@@ -6,10 +6,12 @@
     decimal CAmtTotal = 0;
     decimal SAmtTotal = 0;
 
-    decimal ExpendAmtTotal = 0;
-    decimal ActualAmtTotal = 0;
-
 }
+
+@*<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">*@
+@*<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">*@
+
+
 
 
 <style type="text/css">
@@ -49,38 +51,39 @@
 </style>
 
 
-<div class="card mx-1 mt-12">
+<div class="container-fluid">
 
     <div class="nav-tabs-custom">
-        <ul class="nav nav-tabs" id="ulclr">
-            <li class="btnxxx activetab"><a href="#fa-icons" data-toggle="tab" class="btn btn-info">Insert Data</a></li>
-            <li class="btnxxx"><a href="#glyphicons" data-toggle="tab" class="btn btn-info" >View Data</a></li>
+        <ul class="nav " id="ulclr">
+            <li class="btnxxx "><a href="#fa-icons" data-toggle="tab" class="btn btn-info">Insert Data</a></li>
+            <li class="btnxxx"><a href="#glyphicons" data-toggle="tab" class="btn btn-info">View Data</a></li>
         </ul>
         <div class="tab-content">
             <!-- Font Awesome Icons -->
             <div class="tab-pane active" id="fa-icons">
                 <div class="card-header">Desk Data</div>
 
-                @using (Html.BeginForm("DeskData", "Admin", FormMethod.Post))
+                @using (Html.BeginForm("DeskData", "Admin", FormMethod.Post, new { @id = "myform", @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
-
-                    @Html.HiddenFor(s => s.tran_id)
+                   
+                    @Html.HiddenFor(s => s.id)
 
                     <div class="card-body">
 
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="exampleInputName">District</label>
+                                    <label for="exampleInputName">District<span class="req">*</span></label>
                                     @Html.DropDownListFor(s => s.des_id, Model.lstDistrict, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.des_id)
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="exampleInputName">Financil Year</label>
+                                    <label for="exampleInputName">Financil Year<span class="req">*</span></label>
 
                                     @Html.DropDownListFor(s => s.fin_y_id, Model.lstFinancialYear, new { @class = "form-control" })
-
+                                    @Html.ValidationMessageFor(model => model.fin_y_id)
                                 </div>
 
 
@@ -89,29 +92,22 @@
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-3">
-                                    <label for="exampleInputName">Main Scheme</label>
+                                    <label for="exampleInputName">Main Scheme<span class="req">*</span></label>
                                     @Html.DropDownListFor(s => s.parent_scheme_id, Model.ddlParentScheme, new { @class = "form-control" })
-
+                                    @Html.ValidationMessageFor(model => model.parent_scheme_id)
                                 </div>
                                 <div class="col-md-3">
-
-                                    <label for="exampleInputName">Scheme Child1</label>
+                                    <label for="exampleInputName">Scheme Child1<span class="req">*</span></label>
                                     @Html.DropDownListFor(s => s.scheme_id_child1, Model.ddlChildScheme1, new { @class = "form-control" })
-
-
-
+                                    @Html.ValidationMessageFor(model => model.scheme_id_child1)
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="exampleInputName">Scheme Child2</label>
+                                    <label for="exampleInputName">Scheme Child2<span class="req">*</span></label>
                                     @Html.DropDownListFor(s => s.scheme_id_child2, Model.ddlChildScheme2, new { @class = "form-control" })
-
                                 </div>
                                 <div class="col-md-3">
-
-                                    <label for="exampleInputName">Scheme Child3</label>
+                                    <label for="exampleInputName">Scheme Child3<span class="req">*</span></label>
                                     @Html.DropDownListFor(s => s.scheme_id_child3, Model.ddlChildScheme3, new { @class = "form-control" })
-
-
                                 </div>
                             </div>
                         </div>
@@ -119,22 +115,22 @@
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-4">
-                                    <label for="exampleInputName">Implementation Agency</label>
+                                    <label for="exampleInputName">Implementation Agency<span class="req">*</span></label>
 
-                                    @Html.DropDownListFor(s => s.fin_y_id, Model.lstImplementationAgency, new { @class = "form-control" })
-
+                                    @Html.DropDownListFor(s => s.imp_agency_id, Model.lstImplementationAgency, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.imp_agency_id)
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="exampleInputName">Budgetary Provision Amount</label>
+                                    <label for="exampleInputName">Budgetary Provision Amount<span class="req">*</span></label>
 
                                     @Html.TextBoxFor(model => model.budgetary_provision_amt, new { @class = "form-control", id = "budgetary_provision_amt", placeholder = "Budgetary Provision Amount" })
-
+                                    @Html.ValidationMessageFor(model => model.budgetary_provision_amt)
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="exampleInputName">Actual Allocation Amount</label>
+                                    <label for="exampleInputName">Actual Allocation Amount<span class="req">*</span></label>
 
                                     @Html.TextBoxFor(model => model.actual_allocation_amt, new { @class = "form-control", id = "actual_allocation_amt", placeholder = "Actual Allocation Amount" })
-
+                                    @Html.ValidationMessageFor(model => model.actual_allocation_amt)
                                 </div>
 
                                 @*<div class="col-md-3">
@@ -162,7 +158,7 @@
                                 <div class="col-md-6">
                                     <label for="exampleInputName"></label>
 
-                                    @if (Model.tran_id > 0)
+                                    @if (Model.id > 0)
                                     {
                                         <input type="submit" value="Update" class="btn btn-info btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
                                     }
@@ -186,43 +182,65 @@
             <!-- /#fa-icons -->
             <!-- glyphicons-->
             <div class="tab-pane" id="glyphicons">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fa fa-table"></i> Desk View
-                    </div>
+                <div class="card-header">
+                    <i class="fa fa-table"></i> Desk View
+                </div>
+                <div class="">
+
+                    <div>
+                    @Html.Partial("_ExportButtonPartial")
+                        </div>
+
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive" id="Grid">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
 
-                                        <th>Desk Name</th>
+                                        <th>District Name</th>
+                                        <th>Parent Scheme</th>
+                                        <th>Child Sch1</th>
                                         <th>Budgetary Provision</th>
                                         <th>Actual Allocation</th>
-                                        <th>Actual Expenditure</th>
-                                        <th>Actual Remaining</th>
+
                                         <th>Action</th>
 
                                     </tr>
                                 </thead>
 
+
                                 <tbody>
 
-                                    @foreach (var X in Model.lstDeskTransData)
+                                    @foreach (var X in Model.lstSchemeAmountAllocation)
                                     {
                                         CAmtTotal = CAmtTotal + Convert.ToDecimal(X.budgetary_provision_amt);
                                         SAmtTotal = SAmtTotal + Convert.ToDecimal(X.actual_allocation_amt);
-                                        ExpendAmtTotal = ExpendAmtTotal + Convert.ToDecimal(X.actual_expenditure_amt);
-                                        ActualAmtTotal = ActualAmtTotal + Convert.ToDecimal(X.actual_remaining_amt);
+                                        //   ExpendAmtTotal = ExpendAmtTotal + Convert.ToDecimal(X.actual_expenditure_amt);
+                                        // ActualAmtTotal = ActualAmtTotal + Convert.ToDecimal(X.actual_remaining_amt);
 
                                         <tr>
 
-                                            <td>@X.desk_name</td>
-                                            <td>@X.budgetary_provision_amt</td>
-                                            <td>@X.actual_allocation_amt</td>
-                                            <td>@X.actual_expenditure_amt</td>
-                                            <td>@X.actual_remaining_amt</td>
-                                            <td> @Html.ActionLink("Edit", "EditDeskTrans", new { id = X.tran_id })  |  @Html.ActionLink("Delete", "DeletDeskTrans", new { id = X.tran_id }) </td>
+                                            <td style="border: 1px solid #728590;">@X.des_name</td>
+
+                                            <td style="border: 1px solid #728590;">@X.parent_schemename_e</td>
+                                            <td style="border: 1px solid #728590;">@X.child1_schemename_e</td>
+
+                                            <td style="border: 1px solid #728590;">@X.budgetary_provision_amt</td>
+                                            <td style="border: 1px solid #728590;">@X.actual_allocation_amt</td>
+
+                                            <td>
+                                                <a href="@Url.Action("EditDeskTrans", "Admin",new { id = X.id })" title="Edit">
+                                                    <i class="fa fa-edit btn_ico"></i>
+
+                                                </a>
+
+                                                @*<a href="@Url.Action("DeletDeskTrans", "Admin",new { id = X.id })" onclick="return confirm('Are you sure?');" title="Delete">
+                                            <i class="fa fa-trash btn_ico"></i>
+
+                                        </a>*@
+
+                                                @*@Html.ActionLink("Edit", "EditDeskTrans", new { id = X.id })  |  @Html.ActionLink("Delete", "DeletDeskTrans", new { id = X.id })*@
+                                            </td>
                                         </tr>
                                     }
 
@@ -230,10 +248,11 @@
                                 <tfoot style="background-color: #e7e4e1;">
                                     <tr>
                                         <td> <b>Total</b> </td>
+
+                                        <td> </td>
+                                        <td> </td>
                                         <td> <b>@CAmtTotal</b> </td>
                                         <td><b> @SAmtTotal</b> </td>
-                                        <td> <b>@ExpendAmtTotal</b> </td>
-                                        <td><b> @ActualAmtTotal</b> </td>
                                         <td></td>
                                     </tr>
                                 </tfoot>
@@ -251,6 +270,8 @@
     <!-- /.nav-tabs-custom -->
     <!-- /.col -->
 </div>
+
+
 
 <script>
     // Add active class to the current button (highlight it)
@@ -361,3 +382,21 @@
 
     });
 </script>
+
+
+
+@*@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+        }*@
+
+
+
+@*<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js"></script>
+    <script src="../../Scripts/jquery.validate.unobtrusive.js"></script>*@
+
+
+
+
+
+

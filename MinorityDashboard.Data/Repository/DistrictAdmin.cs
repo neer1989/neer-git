@@ -95,5 +95,23 @@ namespace MinorityDashboard.Data.Repository
         }
 
 
+        public List<district_GetUsedSchemeAmount_Result> GetUsedSchemeAmount()
+        {
+            List<district_GetUsedSchemeAmount_Result> lstsdm = new List<district_GetUsedSchemeAmount_Result>();
+            try
+            {
+                using (var db = new MinorityDasboard_DBEntities())
+                {
+                    lstsdm = db.district_GetUsedSchemeAmount().ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return lstsdm;
+            }
+            return lstsdm;
+
+        }
+
     }
 }

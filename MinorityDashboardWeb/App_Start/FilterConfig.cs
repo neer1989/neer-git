@@ -16,6 +16,7 @@ namespace MinorityDashboard.Web
         {
             filters.Add(new HandleErrorAttribute());
             filters.Add(new CustomAuthorizeAttribute());
+            filters.Add(new CustomExceptionFilter());
         }
     }
 
@@ -89,4 +90,25 @@ namespace MinorityDashboard.Web
             this.Roles = string.Join(",", roles.Select(r => Enum.GetName(r.GetType(), r)));
         }
     }
+
+    public class CustomExceptionFilter : FilterAttribute,
+    IExceptionFilter
+    {
+        public void OnException(ExceptionContext filterContext)
+        {
+            if (!filterContext.ExceptionHandled)
+            {
+                error_log log = new error_log();
+                log.ExceptionMessage = filterContext.Exception.Message;
+                log.ExceptionStackTrace = filterContext.Exception.StackTrace;
+                log.ControllerName = filterContext.RouteData.Values["controller"].ToString();
+                log.LogTime = System.DateTime.Now;
+                ILoginRegister mgrSr = new LoginRegister();
+                mgrSr.InsertError(log);
+                filterContext.Result =  new RedirectResult("~/Base/AdminError");
+                filterContext.ExceptionHandled = true;
+            }
+        }
+    }
+
 }

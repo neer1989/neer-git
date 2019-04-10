@@ -18,6 +18,13 @@ namespace MinorityDashboard.DataModel
         public string username { get; set; }
         public string password { get; set; }
         public int role_id { get; set; }
+        public string employee_name { get; set; }
+        public string email_id { get; set; }
+        public Nullable<bool> isactive { get; set; }
+        public Nullable<int> created_by { get; set; }
+        public Nullable<System.DateTime> created_date { get; set; }
+        public Nullable<int> updated_by { get; set; }
+        public Nullable<System.DateTime> updated_date { get; set; }
     
         public virtual role_master role_master { get; set; }
     }

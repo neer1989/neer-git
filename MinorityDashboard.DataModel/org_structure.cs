@@ -14,11 +14,11 @@ namespace MinorityDashboard.DataModel
     
     public partial class org_structure
     {
-        public int org_id { get; set; }
         public int employee_id { get; set; }
         public string name { get; set; }
         public string designation { get; set; }
-        public string reporting_manager { get; set; }
+        public Nullable<int> reporting_manager { get; set; }
+        public string reporting_manager_name { get; set; }
         public Nullable<bool> isactive { get; set; }
         public Nullable<int> created_by { get; set; }
         public Nullable<System.DateTime> created_date { get; set; }

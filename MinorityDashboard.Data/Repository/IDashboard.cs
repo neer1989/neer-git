@@ -36,6 +36,9 @@ namespace MinorityDashboard.Data.Repository
 
         int InsertScheme(scheme_master obj);
         int InsertSchemeAllotment(scheme_amount_allocation obj);
+
+        int UpdateSchemeAllotment(scheme_amount_allocation obj);
+
         List<trans_docfile> GetTransactionFile(int deskdocid);
 
         List<parentscheme> GetParentScheme();
@@ -63,5 +66,31 @@ namespace MinorityDashboard.Data.Repository
         int UpdateDeleteGR(grdetail obj);
         int UpdateDeleteSchemDesc(scheme_desc_mapping obj);
         int CheckSchemeDescription(int ParentId, int Childschm1, int Childschm2, int Childschm3);
+        List<GetSchemeAmountAllocation_Result> GetSchemeAmountAllocation();
+
+        int InsertGallery(gallery_master obj);
+        List<gallery_master> GetGalleryList();
+        int UpdateDeleteGallery(gallery_master obj);
+
+        List<org_structure> GetOrgList();
+        int InsertOrgStructure(org_structure obj);
+        int UpdateDeleteOrgStructure(org_structure obj);
+
+        List<keyperson_master> GetKeyPerson();
+        int InsertKeyPerson(keyperson_master obj);
+        int UpdateKeyPerson(keyperson_master obj);
+
+        List<front_slider> GetFrontSlider();
+        int InsertFrontSlider(front_slider obj);
+        int UpdateFrontSlider(front_slider obj);
+
+        List<citizen_charter> GetCitizenCharter();
+        int InsertCitizenCharter(citizen_charter obj);
+        int UpdateCitizenCharter(citizen_charter obj);
+
+
+        List<advertisement_master> GetAdvertisement();
+        int InsertAdvertisement(advertisement_master obj);
+        int UpdateAdvertisement(advertisement_master obj);
     }
 }

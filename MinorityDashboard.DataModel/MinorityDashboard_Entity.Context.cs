@@ -43,7 +43,6 @@ namespace MinorityDashboard.DataModel
         public virtual DbSet<main_menu_master> main_menu_master { get; set; }
         public virtual DbSet<sub_menu_master> sub_menu_master { get; set; }
         public virtual DbSet<menu_role_mapping> menu_role_mapping { get; set; }
-        public virtual DbSet<org_structure> org_structure { get; set; }
         public virtual DbSet<parentscheme> parentschemes { get; set; }
         public virtual DbSet<scheme_child1> scheme_child1 { get; set; }
         public virtual DbSet<scheme_child2> scheme_child2 { get; set; }
@@ -59,6 +58,13 @@ namespace MinorityDashboard.DataModel
         public virtual DbSet<grdetail> grdetails { get; set; }
         public virtual DbSet<latest_news> latest_news { get; set; }
         public virtual DbSet<gallery_master> gallery_master { get; set; }
+        public virtual DbSet<org_structure> org_structure { get; set; }
+        public virtual DbSet<front_slider> front_slider { get; set; }
+        public virtual DbSet<keyperson_master> keyperson_master { get; set; }
+        public virtual DbSet<advertisement_master> advertisement_master { get; set; }
+        public virtual DbSet<citizen_charter> citizen_charter { get; set; }
+        public virtual DbSet<error_log> error_log { get; set; }
+        public virtual DbSet<login_trail> login_trail { get; set; }
     
         public virtual ObjectResult<GetDeskTransactionData_Result> GetDeskTransactionData()
         {
@@ -173,6 +179,16 @@ namespace MinorityDashboard.DataModel
                 new ObjectParameter("fin_y_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<gp_GetAmount_Scheme_Result>("gp_GetAmount_Scheme", parent_scheme_idParameter, scheme_id_child1Parameter, scheme_id_child2Parameter, scheme_id_child3Parameter, des_idParameter, fin_y_idParameter);
+        }
+    
+        public virtual ObjectResult<GetSchemeAmountAllocation_Result> GetSchemeAmountAllocation()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSchemeAmountAllocation_Result>("GetSchemeAmountAllocation");
+        }
+    
+        public virtual ObjectResult<district_GetUsedSchemeAmount_Result> district_GetUsedSchemeAmount()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<district_GetUsedSchemeAmount_Result>("district_GetUsedSchemeAmount");
         }
     }
 }

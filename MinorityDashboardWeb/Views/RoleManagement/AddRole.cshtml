@@ -5,7 +5,7 @@
 }
 
 
-<div class="card mx-1 mt-12">
+<div class="container-fluid">
     <div class="card-header">Role Master</div>
     <div class="card-body">
         @using (Html.BeginForm("AddRole", "RoleManagement", FormMethod.Post))
@@ -18,7 +18,7 @@
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-6">
-                        <label for="exampleInputName">Role Name</label>
+                        <label for="exampleInputName">Role Name<span class="req">*</span></label>
                         @Html.TextBoxFor(model => model.rolename, new { @class = "form-control", id = "rolename", placeholder = "Role Name" })
 
                     </div>
@@ -47,7 +47,7 @@
 
 <br /> <br />
 
-<div class="card mb-3">
+<div class="container-fluid">
     <div class="card-header">
         <i class="fa fa-table"></i> Role View
     </div>

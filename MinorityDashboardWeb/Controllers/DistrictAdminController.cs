@@ -1,5 +1,6 @@
 ﻿using MinorityDashboard.Data.Repository;
 using MinorityDashboard.DataModel;
+using MinorityDashboard.Web;
 using MinorityDashboard.Web.Controllers;
 using MinorityDashboardWeb.Models;
 using System;
@@ -12,6 +13,9 @@ using System.Web.Mvc;
 
 namespace MinorityDashboardWeb.Controllers
 {
+    // [Authorize(Roles = "3")]
+    [CustomAuthorize(Roles = "3")]
+    [CustomExceptionFilter]
     public class DistrictAdminController : BaseController
     {
         IDistrictAdmin objDistrictAdmin = new DistrictAdmin();
@@ -42,7 +46,7 @@ namespace MinorityDashboardWeb.Controllers
             sm.lstFinancialYear = BindFinancialYear();
             sm.lstDistrict = BindDistrict();
             sm.lstImplementationAgency = BindImplementationAgency();
-
+            sm.lstGetUsedSchemeAmount = objDistrictAdmin.GetUsedSchemeAmount();
             return sm;
 
         }

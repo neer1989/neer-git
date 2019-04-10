@@ -1,8 +1,13 @@
 ﻿@model MinorityDashboard.Web.Models.LoginModel
 @{
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    string RandNo = Convert.ToString(Session["RandomNo"]);
+    string StrGuid = Convert.ToString(Session["AuthToken"]);
 }
-
+<script src="../Scripts/login.js"></script>
+<script src="../Scripts/core-min.js"></script>
+<script src="../Scripts/encryptpassword.js"></script>
+<script src="../Scripts/sha256.js"></script>
 <div class="container">
     <div class="login-form">
         <div class="main-div">
@@ -14,32 +19,99 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
+                @Html.Hidden("RandomNumer", RandNo)
+                @Html.Hidden("AuthToken", StrGuid)
 
-                <div class="form-group">
+            <div class="form-group">
 
-                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Login Id" })
-                    @*<input type="email" class="form-control" id="inputEmail" placeholder="Email Address">*@
-
-                </div>
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Login Id" })              
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
 
                 <div class="form-group">
                     @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
                     @Html.ValidationMessageFor(m => m.Password)
-                    @*<input type="password" class="form-control" id="inputPassword" placeholder="Password">*@
+                  
 
                 </div>
+
+                <div class="form-group">
+
+
+                    @Html.TextBoxFor(s => s.CaptchaOrg, new { style = "background-image:url(../Website_Assets/CaptchaImg.JPG); text-align:center; border:none;font-weight:bold; font-family:Modern;height: 28px;font-size: 20px;" })
+
+
+                    <input type="button" id="btnrefresh" value="Refresh" class="btn btn-primary btn-sm" style="margin-top: -7px;width: 20%;height: 30px;line-height: 0px;" onclick="DrawCaptcha();" />
+
+                </div>
+
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.CaptchIn)
+
+                    @Html.TextBoxFor(s => s.CaptchIn, new { @class = "form-control", placeholder = "Captcha Input", autocomplete = "off" })
+
+                    @Html.ValidationMessageFor(m => m.CaptchIn)
+
+                </div>
+
                 @*<div class="forgot">
                 <a href="reset.html">Forgot password?</a>
             </div>*@
 
-                <input type="submit" value="Login" class="btn btn-primary"  />
+
+
+                <input type="submit" value="Login" onclick="EncryptionPwd()" class="btn btn-primary" />
                 @*<button type="submit" class="btn btn-primary">Login</button>*@
             }
 
         </div>
-        <p class="botto-text"> Designed by Sunil Rajput</p>
+       
     </div>
 </div>
+<script>
+
+    $(document).ready(function () {
+        DrawCaptcha();
+    });
+
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' /* optional */
+        });
+    });
+
+
+
+
+    function ValidCaptcha() {
+        var str1 = removeSpaces(document.getElementById('CaptchaOrg').value);
+        var str2 = removeSpaces(document.getElementById('CaptchIn').value);
+        if (str1 == str2) return true;
+        return false;
+
+    }
+
+    // Remove the spaces from the entered and generated code
+    function removeSpaces(string) {
+        return string.split(' ').join('');
+    }
+
+    function DrawCaptcha() {
+        var a = Math.ceil(Math.random() * 9) + '';
+        var b = Math.ceil(Math.random() * 9) + '';
+        var c = Math.ceil(Math.random() * 9) + '';
+        var d = Math.ceil(Math.random() * 9) + '';
+        var e = Math.ceil(Math.random() * 9) + '';
+        var f = Math.ceil(Math.random() * 9) + '';
+        var g = Math.ceil(Math.random() * 9) + '';
+        var code = a + ' ' + b + ' ' + ' ' + c + ' ' + d + ' ' + e + ' ' + f + ' ' + g;
+        document.getElementById("CaptchaOrg").value = code
+    }
+
+</script>
 
 
 

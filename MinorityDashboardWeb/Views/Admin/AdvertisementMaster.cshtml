@@ -1,0 +1,144 @@
+﻿@model MinorityDashboardWeb.Models.AdvertisementModel
+
+@{
+    ViewBag.Title = "AdvertisementMaster";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="card-header">Gallery</div>
+    <div class="card-body">
+
+        @using (Html.BeginForm("AdvertisementMaster", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "myform" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            @Html.HiddenFor(s => s.adv_id)
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Title English<span class="req">*</span></label>
+
+                        @Html.TextBoxFor(model => model.adv_title_e, new { @class = "form-control", id = "subname", placeholder = "Enter Tiltle English", @maxlength = "100" })
+
+                        @Html.ValidationMessageFor(model => model.adv_title_e)
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Title Marathi<span class="req">*</span></label>
+
+                        @Html.TextBoxFor(model => model.adv_title_m, new { @class = "form-control", id = "subname", placeholder = "Enter Tiltle Marathi", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.adv_title_m)
+
+                    </div>
+
+
+               
+
+                    <div class="col-md-6">
+                        <label for="exampleInputName"> File<span class="req">*</span></label>
+                        @Html.TextBoxFor(a => a.File, new { @class = "form-control", @type = "file" })
+                        @Html.ValidationMessageFor(model => model.File)
+                    </div>
+
+                    <div class="col-md-1" style="margin-top:3%">
+                        <label for="exampleInputName">Is Active</label>
+
+                    </div>
+                    <div class="col-md-1" style="margin-top:3.5%">
+
+                        @Html.CheckBoxFor(model => model.isactive, new { @class = "form-control", id = "is_active" })
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+                        <label for="exampleInputName"></label>
+
+                        @if (Model.adv_id > 0)
+                        {
+                            <input type="submit" value="Update" class="btn btn-info btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                        }
+                        else
+                        {
+                            <input type="submit" value="Save" class="btn btn-info btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <a href=@Url.Action("AdvertisementMaster","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-info btn-block">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <!-- Bootstrap DatePicker -->
+      
+
+    </div>
+</div>
+
+<br />
+
+<div class="container-fluid">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Advertisement View
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title English</th>
+                        <th>Title Marathi</th>
+                       
+                        <th>File</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model.lstAdvertisementList != null)
+                    {
+                        foreach (var X in Model.lstAdvertisementList)
+                        {
+                            string docpath = "../../AdvertisementFiles/" + X.file_name;
+                            <tr>
+                                <td>@X.adv_id </td>
+                                <td>@X.adv_title_e</td>
+                                <td>@X.adv_title_e</td>
+                              
+
+                                <td><a href=@HttpUtility.UrlPathEncode(docpath) target="_blank"> Download </a></td>
+
+                                <td>
+
+                                    <a href="@Url.Action("EditAdvertisement", "Admin",new { id = X.adv_id })" title="Edit Gallery">
+                                        <i class="fa fa-edit btn_ico"></i>
+
+                                    </a>
+
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+

@@ -1,168 +1,262 @@
-﻿@model MinorityDashboardWeb.Models.DistrictAdminModel
+﻿
+<link href="~/Admin_Assets/css/admin_custom.css" rel="stylesheet" />
+@model MinorityDashboardWeb.Models.DistrictAdminModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutDistrictAdmin.cshtml";
 }
 
-<div class="tab-pane active" id="fa-icons">
-    <div class="card-header">District Scheme Satus Update</div>
+<div class="container-fluid">
+    <div class="tab-pane active" id="fa-icons">
+        <div class="card-header">District Scheme Satus Update</div>
 
-    @using (Html.BeginForm("SaveSchemeUpdate", "DistrictAdmin", FormMethod.Post, new { enctype = "multipart/form-data", id = "DocumentForm" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+        @using (Html.BeginForm("SaveSchemeUpdate", "DistrictAdmin", FormMethod.Post, new { enctype = "multipart/form-data", id = "DocumentForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
 
-    <div class="card-body">
+            <div class="card-body">
 
 
-        <div class="form-group">
-            <div class="form-row">
-                <div class="col-md-4">
-                    <label for="exampleInputName">District</label>
-                    @Html.DropDownListFor(s => s.des_id, Model.lstDistrict, new { @class = "form-control" })
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <label for="exampleInputName">District<span class="req">*</span></label>
+                            @Html.DropDownListFor(s => s.des_id, Model.lstDistrict, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.des_id)
+                        </div>
+                        <div class="col-md-4">
+                            <label for="exampleInputName">Financil Year<span class="req">*</span></label>
+
+                            @Html.DropDownListFor(s => s.fin_y_id, Model.lstFinancialYear, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.fin_y_id)
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="exampleInputName">Implementation Agency<span class="req">*</span></label>
+
+                            @Html.DropDownListFor(s => s.imp_agency_id, Model.lstImplementationAgency, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.imp_agency_id)
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="exampleInputName">Financil Year</label>
 
-                    @Html.DropDownListFor(s => s.fin_y_id, Model.lstFinancialYear, new { @class = "form-control" })
 
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label for="exampleInputName">Main Scheme<span class="req">*</span></label>
+                            @Html.DropDownListFor(s => s.parent_scheme_id, Model.ddlParentScheme, new { @class = "form-control", disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.parent_scheme_id)
+                        </div>
+                        <div class="col-md-3">
+
+                            <label for="exampleInputName">Scheme Child1<span class="req">*</span></label>
+                            @Html.DropDownListFor(s => s.scheme_id_child1, Model.ddlChildScheme1, new { @class = "form-control", disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.scheme_id_child1)
+
+
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputName">Scheme Child2<span class="req">*</span></label>
+                            @Html.DropDownListFor(s => s.scheme_id_child2, Model.ddlChildScheme2, new { @class = "form-control", disabled = "disabled" })
+
+                        </div>
+                        <div class="col-md-3">
+
+                            <label for="exampleInputName">Scheme Child3<span class="req">*</span></label>
+                            @Html.DropDownListFor(s => s.scheme_id_child3, Model.ddlChildScheme3, new { @class = "form-control", disabled = "disabled" })
+
+
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-md-4">
-                    <label for="exampleInputName">Implementation Agency</label>
 
-                    @Html.DropDownListFor(s => s.imp_agency_id, Model.lstImplementationAgency, new { @class = "form-control" })
 
+
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label for="exampleInputName">Budgetary Provision Amount<span class="req">*</span></label>
+
+                            @Html.TextBoxFor(model => model.budgetary_provision_amt, new { @class = "form-control", id = "budgetary_provision_amt", placeholder = "Budgetary Provision Amount", @readonly = true })
+                            @Html.ValidationMessageFor(model => model.budgetary_provision_amt)
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputName">Actual Allocation Amount<span class="req">*</span></label>
+
+                            @Html.TextBoxFor(model => model.actual_allocation_amt, new { @class = "form-control", id = "actual_allocation_amt", placeholder = "Actual Allocation Amount", @readonly = true })
+                            @Html.ValidationMessageFor(model => model.actual_allocation_amt)
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="exampleInputName">Actual Expenditure Amount<span class="req">*</span></label>
+
+                            @Html.TextBoxFor(model => model.actual_expenditure_amt, new { @class = "form-control", id = "actual_expenditure_amt", placeholder = "Actual Expenditure Amount" })
+                            @Html.ValidationMessageFor(model => model.actual_expenditure_amt)
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputName">Actual Remaining Amount<span class="req">*</span></label>
+
+                            @Html.TextBoxFor(model => model.actual_remaining_amt, new { @class = "form-control", id = "actual_remaining_amt", placeholder = "Actual Remaining Amount", @readonly = true })
+                            @Html.ValidationMessageFor(model => model.actual_remaining_amt)
+                        </div>
+
+                    </div>
                 </div>
+
+
+                <div class="form-group">
+                    <div class="form-row">
+
+
+                        <div class="col-md-6">
+                            <label for="exampleInputName">Upload Document<span class="req">*</span></label>
+                            @Html.TextBoxFor(a => a.FileDoc, "", new { @class = "form-control", @type = "file" })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="exampleInputName">Upload UC<span class="req">*</span></label>
+                            @Html.TextBoxFor(a => a.Utilizationertificate, "", new { @class = "form-control", @type = "file" })
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+
+                        <div class="col-md-12">
+                            <label for="exampleInputName">Work Progress<span class="req">*</span></label>
+                            @Html.TextAreaFor(model => model.work_progress_desc, new { @class = "form-control", id = "work_progress_desc", placeholder = "Work Progress" })
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <div class="form-row">
+
+                        <div class="col-md-6">
+                            <label for="exampleInputName"></label>
+
+                            @if (Model.id > 0)
+                            {
+                                <input type="submit" value="Update" class="btn btn-primary btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                            }
+                            else
+                            {
+                                <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            <a href=@Url.Action("DeskData","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
+                        </div>
+
+                    </div>
+                </div>
+
+
             </div>
+
+        }
+    </div>
+</div>
+
+
+<div class="tab-pane" id="glyphicons">
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Desk View
         </div>
 
 
-        <div class="form-group">
-            <div class="form-row">
-                <div class="col-md-3">
-                    <label for="exampleInputName">Main Scheme</label>
-                    @Html.DropDownListFor(s => s.parent_scheme_id, Model.ddlParentScheme, new { @class = "form-control" , disabled = "disabled" })
+        <div class="card-body">
+            <div class="table-responsive" id="Grid">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
 
-                </div>
-                <div class="col-md-3">
+                            <th>District Name</th>
+                            <th>F-Y</th>
+                            <th>Parent Scheme</th>
+                            <th>Child Sch1</th>
+                            <th>Budgetary Provision</th>
+                            <th>Actual Allocation</th>
+                            <th>Actual Expenditure Amt</th>
+                            <th>Actual Remaining Amt</th>
 
-                    <label for="exampleInputName">Scheme Child1</label>
-                    @Html.DropDownListFor(s => s.scheme_id_child1, Model.ddlChildScheme1, new { @class = "form-control", disabled = "disabled" })
+                            <th>Action</th>
 
-
-
-                </div>
-                <div class="col-md-3">
-                    <label for="exampleInputName">Scheme Child2</label>
-                    @Html.DropDownListFor(s => s.scheme_id_child2, Model.ddlChildScheme2, new { @class = "form-control", disabled = "disabled" })
-
-                </div>
-                <div class="col-md-3">
-
-                    <label for="exampleInputName">Scheme Child3</label>
-                    @Html.DropDownListFor(s => s.scheme_id_child3, Model.ddlChildScheme3, new { @class = "form-control", disabled = "disabled" })
+                        </tr>
+                    </thead>
 
 
-                </div>
+                    <tbody>
+
+                        @foreach (var X in Model.lstGetUsedSchemeAmount)
+                        {
+                          
+                        <tr>
+
+                            <td style="border: 1px solid #728590;">@X.des_name</td>
+                            <td style="border: 1px solid #728590;">@X.fin_y_id</td>
+                            <td style="border: 1px solid #728590;">@X.parent_schemename_e</td>
+                            <td style="border: 1px solid #728590;">@X.child1_schemename_e</td>
+
+                            <td style="border: 1px solid #728590;">@X.budgetary_provision_amt</td>
+                            <td style="border: 1px solid #728590;">@X.actual_allocation_amt</td>
+
+                            <td style="border: 1px solid #728590;">@X.actual_expenditure_amt</td>
+                            <td style="border: 1px solid #728590;">@X.actual_remaining_amt</td>
+
+                            <td>
+                                <a href="@Url.Action("EditDeskTrans", "Admin",new { id = X.id })" title="Edit">
+                                    <i class="fa fa-edit btn_ico"></i>
+
+                                </a>
+
+                                @*<a href="@Url.Action("DeletDeskTrans", "Admin",new { id = X.id })" onclick="return confirm('Are you sure?');" title="Delete">
+                <i class="fa fa-trash btn_ico"></i>
+
+            </a>*@
+
+                                @*@Html.ActionLink("Edit", "EditDeskTrans", new { id = X.id })  |  @Html.ActionLink("Delete", "DeletDeskTrans", new { id = X.id })*@
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                    <tfoot style="background-color: #e7e4e1;">
+                        <tr>
+                            <td> <b>Total</b> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> <b></b> </td>
+                            <td><b> </b> </td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+
+                </table>
             </div>
         </div>
-
-
-
-
-
-        <div class="form-group">
-            <div class="form-row">
-                <div class="col-md-3">
-                    <label for="exampleInputName">Budgetary Provision Amount</label>
-
-                    @Html.TextBoxFor(model => model.budgetary_provision_amt, new { @class = "form-control", id = "budgetary_provision_amt", placeholder = "Budgetary Provision Amount", @readonly = true })
-
-                </div>
-                <div class="col-md-3">
-                    <label for="exampleInputName">Actual Allocation Amount</label>
-
-                    @Html.TextBoxFor(model => model.actual_allocation_amt, new { @class = "form-control", id = "actual_allocation_amt", placeholder = "Actual Allocation Amount", @readonly = true })
-
-                </div>
-
-                <div class="col-md-3">
-                    <label for="exampleInputName">Actual Expenditure Amount</label>
-
-                    @Html.TextBoxFor(model => model.actual_expenditure_amt, new { @class = "form-control", id = "actual_expenditure_amt", placeholder = "Actual Expenditure Amount" })
-
-                </div>
-                <div class="col-md-3">
-                    <label for="exampleInputName">Actual Remaining Amount</label>
-
-                    @Html.TextBoxFor(model => model.actual_remaining_amt, new { @class = "form-control", id = "actual_remaining_amt", placeholder = "Actual Remaining Amount", @readonly = true })
-
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="form-row">
-
-
-                <div class="col-md-6">
-                    <label for="exampleInputName">Upload Document</label>
-                    @Html.TextBoxFor(a => a.FileDoc, "", new { @class = "form-control", @type = "file" })
-                </div>
-
-                <div class="col-md-6">
-                    <label for="exampleInputName">Upload UC</label>
-                    @Html.TextBoxFor(a => a.Utilizationertificate, "", new { @class = "form-control", @type = "file" })
-                </div>
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="form-row">
-
-                <div class="col-md-12">
-                    <label for="exampleInputName">Work Progress</label>
-                    @Html.TextAreaFor(model => model.work_progress_desc, new { @class = "form-control", id = "work_progress_desc", placeholder = "Work Progress" })
-                </div>
-
-
-            </div>
-        </div>
-
-
-
-
-        <div class="form-group">
-            <div class="form-row">
-
-                <div class="col-md-6">
-                    <label for="exampleInputName"></label>
-
-                    @if (Model.id > 0)
-                    {
-                        <input type="submit" value="Update" class="btn btn-primary btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
-                    }
-                    else
-                    {
-                        <input type="submit" value="Save" class="btn btn-primary btn-block" style="margin-top:7px; width: 50%;float: right;" />
-                    }
-                </div>
-                <div class="col-md-6">
-                    <a href=@Url.Action("DeskData","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-primary btn-block">Cancel</a>
-                </div>
-
-            </div>
-        </div>
-
 
     </div>
-
-    }
 </div>
+
+
+
+
 
 <script type="text/javascript">
 

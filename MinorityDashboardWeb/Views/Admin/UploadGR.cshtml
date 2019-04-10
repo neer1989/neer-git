@@ -5,7 +5,7 @@
     ViewBag.Title = "UploadGR";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<div class="card mx-1 mt-12">
+<div class="container-fluid">
     <div class="card-header">Upload GR</div>
     <div class="card-body">
         @*@using (Html.BeginForm("SubjectMaster", "Admin", FormMethod.Post, new AjaxOptions { LoadingElementId = "progress" }))*@
@@ -21,50 +21,51 @@
 
                     <div class="col-md-6">
 
-                        <label for="exampleInputName">Title English</label>
+                        <label for="exampleInputName">Title English<span class="req">*</span></label>
 
-                        @Html.TextBoxFor(model => model.keywords_e, new { @class = "form-control", id = "subname", placeholder = "Enter Tiltle English" })
-
+                        @Html.TextBoxFor(model => model.keywords_e, new { @class = "form-control", id = "subname", placeholder = "Enter Tiltle English", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.keywords_e)
 
                     </div>
 
                     <div class="col-md-6">
 
-                        <label for="exampleInputName">Title Marathi</label>
+                        <label for="exampleInputName">Title Marathi<span class="req">*</span></label>
 
-                        @Html.TextBoxFor(model => model.keywords_m, new { @class = "form-control", id = "subname", placeholder = "Enter Tiltle Marathi" })
+                        @Html.TextBoxFor(model => model.keywords_m, new { @class = "form-control", id = "subname", placeholder = "Enter Tiltle Marathi", @maxlength = "100" })
 
+                        @Html.ValidationMessageFor(model => model.keywords_m)
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <label for="exampleInputName">Unique Code English<span class="req">*</span></label>
+
+                        @Html.TextBoxFor(model => model.unique_code_e, new { @class = "form-control", id = "subname", placeholder = "Enter Unique Code English", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.unique_code_e)
 
                     </div>
 
                     <div class="col-md-4">
 
-                        <label for="exampleInputName">Unique Code English</label>
+                        <label for="exampleInputName">Unique Code Marathi<span class="req">*</span></label>
 
-                        @Html.TextBoxFor(model => model.unique_code_e, new { @class = "form-control", id = "subname", placeholder = "Enter Unique Code English" })
-
-
-                    </div>
-
-                    <div class="col-md-4">
-
-                        <label for="exampleInputName">Unique Code Marathi</label>
-
-                        @Html.TextBoxFor(a => a.unique_code_m, new { @class = "form-control", id = "subname", placeholder = "Enter Unique Code Marathi" })
-
+                        @Html.TextBoxFor(a => a.unique_code_m, new { @class = "form-control", id = "subname", placeholder = "Enter Unique Code Marathi", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.unique_code_m)
                     </div>
                     <div class="col-md-4">
 
-                        <label for="exampleInputName">GR Date</label>
+                        <label for="exampleInputName">GR Date<span class="req">*</span></label>
 
                         @Html.TextBoxFor(a => a.gr_date, "", new { @class = "form-control", @readonly = "readonly" })
-
+                        @Html.ValidationMessageFor(model => model.gr_date)
 
                     </div>
 
                     <div class="col-md-6">
-                        <label for="exampleInputName">GR File</label>
+                        <label for="exampleInputName">GR File<span class="req">*</span></label>
                         @Html.TextBoxFor(a => a.GrFile, new { @class = "form-control", @type = "file" })
+                        @Html.ValidationMessageFor(model => model.GrFile)
                     </div>
 
                     <div class="col-md-1" style="margin-top:3%">
@@ -119,7 +120,7 @@
 
 <br />
 
-<div class="card mb-3">
+<div class="container-fluid">
     <div class="card-header">
         <i class="fa fa-table"></i> GR View
     </div>
@@ -155,10 +156,10 @@
 
                             </a>
 
-                            <a href="@Url.Action("DeleteGR", "Admin",new { id = X.gr_id })" onclick="return confirm('Are you sure?');" title="Delete GR">
+                            @*<a href="@Url.Action("DeleteGR", "Admin",new { id = X.gr_id })" onclick="return confirm('Are you sure?');" title="Delete GR">
                                 <i class="fa fa-trash btn_ico"></i>
 
-                            </a>
+                            </a>*@
 
                             @*@Html.ActionLink("Edit", "EditGR", new { id = X.gr_id })  |
                             @Html.ActionLink("Delete", "DeleteGR", new { id = X.gr_id }, new { onclick = "return confirm('Are you sure?');" })*@

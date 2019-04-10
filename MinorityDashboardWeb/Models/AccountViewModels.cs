@@ -12,5 +12,17 @@ namespace MinorityDashboard.Web.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        public string CaptchaOrg { get; set; }
+        [Required]
+        [Display(Name = "Captcha Input")]
+        public string CaptchIn { get; set; }
     }
-}
+
+    public class RoleModel
+    {
+
+
+    }
+
+    }

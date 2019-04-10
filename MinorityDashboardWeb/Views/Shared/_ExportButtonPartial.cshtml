@@ -1,0 +1,13 @@
+﻿@using (Html.BeginForm("Export", "Base", FormMethod.Post))
+{
+    <input type="hidden" name="GridHtml" />
+    <input style="margin-left:15px;" type="submit" id="btnSubmit" value="Export" />
+}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+                        $(function () {
+                            $("#btnSubmit").click(function () {
+                                $("input[name='GridHtml']").val($("#Grid").html());
+                            });
+                        });
+</script>

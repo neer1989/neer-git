@@ -19,6 +19,7 @@ namespace MinorityDashboard.DataModel
         public string title_m { get; set; }
         public string file_name { get; set; }
         public string file_extension { get; set; }
+        public Nullable<System.DateTime> posted_date { get; set; }
         public Nullable<bool> isactive { get; set; }
         public Nullable<int> created_by { get; set; }
         public Nullable<System.DateTime> created_date { get; set; }

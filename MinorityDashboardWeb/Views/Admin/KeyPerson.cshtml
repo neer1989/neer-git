@@ -1,0 +1,169 @@
+﻿@model MinorityDashboardWeb.Models.KeyPersonModel
+@{
+    ViewBag.Title = "KeyPerson";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="card mx-1 mt-12">
+    <div class="card-header">Key Person</div>
+    <div class="card-body">
+
+        @using (Html.BeginForm("KeyPerson", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "myform" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            @Html.HiddenFor(s => s.keyperson_id)
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Name English</label>
+
+                        @Html.TextBoxFor(model => model.person_name_e, new { @class = "form-control", id = "person_name_e", placeholder = "Enter Name English", @maxlength = "100" })
+
+                        @Html.ValidationMessageFor(model => model.person_name_e)
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Name Marathi</label>
+
+                        @Html.TextBoxFor(model => model.person_name_m, new { @class = "form-control", id = "person_name_m", placeholder = "Enter Name Marathi", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.person_name_m)
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <label for="exampleInputName">Designation English</label>
+
+                        @Html.TextBoxFor(a => a.designation_e, new { @class = "form-control", id = "designation_e", placeholder = "Enter Designation English", @maxlength = "100" })
+
+                        @Html.ValidationMessageFor(model => model.designation_e)
+                    </div>
+                    <div class="col-md-4">
+
+                        <label for="exampleInputName">Designation Marathi</label>
+
+                        @Html.TextBoxFor(a => a.designation_m, new { @class = "form-control", id = "designation_m", placeholder = "Enter Designation English", @maxlength = "100" })
+
+                        @Html.ValidationMessageFor(model => model.designation_e)
+                    </div>
+                    <div class="col-md-4">
+
+                        <label for="exampleInputName">Display Order</label>
+
+                        @Html.TextBoxFor(a => a.display_order, new { @class = "form-control", id = "display_order", placeholder = "Enter Designation English", @maxlength = "10" })
+
+                        @Html.ValidationMessageFor(model => model.display_order)
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="exampleInputName"> File</label>
+                        @Html.TextBoxFor(a => a.File, new { @class = "form-control", @type = "file" })
+                        @Html.ValidationMessageFor(model => model.File)
+                    </div>
+
+                    <div class="col-md-1" style="margin-top:3%">
+                        <label for="exampleInputName">Is Active</label>
+
+                    </div>
+                    <div class="col-md-1" style="margin-top:3.5%">
+
+                        @Html.CheckBoxFor(model => model.isactive, new { @class = "form-control", id = "is_active" })
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+                        <label for="exampleInputName"></label>
+
+                        @if (Model.keyperson_id > 0)
+                        {
+                            <input type="submit" value="Update" class="btn btn-info btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                        }
+                        else
+                        {
+                            <input type="submit" value="Save" class="btn btn-info btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <a href=@Url.Action("KeyPerson","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-info btn-block">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+     
+
+
+    </div>
+</div>
+
+<br />
+<div class="container-fluid">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Key Person View
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name English</th>
+                        <th>Name Marathi</th>
+                        <th>Designation English</th>
+                        <th>Designation Marathi</th>
+                        <th>Display Order</th>
+                        <th>Images</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model.lstKeyPersonList != null)
+                    {
+                        foreach (var X in Model.lstKeyPersonList)
+                        {
+                            string docpath = "../../KeyPersonImages/" + X.person_image;
+                    <tr>
+                        <td>@X.keyperson_id </td>
+                        <td>@X.person_name_e</td>
+                        <td>@X.person_name_m</td>
+                        <td>@X.designation_e</td>
+                        <td>@X.designation_e</td>
+                        <td>@X.display_order</td>
+
+                        <td> <img class="img" src=@docpath style="width:50%;height:auto;" /></td>
+
+                        <td>
+
+                            <a href="@Url.Action("EditKeyPerson", "Admin",new { id = X.keyperson_id })" title="Edit Gallery">
+                                <i class="fa fa-edit btn_ico"></i>
+
+                            </a>
+
+
+                        </td>
+                    </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+

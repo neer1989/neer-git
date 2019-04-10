@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.SessionState;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using MinorityDashboard.Data.Repository;
+using MinorityDashboard.DataModel;
 //using MinorityDashboard.DataModel;
 using MinorityDashboard.Web.Models;
 using MinorityDashboardWeb;
@@ -15,22 +19,29 @@ using Unity;
 
 namespace MinorityDashboard.Web.Controllers
 {
+    [CustomExceptionFilter]
     public class AccountController : BaseController
     {
         // GET: Account
-        IDashboard objDashboard; // = new Dashboard();
+     //   IDashboard objDashboard; // = new Dashboard();
 
-        ILoginRegister objLR;  //= new LoginRegister();
+      //  ILoginRegister objLR;  //= new LoginRegister();
 
-        IUnityContainer unitycontainer = new UnityContainer();
-         
+       // IUnityContainer unitycontainer = new UnityContainer();
 
-        public AccountController()
+
+        private readonly IDashboard objDashboard;
+        private readonly ILoginRegister objLR;
+
+
+        public AccountController(IDashboard repository1, ILoginRegister repository2)
         {
-            unitycontainer.RegisterType<IDashboard, Dashboard>();
-            unitycontainer.RegisterType<ILoginRegister, LoginRegister>();
-            objDashboard = unitycontainer.Resolve<Dashboard>();
-            objLR = unitycontainer.Resolve<LoginRegister>();
+            objDashboard = repository1;
+            objLR = repository2;
+            //unitycontainer.RegisterType<IDashboard, Dashboard>();
+            //unitycontainer.RegisterType<ILoginRegister, LoginRegister>();
+            //objDashboard = unitycontainer.Resolve<Dashboard>();
+            //objLR = unitycontainer.Resolve<LoginRegister>();
         }
 
 
@@ -56,6 +67,18 @@ namespace MinorityDashboard.Web.Controllers
         {
             try
             {
+
+                if (string.IsNullOrEmpty(Convert.ToString(Session["RandomNo"])))
+                {
+                    Random randomclass = new Random();
+                    Session["RandomNo"] = Encrypt(randomclass.Next().ToString().Substring(0, 8));
+                }
+                if (string.IsNullOrEmpty(Convert.ToString(Session["AuthToken"])))
+                {
+                    string guid = Guid.NewGuid().ToString().Substring(0, 8);
+                    Session["AuthToken"] = Encrypt(guid);
+                }
+
                 // Verification.
                 if (this.Request.IsAuthenticated)
                 {
@@ -73,6 +96,47 @@ namespace MinorityDashboard.Web.Controllers
             return this.View();
         }
 
+        private void LoginTrail(string msgResult, string loginMode, string loginStatus,string UserId)
+        {
+            try
+            {
+
+                login_trail objLoginTrailModel = new login_trail();
+                objLoginTrailModel.userid = UserId; //GetUidbyClaim();
+                objLoginTrailModel.logintime = System.DateTime.Now;
+                objLoginTrailModel.loginmode = loginMode;
+                objLoginTrailModel.status = msgResult;
+                objLoginTrailModel.loginstatusreason = loginStatus;
+                objLoginTrailModel.ipaddress = GetIPAddress();               
+                objLR.InsertLoginTrail(objLoginTrailModel);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string GetIPAddress()
+        {
+            string IPAdd = string.Empty;
+            try
+            {
+
+                IPAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+                if (string.IsNullOrEmpty(IPAdd))
+                    IPAdd = Request.ServerVariables["REMOTE_ADDR"];
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            return IPAdd;
+        }
+
+
         /// <summary>
         /// POST: /Account/Login
         /// </summary>
@@ -86,6 +150,32 @@ namespace MinorityDashboard.Web.Controllers
         {
             try
             {
+
+                string originalpwd = string.Empty;
+                string strUserName = string.Empty;
+                string strPassword = string.Empty;
+                string strIpAddress = string.Empty;
+                string StrLast = string.Empty;
+                string strFirst = string.Empty;
+
+                strPassword = model.Password;
+
+                if (strPassword != "" || strPassword != string.Empty)
+                {
+                    StrLast = strPassword.Remove(strPassword.Length - 32).Trim();
+                    strFirst = StrLast.Substring(32).Trim();
+                    model.Password = strFirst.ToString().Trim();
+                    originalpwd = Session["RandomNo"] + "" + model.Password + "" + Session["AuthToken"];
+                }
+                ViewBag.ErrMessage = "";
+              
+
+                if (model.CaptchaOrg.Replace(" ", "") != model.CaptchIn)
+                {
+                    ViewBag.ErrMessage = "Captcha is not valid";
+                    return View();
+                }
+
                 // Verification.
                 if (ModelState.IsValid)
                 {
@@ -121,8 +211,8 @@ namespace MinorityDashboard.Web.Controllers
                             //  Session["MenuList"] = new CommonUtility().GetMainMenuList();
                             // Session["SubMenuList"] = new CommonUtility().GetSubMenuList();
                             //return RedirectToAction("Profile");
-
-                            if(logindetails.role_id==3)
+                            LoginTrail("Login Sucess", "Login", "Login Successful", model.Username);
+                            if (logindetails.role_id==3)
                             {
                                  return this.RedirectToAction("Index", "DistrictAdmin");
                             }
@@ -140,13 +230,14 @@ namespace MinorityDashboard.Web.Controllers
                     else
                     {
                         // Setting.
+                        LoginTrail("Id Password is wrong.", "Login", "Login Failed", model.Username);
                         ModelState.AddModelError(string.Empty, "Invalid username or password.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Info
+                LoginTrail("Error in Login.", "Login", "Login Failed", model.Username);
                 Console.Write(ex);
             }
 

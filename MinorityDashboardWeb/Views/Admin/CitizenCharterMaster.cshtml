@@ -1,0 +1,142 @@
+﻿@model MinorityDashboardWeb.Models.CitizenCharterModel
+
+@{
+    ViewBag.Title = "CitizenCharterMaster";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="card-header">Citizen Charter</div>
+    <div class="card-body">
+
+        @using (Html.BeginForm("CitizenCharterMaster", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "myform" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            @Html.HiddenFor(s => s.cc_id)
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Title English<span class="req">*</span></label>
+
+                        @Html.TextBoxFor(model => model.name_e, new { @class = "form-control", id = "name_e", placeholder = "Enter Tiltle English", @maxlength = "100" })
+
+                        @Html.ValidationMessageFor(model => model.name_e)
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Title Marathi<span class="req">*</span></label>
+
+                        @Html.TextBoxFor(model => model.name_m, new { @class = "form-control", id = "name_m", placeholder = "Enter Tiltle Marathi", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.name_m)
+
+                    </div>
+
+
+               
+
+                    <div class="col-md-6">
+                        <label for="exampleInputName"> File<span class="req">*</span></label>
+                        @Html.TextBoxFor(a => a.File, new { @class = "form-control", @type = "file" })
+                        @Html.ValidationMessageFor(model => model.File)
+                    </div>
+
+                    <div class="col-md-1" style="margin-top:3%">
+                        <label for="exampleInputName">Is Active</label>
+
+                    </div>
+                    <div class="col-md-1" style="margin-top:3.5%">
+
+                        @Html.CheckBoxFor(model => model.isactive, new { @class = "form-control", id = "is_active" })
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+                        <label for="exampleInputName"></label>
+
+                        @if (Model.cc_id > 0)
+                        {
+                            <input type="submit" value="Update" class="btn btn-info btn-block" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                        }
+                        else
+                        {
+                            <input type="submit" value="Save" class="btn btn-info btn-block" style="margin-top:7px; width: 50%;float: right;" />
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <a href=@Url.Action("CitizenCharterMaster","Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-info btn-block">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+      
+
+    </div>
+</div>
+
+<br />
+
+<div class="container-fluid">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Citizen Charter View
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title English</th>
+                        <th>Title Marathi</th>
+                   
+                        <th>File</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model.lstCitizenCharterList != null)
+                    {
+                        foreach (var X in Model.lstCitizenCharterList)
+                        {
+                            string docpath = "../../CitizenCharterFiles/" + X.file_path;
+                            <tr>
+                                <td>@X.cc_id </td>
+                                <td>@X.name_e</td>
+                                <td>@X.name_m</td>
+                               
+
+                                <td>  <a href=@HttpUtility.UrlPathEncode(docpath)  target="_blank" > Download </a>  @*<img class="img" src=@docpath style="width:50%;height:auto;" />*@</td>
+
+                                <td>
+
+                                    <a href="@Url.Action("EditCitizenCharter", "Admin",new { id = X.cc_id })" title="Edit Gallery">
+                                        <i class="fa fa-edit btn_ico"></i>
+
+                                    </a>
+
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="card mx-1 mt-12">
+<div class="container-fluid">
     <div class="card-header">Scheme Master</div>
 
     @using (Html.BeginForm("SchemeMaster", "Admin", FormMethod.Post, new { id = "myform" }))
@@ -94,7 +94,7 @@
 
 @if (Model.lstSchems != null)
 {
-    <div class="card mb-3">
+    <div class="container-fluid">
         <div class="card-header">
             <i class="fa fa-table"></i> Scheme View
         </div>

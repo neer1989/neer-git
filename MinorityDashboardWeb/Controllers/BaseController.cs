@@ -10,17 +10,20 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
 namespace MinorityDashboard.Web.Controllers
 {
+    [CustomExceptionFilter]
     public class BaseController : Controller
     {
         IDashboard objDashboard = new Dashboard();
         IMenuManager objMenuManager = new MenuManager();
         IDistrictAdmin objDistrictAdmin = new DistrictAdmin();
-
+        IRoleManager objRoleManager = new RoleManager();
         //private static string _cookieLangName = "LangChange";
 
         // GET: Base
@@ -267,6 +270,19 @@ namespace MinorityDashboard.Web.Controllers
             return lstddl;
         }
 
+
+        public List<SelectListItem> BindReporingmanagerOrg()
+        {
+            List<org_structure> lst = objDashboard.GetOrgList();
+            List<SelectListItem> lstddl = new List<SelectListItem>();
+            lstddl.Add(new SelectListItem() { Value = "0", Text = "Select" });
+            foreach (org_structure X in lst)
+            {
+                lstddl.Add(new SelectListItem() { Value = X.employee_id.ToString(), Text = X.name +"('"+X.designation+"')" });
+            }
+            return lstddl;
+        }
+
         public List<SelectListItem> BlankSelectItem()
         {
             SelectListItem sli = new SelectListItem();
@@ -275,6 +291,18 @@ namespace MinorityDashboard.Web.Controllers
             List<SelectListItem> lst = new List<SelectListItem>();
             lst.Add(sli);
             return lst;
+        }
+
+        public List<SelectListItem> BindRole()
+        {
+            List<role_master> lst = objRoleManager.GetRole();
+            List<SelectListItem> lstddl = new List<SelectListItem>();
+            lstddl.Add(new SelectListItem() { Value = "0", Text = "Select" });
+            foreach (role_master X in lst)
+            {
+                lstddl.Add(new SelectListItem() { Value = X.role_id.ToString(), Text = X.role_name });
+            }
+            return lstddl;
         }
 
         public ActionResult AccessDenied()
@@ -343,6 +371,13 @@ namespace MinorityDashboard.Web.Controllers
             List<Claim> lst = HttpContext.GetOwinContext().Authentication.User.Claims.ToList();
 
             return Convert.ToInt32(lst[2].Value);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public FileResult Export(string GridHtml)
+        {
+            return File(Encoding.ASCII.GetBytes(GridHtml), "application/vnd.ms-excel", "Grid.xls");
         }
 
 
@@ -448,6 +483,24 @@ namespace MinorityDashboard.Web.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+        public ActionResult AdminError()
+        {
+            return View();
+        }
+
+        public static string Encrypt(string input)
+        {
+            byte[] inputArray = UTF8Encoding.UTF8.GetBytes(input);
+            TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
+            // tripleDES.Key = UTF8Encoding.UTF8.GetBytes(key);
+            tripleDES.Mode = CipherMode.ECB;
+            tripleDES.Padding = PaddingMode.PKCS7;
+            ICryptoTransform cTransform = tripleDES.CreateEncryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
+            tripleDES.Clear();
+            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

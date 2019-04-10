@@ -60,82 +60,14 @@ namespace MinorityDashboardWeb.Models
 
     public class Desk
     {
-       
-    }
-
-    public class GRModel
-    {
-        public int gr_id { get; set; }
-        public string keywords_e { get; set; }
-        public string keywords_m { get; set; }
-        public DateTime gr_date { get; set; }
-
-
-        public DateTime grfrom_date { get; set; }
-        public DateTime grto_date { get; set; }
-
-
-        public string unique_code_e { get; set; }
-        public string unique_code_m { get; set; }
-        public bool isactive { get; set; }
-        [Display(Name = "Browse File")]
-        public HttpPostedFileBase[] GrFile { get; set; }
-
-        public List<grdetail> lstGRList { get; set; }
 
     }
-
-    public class LatestNews
-    {
-        public int latest_news_id { get; set; }
-        public string latest_news_e { get; set; }
-        public string latest_news_m { get; set; }
-
-        public string news_description_e { get; set; }
-        public string news_description_m { get; set; }
-        public DateTime news_date { get; set; }
-        public bool isactive { get; set; }
-
-        public List<latest_news> lstLatestNews { get; set; }
-
-    }
+    
+   
 
 
-    public class SchemeModel
-    {
-        public int scheme_id { get; set; }
-        public string scheme_name { get; set; }
-        public string scheme_description { get; set; }
-        public int sub_id { get; set; }
-        public int desk_id { get; set; }
-        public List<SelectListItem> lstSubject { get; set; }
-        public List<SelectListItem> lstDesk { get; set; }
-        public List<GetSchemeData_Result> lstSchems { get; set; }
-
-        public List<parentscheme> lstParentScheme { get; set; }
-        public List<scheme_child1> lstChildScheme1 { get; set; }
-        public List<scheme_child2> lstChildScheme2 { get; set; }
-        public List<scheme_child3> lstChildScheme3 { get; set; }
-        public List<GetSchemeDesc_Result> lstSchemeDesc { get; set; }
-
-        public int parent_scheme_id { get; set; }
-        public int scheme_id_child1 { get; set; }
-        public int scheme_id_child2 { get; set; }
-        public int scheme_id_child3 { get; set; }
-        public string scheme_description_e { get; set; }
-        public string scheme_description_m { get; set; }
-        public int scheme_des_id { get; set; }
-
-
-        public List<SelectListItem> ddlParentScheme { get; set; }
-        public List<SelectListItem> ddlChildScheme1 { get; set; }
-        public List<SelectListItem> ddlChildScheme2 { get; set; }
-        public List<SelectListItem> ddlChildScheme3 { get; set; }
-
-
-    }
-
-   public class SchemeAmtAllotment
+    
+    public class SchemeAmtAllotment
     {
 
         public int parent_scheme_id { get; set; }
@@ -176,7 +108,7 @@ namespace MinorityDashboardWeb.Models
         public string des_name { get; set; }
     }
 
-   public class FinancialYearCount
+    public class FinancialYearCount
     {
         public decimal D1FY2017_18 { get; set; }
         public decimal D1FY2018_19 { get; set; }
@@ -189,7 +121,7 @@ namespace MinorityDashboardWeb.Models
 
         public decimal D4FY2017_18 { get; set; }
         public decimal D4FY2018_19 { get; set; }
-    
+
         public decimal D5FY2017_18 { get; set; }
         public decimal D5FY2018_19 { get; set; }
 
@@ -207,7 +139,7 @@ namespace MinorityDashboardWeb.Models
 
     }
 
-   public class ImgGallery
+    public class ImgGallery
     {
         public int gallery_id { get; set; }
         public string title { get; set; }

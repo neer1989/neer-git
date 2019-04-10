@@ -34,7 +34,15 @@
     </script>
     <!-- start-smooth-scrolling -->
 
-    
+    <style type="text/css">
+        .input-validation-error {
+            border: 1px solid #ff0000 !important;
+        }
+
+        .field-validation-error {
+            color: #ff0000;
+        }
+    </style>
 
 </head>
 <body>
@@ -151,7 +159,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-4">
                 <ul class="nav navbar-nav navbar">
                     <li> <a href=@Url.Action("Index","Website")>@LanguageResources.HomeContent.lblHome</a></li>
-                    <li> <a href=@Url.Action("About","Website")>@LanguageResources.HomeContent.lblAbout</a></li>
+                    @*<li> <a href=@Url.Action("About","Website")>@LanguageResources.HomeContent.lblAbout</a></li>*@
                     <li> <a href=@Url.Action("CitizenCharter","Website")>@LanguageResources.HomeContent.lblCitizenCharter</a></li>
                     <li> <a href=@Url.Action("Schemes","Website")>@LanguageResources.HomeContent.lblSchemes</a></li>
                     <li> <a href=@Url.Action("GRandAct","Website")>@LanguageResources.HomeContent.lblGRAct</a></li>
@@ -181,6 +189,7 @@
     <!-- //navigation -->
     <!-- banner -->
     @RenderBody()
+
 
     @*<footer>
             <div class="container">
@@ -223,7 +232,7 @@
                 </div>
             </div>
         </footer>*@
-
+    @RenderSection("scripts", required: false)
 
     <footer>
 

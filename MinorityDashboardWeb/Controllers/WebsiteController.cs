@@ -26,6 +26,8 @@ namespace MinorityDashboardWeb.Controllers
 
         public ActionResult Index()
         {
+           
+
             var url = Request.RawUrl;
             if (url == @"/")
             {
@@ -43,9 +45,13 @@ namespace MinorityDashboardWeb.Controllers
 
         public ActionResult Home()
         {
-            LatestNews LNObj = new LatestNews();
-            LNObj.lstLatestNews = objDashboard.GetLatestNewsList();
-            return View(LNObj);
+            HomeModel HObj = new HomeModel();
+            HObj.lstLatestNews = objDashboard.GetLatestNewsList().Where(s => s.isactive == true).OrderByDescending(s =>s.latest_news_id).ToList();
+            HObj.lstKeyPerson = objDashboard.GetKeyPerson().Where(s => s.isactive == true).OrderBy(s => s.display_order).ToList();
+            HObj.lstFrontSlider = objDashboard.GetFrontSlider().Where(s => s.isactive == true).OrderBy(s => s.slide_order).ToList();
+            HObj.lstAdvertisementList = objDashboard.GetAdvertisement().Where(s => s.isactive == true).OrderByDescending(s => s.adv_id).ToList();
+
+            return View(HObj);
         }
 
         public ActionResult About()
@@ -55,7 +61,9 @@ namespace MinorityDashboardWeb.Controllers
 
         public ActionResult CitizenCharter()
         {
-            return View();
+            HomeModel HObj = new HomeModel();
+            HObj.lstCitizenCharterList = objDashboard.GetCitizenCharter().Where(s=> s.isactive==true).OrderByDescending(s => s.cc_id).ToList();
+            return View(HObj);
         }
 
 
@@ -80,26 +88,28 @@ namespace MinorityDashboardWeb.Controllers
             return View(GRM);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult GRandAct(GRModel obj)
         {
             GRModel GRM = new GRModel();
-
-            GRM.grfrom_date = DateTime.Now;
-            GRM.grto_date = DateTime.Now;
-
             GRM.lstGRList = objDashboard.GetGRList();
-
-            if (obj.keywords_e != "" && obj.keywords_e != null)
+            if (ModelState.IsValid)
             {
-                GRM.lstGRList = GRM.lstGRList.Where(s => s.unique_code_e == obj.keywords_e).ToList();
-            }
-            if (Convert.ToString(obj.grfrom_date) != "")
-            {
-                GRM.lstGRList = GRM.lstGRList.Where(s => s.gr_date>= obj.grfrom_date).ToList();
-            }
-            if (Convert.ToString(obj.grto_date) != "")
-            {
-                GRM.lstGRList = GRM.lstGRList.Where(s => s.gr_date <= obj.grto_date).ToList();
+                GRM.grfrom_date = DateTime.Now;
+                GRM.grto_date = DateTime.Now;
+                
+                if (obj.keywords_e != "" && obj.keywords_e != null)
+                {
+                    GRM.lstGRList = GRM.lstGRList.Where(s => s.unique_code_e == obj.keywords_e).ToList();
+                }
+                if (Convert.ToString(obj.grfrom_date) != "")
+                {
+                    GRM.lstGRList = GRM.lstGRList.Where(s => s.gr_date >= obj.grfrom_date).ToList();
+                }
+                if (Convert.ToString(obj.grto_date) != "")
+                {
+                    GRM.lstGRList = GRM.lstGRList.Where(s => s.gr_date <= obj.grto_date).ToList();
+                }
             }
 
             return View(GRM);
@@ -107,12 +117,29 @@ namespace MinorityDashboardWeb.Controllers
 
         public ActionResult OrganizationStructure()
         {
+           
             return View();
+        }
+        public JsonResult OrganizationList()
+        {
+            List<org_structure> lstorg = objDashboard.GetOrgList().Where(s =>s.isactive==true).ToList();
+
+
+            List<object> chartData = new List<object>();
+
+
+            string jdata = Json(lstorg).ToString();
+
+            return Json(lstorg, JsonRequestBehavior.AllowGet);
+           
         }
 
         public ActionResult Gallery()
         {
-            return View();
+            GalleryModel gm = new GalleryModel();
+            gm.posted_date = DateTime.Now;
+            gm.lstGalleryList = objDashboard.GetGalleryList().Where(s => s.isactive==true).ToList();
+            return View(gm);
         }
 
         public ActionResult NewsRoom()

@@ -54,7 +54,6 @@
         border-collapse: separate !important;
         border-radius: 5px;
         font-size: 1.4rem;
-        
     }
 
     .btn-primary {
@@ -64,7 +63,8 @@
     }
 
     .btn {
-        padding: .175rem .75rem;
+        padding: 8px;
+        border-radius: 5px;
     }
 </style>
 
@@ -73,8 +73,10 @@
 <div class="container">
     <div class="content">
 
-        @using (Html.BeginForm("GRandAct", "Website", FormMethod.Post))
+        @using (Html.BeginForm("GRandAct", "Website", FormMethod.Post, new { @id = "GRandActFormId", @class = "form-horizontal", role = "form" }))
         {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
             <div class="row">
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 brd-left pleft25">
@@ -93,22 +95,24 @@
 
                 </div>
             </div>
-            <div class="row">
+            <div class="form-group">
                 <div class="col-md-4">
-                    <label for="grfrom_date">From Date</label>
+                    <label for="grfrom_date">From Date<span class="req">*</span></label>
                     @Html.TextBoxFor(a => a.grfrom_date, "", new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(a => a.grfrom_date)
                 </div>
                 <div class="col-md-4">
-                    <label for="grto_date">To Date</label>
+                    <label for="grto_date">To Date<span class="req">*</span></label>
                     @Html.TextBoxFor(a => a.grto_date, "", new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(a => a.grto_date)
                 </div>
 
                 <div class="col-md-4">
 
-                    <label for="unique_code_e">Unique Code</label>
+                    <label for="unique_code_e">Unique Code<span class="req">*</span></label>
 
                     @Html.TextBoxFor(a => a.unique_code_e, "", new { @class = "form-control", @maxlength = "20" })
-
+                    @Html.ValidationMessageFor(a => a.unique_code_e)
 
                 </div>
 
@@ -116,7 +120,7 @@
             <div class="clear">
             </div>
 
-            <div class="row">
+            <div class="form-group">
 
                 <div class="col-md-6">
                     <label for="exampleInputName"></label>
@@ -130,40 +134,42 @@
             </div>
 
         }
-            <br />
-            <br />
-            <div class="row">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
+        <br />
+        <br />
+        <div class="row">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead style="background:#42A5F5; color:#fff; vertical-align:middle">
+                            <tr>
+                                <th width="35%">Title English</th>
+                                <th width="35%">Title Marathi</th>
+                                <th width="15%">Unique Code</th>
+                                <th width="15%">Download GR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var X in Model.lstGRList)
+                            {
+                                string docpath = "../../GRFiles/" + X.gr_file;
                                 <tr>
-                                    <th>Title English</th>
-                                    <th>Title Marathi</th>
-                                    <th>Unique Code</th>
-                                    <th>Download GR</th>
+                                    <td>@X.keywords_e</td>
+                                    <td>@X.keywords_m</td>
+                                    <td>@X.unique_code_e</td>
+                                    <td> <a target="_blank" href=@HttpUtility.UrlPathEncode(docpath) > Download </a></td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var X in Model.lstGRList)
-                                {
-                                    string docpath = "../../GRFiles/" + X.gr_file;
-                                    <tr>
-                                        <td>@X.keywords_e</td>
-                                        <td>@X.keywords_m</td>
-                                        <td>@X.unique_code_e</td>
-                                        <td> <a target="_blank" href=@docpath> Download </a></td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
 
 </div>
-
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+        }
 <script type="text/javascript">
     $(function () {
         $('#grfrom_date').datepicker({
@@ -180,3 +186,7 @@
 
     });
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="../../Scripts/jquery.validate.unobtrusive.js"></script>
+

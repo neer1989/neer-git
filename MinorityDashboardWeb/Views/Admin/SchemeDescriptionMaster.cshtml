@@ -12,14 +12,11 @@
     }
 </style>
 
-
-@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />*@
-
-<div class="card mx-1 mt-12">
+<div class="container-fluid">
 
     <div class="nav-tabs-custom">
-        <ul class="nav nav-tabs" id="ulclr">
-            <li class="btnxxx activetab"><a href="#fa-icons" data-toggle="tab" class="btn btn-info">Insert Data</a></li>
+        <ul class="nav" id="ulclr">
+            <li class="btnxxx"><a href="#fa-icons" data-toggle="tab" class="btn btn-info">Insert Data</a></li>
             <li class="btnxxx"><a href="#glyphicons" data-toggle="tab" class="btn btn-info">View Data</a></li>
         </ul>
         <div class="tab-content">
@@ -33,37 +30,42 @@
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="exampleInputName">Parent Scheme</label>
+                                    <label for="exampleInputName">Parent Scheme<span class="req">*</span></label>
                                     @Html.DropDownListFor(s => s.parent_scheme_id, Model.ddlParentScheme, new { @class = "form-control" })
-
+                                    @Html.ValidationMessageFor(model => model.parent_scheme_id)
                                 </div>
                                 <div class="col-md-6">
 
-                                    <label for="exampleInputName">Scheme Child1</label>
+                                    <label for="exampleInputName">Scheme Child1<span class="req">*</span></label>
                                     @Html.DropDownListFor(s => s.scheme_id_child1, Model.ddlChildScheme1, new { @class = "form-control" })
-
-                                    @*<select class="form-control" data-val="true" data-val-number="The field scheme_id_child1 must be a number." data-val-required="The scheme_id_child1 field is required." id="scheme_id_child1" name="scheme_id_child1">
-                                            <option selected="selected" value="0">Select</option>
-                                        </select>*@
-
+                                    @Html.ValidationMessageFor(model => model.ddlChildScheme1)
 
                                 </div>
+                              
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-row">
-                                <div class="col-md-6">
-                                    <label for="exampleInputName">Scheme Child2</label>
+                                <div class="col-md-5">
+                                    <label for="exampleInputName">Scheme Child2<span class="req">*</span></label>
                                     @Html.DropDownListFor(s => s.scheme_id_child2, Model.ddlChildScheme2, new { @class = "form-control" })
 
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-5">
 
-                                    <label for="exampleInputName">Scheme Child3</label>
+                                    <label for="exampleInputName">Scheme Child3<span class="req">*</span></label>
                                     @Html.DropDownListFor(s => s.scheme_id_child3, Model.ddlChildScheme3, new { @class = "form-control" })
 
+                                </div>
 
+                                <div class="col-md-1" style="margin-top:3%">
+                                    <label for="exampleInputName">Is Active</label>
+
+                                </div>
+                                <div class="col-md-1" style="margin-top:3.5%">
+
+                                    @Html.CheckBoxFor(model => model.isactive, new { @class = "form-control", id = "is_active" })
                                 </div>
                             </div>
                         </div>
@@ -72,7 +74,7 @@
                             <div class="form-row">
 
                                 <div class="col-md-12">
-                                    <label for="exampleInputName">Scheme Description English</label>
+                                    <label for="exampleInputName">Scheme Description English<span class="req">*</span></label>
                                     @Html.TextAreaFor(model => model.scheme_description_e, new { @class = "form-control", id = "scheme_description_e", placeholder = "Enter Description English", name = "scheme_description_e", rows = "10", cols = "80" })
 
                                 </div>
@@ -82,7 +84,7 @@
                             <div class="form-row">
 
                                 <div class="col-md-12">
-                                    <label for="exampleInputName">Scheme Description Marathi</label>
+                                    <label for="exampleInputName">Scheme Description Marathi<span class="req">*</span></label>
                                     @Html.TextAreaFor(model => model.scheme_description_m, new { @class = "form-control", id = "scheme_description_m", placeholder = "Enter Description Marathi", name = "scheme_description_m", rows = "10", cols = "80" })
 
                                 </div>
@@ -105,7 +107,7 @@
                                     }
                                 </div>
                                 <div class="col-md-6">
-                                    <a href=@Url.Action("SchemeMaster", "Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-info btn-block">Cancel</a>
+                                    <a href=@Url.Action("SchemeDescriptionMaster", "Admin") style="margin-top:7px;width: 50%;float: left;" class="btn btn-info btn-block">Cancel</a>
                                 </div>
                             </div>
                         </div>

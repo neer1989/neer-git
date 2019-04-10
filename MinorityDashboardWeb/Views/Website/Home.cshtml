@@ -1,7 +1,10 @@
-﻿@model MinorityDashboardWeb.Models.LatestNews
+﻿@model MinorityDashboardWeb.Models.HomeModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+
+    int age = 10;
+    string name = "dfvgd";
 }
 
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
@@ -18,18 +21,38 @@
             <div id="banner-section">
                 <div class="carousel">
                     <div class="carousel-inner">
-                        <div class="slide active">
-                            <img src="../SliderImages/sliderImg1.jpg">
-                        </div>
-                        <div class="slide">
-                            <img src="../SliderImages/sliderImg2.jpg">
-                        </div>
-                        <div class="slide active">
-                            <img src="../SliderImages/sliderImg1.jpg">
-                        </div>
-                        <div class="slide">
-                            <img src="../SliderImages/sliderImg2.jpg">
-                        </div>
+
+
+                        @if (Model != null)
+                        {
+                            if (Model.lstFrontSlider.Count > 0)
+                            {
+                                var i = 0;
+                                foreach (var X in Model.lstFrontSlider)
+                                {
+
+                                    string csscls = i == 0 ? "slide active" : "slide";
+
+                                    string docpath = "../../SliderImages/" + X.slider_img;
+
+                                    <div class=@csscls>
+                                        <img src=@docpath height="1920" width="480">
+                                    </div>
+
+                                    i++;
+                                }
+                            }
+
+                        }
+                        @*<div class="slide">
+                                <img src="../SliderImages/sliderImg2.jpg">
+                            </div>
+                            <div class="slide active">
+                                <img src="../SliderImages/sliderImg1.jpg">
+                            </div>
+                            <div class="slide">
+                                <img src="../SliderImages/sliderImg2.jpg">
+                            </div>*@
 
                     </div>
                     <div class="arrow arrow-left"></div>
@@ -40,41 +63,54 @@
         <div class="col-md-3">
             <ul class="event-list">
 
-                <li>
-                    <img src="../../Website_Assets/images/master/cm.jpg">
-                    <div class="info">
-                        <h3 class="title">Devendra Fadnavis</h3>
-                        <p class="desc">Chief Minister of Maharashtra</p>
-                    </div>
-                </li>
+                @if (Model != null)
+                {
+                    if (Model.lstKeyPerson.Count > 0)
+                    {
+                        foreach (var X in Model.lstKeyPerson)
+                        {
+                            string docpath = "../../KeyPersonImages/" + X.person_image;
+                            <li>
 
-                <li>
-                    <img src="../../Website_Assets/images/master/smm.png">
-                    <div class="info">
-                        <h3 class="title">Vinod Tawde</h3>
-                        <p class="desc">State Minister of Maharashtra</p>
-                    </div>
-                </li>
+                                <img src=@docpath height="86" width="86">
+                                <div class="info">
+                                    <h3 class="title">@X.person_name_m</h3>
+                                    <p class="desc">@X.designation_m</p>
+                                </div>
+                            </li>
+                        }
+                    }
+
+                }
+
+                @*<li>
+                        <img src="../../Website_Assets/images/master/smm.png">
+                        <div class="info">
+                            <h3 class="title">Vinod Tawde</h3>
+                            <p class="desc">State Minister of Maharashtra</p>
+                        </div>
+                    </li>
 
 
-                <li>
-                    <img src="../../Website_Assets/images/master/dilip.jpg">
-                    <div class="info">
-                        <h3 class="title">Dilip Kamble</h3>
-                        <p class="desc">Social Justice & Special Assistance Department of Maharashtra</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="../../Website_Assets/images/master/PS.jpg">
-                    <div class="info">
-                        <h3 class="title">Shyam Tagde</h3>
-                        <p class="desc">Principal Secretry of Minority Department</p>
-                    </div>
-                </li>
+                    <li>
+                        <img src="../../Website_Assets/images/master/dilip.jpg">
+                        <div class="info">
+                            <h3 class="title">Dilip Kamble</h3>
+                            <p class="desc">Social Justice & Special Assistance Department of Maharashtra</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../../Website_Assets/images/master/PS.jpg">
+                        <div class="info">
+                            <h3 class="title">Shyam Tagde</h3>
+                            <p class="desc">Principal Secretry of Minority Department</p>
+                        </div>
+                    </li>*@
             </ul>
         </div>
     </div>
 </div>
+
 
 <div class="clear-fix"></div>
 
@@ -140,33 +176,24 @@
     <div class="container">
         <h2>Advertisement</h2>
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <ul>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक<span><img src="../Website_Assets/images/new_arrow.gif" fastezt_runtime_already="1"></span></a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक</a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक<span><img src="../Website_Assets/images/new_arrow.gif" fastezt_runtime_already="1"></span></a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक</a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक<span><img src="../Website_Assets/images/new_arrow.gif" fastezt_runtime_already="1"></span></a></li>
-                </ul>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <ul>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक<span><img src="../Website_Assets/images/new_arrow.gif" fastezt_runtime_already="1"></span></a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक</a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक<span><img src="../Website_Assets/images/new_arrow.gif" fastezt_runtime_already="1"></span></a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक</a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक<span><img src="../Website_Assets/images/new_arrow.gif" fastezt_runtime_already="1"></span></a></li>
-                </ul>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <ul>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक<span><img src="../Website_Assets/images/new_arrow.gif" fastezt_runtime_already="1"></span></a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक</a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक<span><img src="../Website_Assets/images/new_arrow.gif" fastezt_runtime_already="1"></span></a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक</a></li>
-                    <li class="add"><a href="#">अल्पसंख्याक लोकसमुहाच्या सामाजिक<span><img src="../Website_Assets/images/new_arrow.gif" fastezt_runtime_already="1"></span></a></li>
-                </ul>
-            </div>
+
+            @if (Model.lstAdvertisementList != null)
+            {
+                foreach (var x in Model.lstAdvertisementList)
+                {
+                    string docpath = "../../AdvertisementFiles/" + x.file_name;
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <a class="add" target="_blank" href=@HttpUtility.UrlPathEncode(docpath)>@x.adv_title_m<span><img src="../Website_Assets/images/new_arrow.gif" fastezt_runtime_already="1"></span></a>
+                    </div>
+
+                   
+                }
+
+            }
+
+         
+
+
         </div>
     </div>
 </div>

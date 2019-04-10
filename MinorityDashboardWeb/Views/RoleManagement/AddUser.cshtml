@@ -1,8 +1,165 @@
-﻿
+﻿@model MinorityDashboard.Web.Models.LoginModel
 @{
     ViewBag.Title = "AddUser";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    string RandNo = Convert.ToString(Session["RandomNo"]);
+    string StrGuid = Convert.ToString(Session["AuthToken"]);
+
 }
+<script src="../../Scripts/login.js"></script>
+<script src="../../Scripts/core-min.js"></script>
+<script src="../../Scripts/encryptpassword.js"></script>
+<script src="../../Scripts/sha256.js"></script>
 
-<h2>AddUser</h2>
+<div class="container-fluid">
+    <div class="card-header">Add User</div>
+    <div class="card-body">
 
+        @using (Html.BeginForm("AddUser", "RoleManagement", FormMethod.Post, new { enctype = "multipart/form-data", id = "myform" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.Hidden("RandomNumer", RandNo)
+            @Html.Hidden("AuthToken", StrGuid)
+            @Html.HiddenFor(s => s.Id)
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Employee Name<span class="req">*</span></label>
+
+                        @Html.TextBoxFor(model => model.EmployeeName, new { @class = "form-control", id = "EmployeeName", placeholder = "Enter Employee Name", @maxlength = "100" })
+
+                        @Html.ValidationMessageFor(model => model.EmployeeName)
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Login User Name<span class="req">*</span></label>
+
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", id = "UserName", placeholder = "Enter User Name", @maxlength = "100" })
+
+                        @Html.ValidationMessageFor(model => model.UserName)
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Email Id<span class="req">*</span></label>
+
+                        @Html.TextBoxFor(model => model.EmailID, new { @class = "form-control", id = "EmailID", placeholder = "Enter Email Id", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.EmailID)
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Role<span class="req">*</span></label>
+
+                        @Html.DropDownListFor(model => model.Role_Id, Model.ddlRoleMaster, new { @class = "form-control", id = "Role_Id", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.Role_Id)
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Password<span class="req">*</span></label>
+
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "Password", placeholder = "Enter Password", @maxlength = "200" })
+                        @Html.ValidationMessageFor(model => model.Password)
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputName">Password Confirm<span class="req">*</span></label>
+
+                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", id = "ConfirmPassword", placeholder = "Enter Confirm", @maxlength = "200" })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+
+                    </div>
+                    <div class="col-md-1" style="margin-top:3%">
+                        <label for="exampleInputName">Is Active</label>
+
+                    </div>
+                    <div class="col-md-1" style="margin-top:3.5%">
+
+                        @Html.CheckBoxFor(model => model.isactive, new { @class = "form-control", id = "is_active" })
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+
+                    <div class="col-md-6">
+                        <label for="exampleInputName"></label>
+
+                        @if (Model.Id > 0)
+                        {
+                            <input type="submit" value="Update" class="btn btn-info btn-block" onclick="EncryptionPwdReg()" style="margin-top:7px;background-color: #e4670b;width: 50%;float: right;" />
+                        }
+                        else
+                        {
+                            <input type="submit" value="Save" class="btn btn-info btn-block" onclick="EncryptionPwdReg()" style="margin-top:7px; width: 50%;float: right;" />
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <a href=@Url.Action("AddUser","RoleManagement") style="margin-top:7px;width: 50%;float: left;" class="btn btn-info btn-block">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<br />
+
+<div class="container-fluid">
+    <div class="card-header">
+        <i class="fa fa-table"></i> User Details View
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Employee Name</th>
+                        <th>User Name</th>
+                        <th>Email Id</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model.lstLoginUser != null)
+                    {
+                        foreach (var X in Model.lstLoginUser)
+                        {
+                            <tr>
+                                <td>@X.id </td>
+                                <td>@X.employee_name</td>
+                                <td>@X.username </td>
+                                <td>@X.email_id </td>
+                                <td>
+                                    <a href="@Url.Action("EditUser", "RoleManagement",new { id = X.id })" title="Edit User">
+                                        <i class="fa fa-edit btn_ico"></i>
+
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

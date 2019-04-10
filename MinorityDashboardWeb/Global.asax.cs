@@ -1,4 +1,6 @@
-﻿using System;
+﻿//using MinorityDashboardWeb.App_Start;
+using MinorityDashboardWeb;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -21,7 +23,7 @@ namespace MinorityDashboard.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Role;
-
+            UnityConfig.RegisterComponents();
         }
 
         protected void Application_BeginRequest()

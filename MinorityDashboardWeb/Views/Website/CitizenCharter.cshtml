@@ -1,4 +1,4 @@
-﻿
+﻿@model MinorityDashboardWeb.Models.HomeModel
 @{
     ViewBag.Title = "CitizenCharter";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
@@ -31,42 +31,34 @@
                                 <table class="table table-hover table-bordered" style="margin-bottom:0px;">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Name of Department/Office by whom service are provided</th>
-                                            <th>Period to provide service after fulfillment of all required documents</th>
-                                            <th>Service provider Officer/Employee</th>
-                                            <th>Name of officer and telephone No to made complaint if service not provided in time.</th>
+                                            <th>Sr No</th>
+                                            <th>Name English</th>
+                                            <th>Name Marathi</th>
+                                            <th>File</th>
+                                          
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Financial assistance to purchase the shares of co-op. sugar factory to SC/Navboudha & marginal farmers</td>
-                                            <td>Once proposals received from co-op. sugar factory and as per the availability of grants in the current financial year</td>
-                                            <td>Commissioner of Sugar</td>
-                                            <td>Sugar	Secretary (Co-Operation) 022-22025283</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Benifits under Schemes of sugarcane development Fund / sugar development Fund</td>
-                                            <td>After 7 days from the sanction of the proposals of sugar factories</td>
-                                            <td>Commissioner of Sugar</td>
-                                            <td>Secretary (Co-Operation) 022-22025283</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Registration of Co-operative Sugar Factories</td>
-                                            <td>2 months</td>
-                                            <td>Commissioner of Sugar</td>
-                                            <td>Secretary (Co-Operation) 022-22025283</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Financial assistance to purchase the shares of co-op. sugar factory to SC/Navboudha & marginal farmers</td>
-                                            <td>Once proposals received from co-op. sugar factory and as per the availability of grants in the current financial year</td>
-                                            <td>Commissioner of Sugar</td>
-                                            <td>Sugar	Secretary (Co-Operation) 022-22025283</td>
-                                        </tr>
+                                        @if (Model.lstCitizenCharterList != null)
+                                        {
+                                            foreach (var X in Model.lstCitizenCharterList)
+                                            {
+                                                string docpath = "../../CitizenCharterFiles/" + X.file_path;
+                                                <tr>
+                                                    <td>@X.cc_id </td>
+                                                    <td>@X.name_e</td>
+                                                    <td>@X.name_m</td>
+
+
+                                                    <td>  <a href=@HttpUtility.UrlPathEncode(docpath) target="_blank"> Download </a>  @*<img class="img" src=@docpath style="width:50%;height:auto;" />*@</td>
+
+                                                
+                                                </tr>
+                                            }
+                                        }
+
+
+                                      
                                     </tbody>
                                 </table>
                             </fieldset>

@@ -93,8 +93,15 @@ body.fixed-nav {
 #mainNav .navbar-collapse .navbar-sidenav .sidenav-third-level > li > a {
   display: block;
   padding: 0.5em 0;
+  color: #fff;
 }
 
+    #mainNav .navbar-collapse .navbar-sidenav .sidenav-second-level > li > a:hover,
+    #mainNav .navbar-collapse .navbar-sidenav .sidenav-third-level > li > a:hover {
+        display: block;
+        padding: 0.5em 0;
+        color: #00E5FF !important;
+    }
 #mainNav .navbar-collapse .navbar-sidenav .sidenav-second-level > li > a:focus, #mainNav .navbar-collapse .navbar-sidenav .sidenav-second-level > li > a:hover,
 #mainNav .navbar-collapse .navbar-sidenav .sidenav-third-level > li > a:focus,
 #mainNav .navbar-collapse .navbar-sidenav .sidenav-third-level > li > a:hover {
@@ -340,6 +347,10 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link:hover {
   color: #adb5bd;
+  background: #2F5671;
+  color: #fff;
+  font-weight: 500;
+    }
 }
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a,
@@ -368,10 +379,11 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a:focus, #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a:hover {
     color: white;
   }
-  #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level,
-  #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level {
-    background: #343a40;
-  }
+    #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level,
+    #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level {
+        background: #265a7e;
+        color:#fff;
+    }
 }
 
 #mainNav.navbar-light .navbar-collapse .navbar-sidenav .nav-link-collapse:after {

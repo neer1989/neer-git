@@ -5,6 +5,34 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MinorityDasboard_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="advertisement_master">
+          <Key>
+            <PropertyRef Name="adv_id" />
+          </Key>
+          <Property Name="adv_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adv_title_e" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="adv_title_m" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="file_name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="isactive" Type="bit" Nullable="false" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="citizen_charter">
+          <Key>
+            <PropertyRef Name="cc_id" />
+          </Key>
+          <Property Name="cc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_e" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="name_m" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="file_path" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="isactive" Type="bit" Nullable="false" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
         <EntityType Name="desk_master">
           <Key>
             <PropertyRef Name="desk_id" />
@@ -101,6 +129,16 @@
           <Property Name="updated_by" Type="int" />
           <Property Name="updated_date" Type="datetime" />
         </EntityType>
+        <EntityType Name="error_log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExceptionMessage" Type="nvarchar(max)" />
+          <Property Name="ControllerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ExceptionStackTrace" Type="nvarchar(max)" />
+          <Property Name="LogTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="estimation_master">
           <Key>
             <PropertyRef Name="est_id" />
@@ -123,6 +161,21 @@
           <Property Name="updated_by" Type="int" />
           <Property Name="updated_date" Type="datetime" />
         </EntityType>
+        <EntityType Name="front_slider">
+          <Key>
+            <PropertyRef Name="slider_id" />
+          </Key>
+          <Property Name="slider_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title_e" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="title_m" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="slider_img" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="slide_order" Type="int" />
+          <Property Name="isactive" Type="bit" Nullable="false" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
         <EntityType Name="gallery_master">
           <Key>
             <PropertyRef Name="gallery_id" />
@@ -132,6 +185,7 @@
           <Property Name="title_m" Type="nvarchar" MaxLength="2500" />
           <Property Name="file_name" Type="nvarchar" MaxLength="2000" Nullable="false" />
           <Property Name="file_extension" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="posted_date" Type="datetime" />
           <Property Name="isactive" Type="bit" />
           <Property Name="created_by" Type="int" />
           <Property Name="created_date" Type="datetime" />
@@ -167,6 +221,23 @@
           <Property Name="updatedby" Type="int" />
           <Property Name="updateddate" Type="datetime" />
         </EntityType>
+        <EntityType Name="keyperson_master">
+          <Key>
+            <PropertyRef Name="keyperson_id" />
+          </Key>
+          <Property Name="keyperson_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="person_name_e" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="person_name_m" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="designation_e" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="designation_m" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="person_image" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="display_order" Type="int" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
         <EntityType Name="latest_news">
           <Key>
             <PropertyRef Name="latest_news_id" />
@@ -188,9 +259,31 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="email_id" Type="nvarchar" MaxLength="150" />
           <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="role_id" Type="int" Nullable="false" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_by" Type="int" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="login_trail">
+          <Key>
+            <PropertyRef Name="logintrailid" />
+          </Key>
+          <Property Name="logintrailid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="nvarchar" MaxLength="150" />
+          <Property Name="username" Type="nvarchar" MaxLength="500" />
+          <Property Name="logintime" Type="datetime" />
+          <Property Name="loginmode" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="ipaddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="loginstatusreason" Type="nvarchar" MaxLength="500" />
+          <Property Name="logintimedisplay" Type="nvarchar" MaxLength="500" />
+          <Property Name="logouttime" Type="datetime" />
         </EntityType>
         <EntityType Name="main_menu_master">
           <Key>
@@ -231,13 +324,13 @@
         </EntityType>
         <EntityType Name="org_structure">
           <Key>
-            <PropertyRef Name="org_id" />
+            <PropertyRef Name="employee_id" />
           </Key>
-          <Property Name="org_id" Type="int" Nullable="false" />
-          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="designation" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="reporting_manager" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="reporting_manager" Type="int" />
+          <Property Name="reporting_manager_name" Type="nvarchar" MaxLength="250" />
           <Property Name="isactive" Type="bit" />
           <Property Name="created_by" Type="int" />
           <Property Name="created_date" Type="datetime" />
@@ -459,8 +552,10 @@
           <Parameter Name="username" Type="nvarchar" Mode="In" />
           <Parameter Name="pageurl" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="district_GetUsedSchemeAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetDeskDocuments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetDeskTransactionData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSchemeAmountAllocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetSchemeData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetSchemeDesc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PSchemeID" Type="int" Mode="In" />
@@ -487,19 +582,25 @@
           <Parameter Name="password" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="MinorityDasboard_DBModelStoreContainer">
+          <EntitySet Name="advertisement_master" EntityType="Self.advertisement_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="citizen_charter" EntityType="Self.citizen_charter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="desk_master" EntityType="Self.desk_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="deskdata_trans" EntityType="Self.deskdata_trans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="deskdata_trans_bak" EntityType="Self.deskdata_trans_bak" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="deskdocuments" EntityType="Self.deskdocuments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="district_master" EntityType="Self.district_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="district_scheme_details" EntityType="Self.district_scheme_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="error_log" EntityType="Self.error_log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="estimation_master" EntityType="Self.estimation_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="financialyear_master" EntityType="Self.financialyear_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="front_slider" EntityType="Self.front_slider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="gallery_master" EntityType="Self.gallery_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="grdetails" EntityType="Self.grdetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="implementation_agency_master" EntityType="Self.implementation_agency_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="keyperson_master" EntityType="Self.keyperson_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="latest_news" EntityType="Self.latest_news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="login_trail" EntityType="Self.login_trail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="main_menu_master" EntityType="Self.main_menu_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="menu_master" EntityType="Self.menu_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="menu_role_mapping" EntityType="Self.menu_role_mapping" Schema="dbo" store:Type="Tables" />
@@ -616,7 +717,6 @@
           </FunctionImport>
           <EntitySet Name="menu_role_mapping" EntityType="MinorityDasboard_DBModel.menu_role_mapping" />
           <FunctionImport Name="GetSchemeData" ReturnType="Collection(MinorityDasboard_DBModel.GetSchemeData_Result)" />
-          <EntitySet Name="org_structure" EntityType="MinorityDasboard_DBModel.org_structure" />
           <AssociationSet Name="FK_login" Association="MinorityDasboard_DBModel.FK_login">
             <End Role="role_master" EntitySet="role_master" />
             <End Role="login" EntitySet="logins" />
@@ -654,7 +754,16 @@
           </FunctionImport>
           <EntitySet Name="grdetails" EntityType="MinorityDasboard_DBModel.grdetail" />
           <EntitySet Name="latest_news" EntityType="MinorityDasboard_DBModel.latest_news" />
+          <FunctionImport Name="GetSchemeAmountAllocation" ReturnType="Collection(MinorityDasboard_DBModel.GetSchemeAmountAllocation_Result)" />
+          <FunctionImport Name="district_GetUsedSchemeAmount" ReturnType="Collection(MinorityDasboard_DBModel.district_GetUsedSchemeAmount_Result)" />
           <EntitySet Name="gallery_master" EntityType="MinorityDasboard_DBModel.gallery_master" />
+          <EntitySet Name="org_structure" EntityType="MinorityDasboard_DBModel.org_structure" />
+          <EntitySet Name="front_slider" EntityType="MinorityDasboard_DBModel.front_slider" />
+          <EntitySet Name="keyperson_master" EntityType="MinorityDasboard_DBModel.keyperson_master" />
+          <EntitySet Name="advertisement_master" EntityType="MinorityDasboard_DBModel.advertisement_master" />
+          <EntitySet Name="citizen_charter" EntityType="MinorityDasboard_DBModel.citizen_charter" />
+          <EntitySet Name="error_log" EntityType="MinorityDasboard_DBModel.error_log" />
+          <EntitySet Name="login_trail" EntityType="MinorityDasboard_DBModel.login_trail" />
         </EntityContainer>
         <EntityType Name="estimation_master">
           <Key>
@@ -775,6 +884,13 @@
           <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="role_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="role_master" Relationship="MinorityDasboard_DBModel.FK_login" FromRole="login" ToRole="role_master" />
+          <Property Name="employee_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="email_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
         </EntityType>
         <ComplexType Name="LoginByUsernamePassword_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -865,21 +981,6 @@
           <Property Type="String" Name="sub_name" Nullable="true" />
         </ComplexType>
         <ComplexType Name="ComplexType1" />
-        <EntityType Name="org_structure">
-          <Key>
-            <PropertyRef Name="org_id" />
-          </Key>
-          <Property Name="org_id" Type="Int32" Nullable="false" />
-          <Property Name="employee_id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="designation" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="reporting_manager" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="isactive" Type="Boolean" />
-          <Property Name="created_by" Type="Int32" />
-          <Property Name="created_date" Type="DateTime" Precision="3" />
-          <Property Name="updated_by" Type="Int32" />
-          <Property Name="updated_date" Type="DateTime" Precision="3" />
-        </EntityType>
         <Association Name="FK_login">
           <End Type="MinorityDasboard_DBModel.role_master" Role="role_master" Multiplicity="1" />
           <End Type="MinorityDasboard_DBModel.login" Role="login" Multiplicity="*" />
@@ -952,21 +1053,22 @@
           <Property Name="updated_date" Type="DateTime" Precision="3" />
         </EntityType>
         <ComplexType Name="GetSchemeDesc_Result">
-          <Property Type="String" Name="parent_schemename_m" Nullable="false" MaxLength="1000" />
-          <Property Type="String" Name="child1_schemename_e" Nullable="false" MaxLength="1000" />
-          <Property Type="String" Name="child1_schemename_m" Nullable="false" MaxLength="1000" />
-          <Property Type="String" Name="child2_schemename_e" Nullable="false" MaxLength="1000" />
-          <Property Type="String" Name="child2_schemename_m" Nullable="false" MaxLength="1000" />
-          <Property Type="String" Name="child3_schemename_e" Nullable="false" MaxLength="1000" />
-          <Property Type="String" Name="child3_schemename_m" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="parent_schemename_m" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="child1_schemename_e" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="child1_schemename_m" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="child2_schemename_e" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="child2_schemename_m" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="child3_schemename_e" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="child3_schemename_m" Nullable="true" MaxLength="1000" />
           <Property Type="Int32" Name="scheme_des_id" Nullable="false" />
           <Property Type="String" Name="scheme_description_e" Nullable="false" />
           <Property Type="String" Name="scheme_description_m" Nullable="false" />
-          <Property Type="String" Name="parent_schemename_e" Nullable="false" MaxLength="1000" />
-          <Property Type="Int32" Name="parent_scheme_id" Nullable="false" />
-          <Property Type="Int32" Name="scheme_id_child1" Nullable="false" />
-          <Property Type="Int32" Name="scheme_id_child2" Nullable="false" />
-          <Property Type="Int32" Name="scheme_id_child3" Nullable="false" />
+          <Property Type="String" Name="parent_schemename_e" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="parent_scheme_id" Nullable="true" />
+          <Property Type="Int32" Name="scheme_id_child1" Nullable="true" />
+          <Property Type="Int32" Name="scheme_id_child2" Nullable="true" />
+          <Property Type="Int32" Name="scheme_id_child3" Nullable="true" />
+          <Property Type="Boolean" Name="isactive" Nullable="true" />
         </ComplexType>
         <EntityType Name="scheme_child3">
           <Key>
@@ -1153,6 +1255,57 @@
           <Property Name="updated_by" Type="Int32" />
           <Property Name="updated_date" Type="DateTime" Precision="3" />
         </EntityType>
+        <ComplexType Name="GetSchemeAmountAllocation_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="des_name" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="fin_y_id" Nullable="false" />
+          <Property Type="Int32" Name="parent_scheme_id" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child1" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child2" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child3" Nullable="false" />
+          <Property Type="Int32" Name="imp_agency_id" Nullable="false" />
+          <Property Type="Int32" Name="des_id" Nullable="true" />
+          <Property Type="Decimal" Name="budgetary_provision_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="actual_allocation_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="child1_schemename_e" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="child1_schemename_m" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="child2_schemename_e" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="child2_schemename_m" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="child3_schemename_e" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="child3_schemename_m" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="parent_schemename_e" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="parent_schemename_m" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="fin_y_name" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="district_GetUsedSchemeAmount_Result">
+          <Property Type="Int32" Name="des_id" Nullable="false" />
+          <Property Type="String" Name="des_name" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="fin_y_id" Nullable="false" />
+          <Property Type="Int32" Name="parent_scheme_id" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child1" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child2" Nullable="false" />
+          <Property Type="Int32" Name="scheme_id_child3" Nullable="false" />
+          <Property Type="Int32" Name="imp_agency_id" Nullable="false" />
+       
+          <Property Type="Decimal" Name="budgetary_provision_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="actual_allocation_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="actual_expenditure_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="actual_remaining_amt" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="work_progress_desc" Nullable="true" />
+          <Property Type="String" Name="file_upload" Nullable="true" MaxLength="1500" />
+          <Property Type="String" Name="utilization_certificate" Nullable="true" MaxLength="1500" />
+       
+          <Property Type="String" Name="parent_schemename_e" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="parent_schemename_m" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="agency_name" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="child1_schemename_e" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="child1_schemename_m" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="child2_schemename_e" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="child2_schemename_m" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="child3_schemename_e" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="child3_schemename_m" Nullable="false" MaxLength="1000" />
+        </ComplexType>
         <EntityType Name="gallery_master">
           <Key>
             <PropertyRef Name="gallery_id" />
@@ -1162,11 +1315,112 @@
           <Property Name="title_m" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
           <Property Name="file_name" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="file_extension" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="posted_date" Type="DateTime" Precision="3" />
           <Property Name="isactive" Type="Boolean" />
           <Property Name="created_by" Type="Int32" />
           <Property Name="created_date" Type="DateTime" Precision="3" />
           <Property Name="updated_by" Type="Int32" />
           <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="org_structure">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="designation" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="reporting_manager" Type="Int32" />
+          <Property Name="reporting_manager_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="front_slider">
+          <Key>
+            <PropertyRef Name="slider_id" />
+          </Key>
+          <Property Name="slider_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title_e" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="title_m" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="slider_img" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="slide_order" Type="Int32" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="keyperson_master">
+          <Key>
+            <PropertyRef Name="keyperson_id" />
+          </Key>
+          <Property Name="keyperson_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="person_name_e" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="person_name_m" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="designation_e" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="designation_m" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="person_image" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="display_order" Type="Int32" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="created_by" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="advertisement_master">
+          <Key>
+            <PropertyRef Name="adv_id" />
+          </Key>
+          <Property Name="adv_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adv_title_e" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="adv_title_m" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="file_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="citizen_charter">
+          <Key>
+            <PropertyRef Name="cc_id" />
+          </Key>
+          <Property Name="cc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_e" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="name_m" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="file_path" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="error_log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExceptionMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionStackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="login_trail">
+          <Key>
+            <PropertyRef Name="logintrailid" />
+          </Key>
+          <Property Name="logintrailid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="logintime" Type="DateTime" Precision="3" />
+          <Property Name="loginmode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ipaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="loginstatusreason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="logintimedisplay" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="logouttime" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1368,6 +1622,13 @@
           <EntitySetMapping Name="logins">
             <EntityTypeMapping TypeName="MinorityDasboard_DBModel.login">
               <MappingFragment StoreEntitySet="login">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="employee_name" ColumnName="employee_name" />
                 <ScalarProperty Name="role_id" ColumnName="role_id" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="username" ColumnName="username" />
@@ -1479,22 +1740,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="org_structure">
-            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.org_structure">
-              <MappingFragment StoreEntitySet="org_structure">
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="isactive" ColumnName="isactive" />
-                <ScalarProperty Name="reporting_manager" ColumnName="reporting_manager" />
-                <ScalarProperty Name="designation" ColumnName="designation" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
-                <ScalarProperty Name="org_id" ColumnName="org_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="parentschemes">
             <EntityTypeMapping TypeName="MinorityDasboard_DBModel.parentscheme">
               <MappingFragment StoreEntitySet="parentscheme">
@@ -1576,6 +1821,7 @@
                 <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
                 <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
                 <ScalarProperty Name="scheme_id_child3" ColumnName="scheme_id_child3" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1790,6 +2036,65 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetSchemeAmountAllocation" FunctionName="MinorityDasboard_DBModel.Store.GetSchemeAmountAllocation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.GetSchemeAmountAllocation_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="des_name" ColumnName="des_name" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
+                <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
+                <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
+                <ScalarProperty Name="scheme_id_child3" ColumnName="scheme_id_child3" />
+                <ScalarProperty Name="imp_agency_id" ColumnName="imp_agency_id" />
+                <ScalarProperty Name="des_id" ColumnName="des_id" />
+                <ScalarProperty Name="budgetary_provision_amt" ColumnName="budgetary_provision_amt" />
+                <ScalarProperty Name="actual_allocation_amt" ColumnName="actual_allocation_amt" />
+                <ScalarProperty Name="child1_schemename_e" ColumnName="child1_schemename_e" />
+                <ScalarProperty Name="child1_schemename_m" ColumnName="child1_schemename_m" />
+                <ScalarProperty Name="child2_schemename_e" ColumnName="child2_schemename_e" />
+                <ScalarProperty Name="child2_schemename_m" ColumnName="child2_schemename_m" />
+                <ScalarProperty Name="child3_schemename_e" ColumnName="child3_schemename_e" />
+                <ScalarProperty Name="child3_schemename_m" ColumnName="child3_schemename_m" />
+                <ScalarProperty Name="parent_schemename_e" ColumnName="parent_schemename_e" />
+                <ScalarProperty Name="parent_schemename_m" ColumnName="parent_schemename_m" />
+                <ScalarProperty Name="fin_y_name" ColumnName="fin_y_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="district_GetUsedSchemeAmount" FunctionName="MinorityDasboard_DBModel.Store.district_GetUsedSchemeAmount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MinorityDasboard_DBModel.district_GetUsedSchemeAmount_Result">
+                <ScalarProperty Name="des_id" ColumnName="des_id" />
+                <ScalarProperty Name="des_name" ColumnName="des_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fin_y_id" ColumnName="fin_y_id" />
+                <ScalarProperty Name="parent_scheme_id" ColumnName="parent_scheme_id" />
+                <ScalarProperty Name="scheme_id_child1" ColumnName="scheme_id_child1" />
+                <ScalarProperty Name="scheme_id_child2" ColumnName="scheme_id_child2" />
+                <ScalarProperty Name="scheme_id_child3" ColumnName="scheme_id_child3" />
+                <ScalarProperty Name="imp_agency_id" ColumnName="imp_agency_id" />
+              
+                <ScalarProperty Name="budgetary_provision_amt" ColumnName="budgetary_provision_amt" />
+                <ScalarProperty Name="actual_allocation_amt" ColumnName="actual_allocation_amt" />
+                <ScalarProperty Name="actual_expenditure_amt" ColumnName="actual_expenditure_amt" />
+                <ScalarProperty Name="actual_remaining_amt" ColumnName="actual_remaining_amt" />
+                <ScalarProperty Name="work_progress_desc" ColumnName="work_progress_desc" />
+                <ScalarProperty Name="file_upload" ColumnName="file_upload" />
+                <ScalarProperty Name="utilization_certificate" ColumnName="utilization_certificate" />
+               
+                <ScalarProperty Name="parent_schemename_e" ColumnName="parent_schemename_e" />
+                <ScalarProperty Name="parent_schemename_m" ColumnName="parent_schemename_m" />
+                <ScalarProperty Name="agency_name" ColumnName="agency_name" />
+                <ScalarProperty Name="child1_schemename_e" ColumnName="child1_schemename_e" />
+                <ScalarProperty Name="child1_schemename_m" ColumnName="child1_schemename_m" />
+                <ScalarProperty Name="child2_schemename_e" ColumnName="child2_schemename_e" />
+                <ScalarProperty Name="child2_schemename_m" ColumnName="child2_schemename_m" />
+                <ScalarProperty Name="child3_schemename_e" ColumnName="child3_schemename_e" />
+                <ScalarProperty Name="child3_schemename_m" ColumnName="child3_schemename_m" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="gallery_master">
             <EntityTypeMapping TypeName="MinorityDasboard_DBModel.gallery_master">
               <MappingFragment StoreEntitySet="gallery_master">
@@ -1798,11 +2103,119 @@
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
                 <ScalarProperty Name="created_by" ColumnName="created_by" />
                 <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="posted_date" ColumnName="posted_date" />
                 <ScalarProperty Name="file_extension" ColumnName="file_extension" />
                 <ScalarProperty Name="file_name" ColumnName="file_name" />
                 <ScalarProperty Name="title_m" ColumnName="title_m" />
                 <ScalarProperty Name="title_e" ColumnName="title_e" />
                 <ScalarProperty Name="gallery_id" ColumnName="gallery_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="org_structure">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.org_structure">
+              <MappingFragment StoreEntitySet="org_structure">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="reporting_manager_name" ColumnName="reporting_manager_name" />
+                <ScalarProperty Name="reporting_manager" ColumnName="reporting_manager" />
+                <ScalarProperty Name="designation" ColumnName="designation" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="front_slider">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.front_slider">
+              <MappingFragment StoreEntitySet="front_slider">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="slide_order" ColumnName="slide_order" />
+                <ScalarProperty Name="slider_img" ColumnName="slider_img" />
+                <ScalarProperty Name="title_m" ColumnName="title_m" />
+                <ScalarProperty Name="title_e" ColumnName="title_e" />
+                <ScalarProperty Name="slider_id" ColumnName="slider_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="keyperson_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.keyperson_master">
+              <MappingFragment StoreEntitySet="keyperson_master">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="display_order" ColumnName="display_order" />
+                <ScalarProperty Name="person_image" ColumnName="person_image" />
+                <ScalarProperty Name="designation_m" ColumnName="designation_m" />
+                <ScalarProperty Name="designation_e" ColumnName="designation_e" />
+                <ScalarProperty Name="person_name_m" ColumnName="person_name_m" />
+                <ScalarProperty Name="person_name_e" ColumnName="person_name_e" />
+                <ScalarProperty Name="keyperson_id" ColumnName="keyperson_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="advertisement_master">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.advertisement_master">
+              <MappingFragment StoreEntitySet="advertisement_master">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="adv_title_m" ColumnName="adv_title_m" />
+                <ScalarProperty Name="adv_title_e" ColumnName="adv_title_e" />
+                <ScalarProperty Name="adv_id" ColumnName="adv_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="citizen_charter">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.citizen_charter">
+              <MappingFragment StoreEntitySet="citizen_charter">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="file_path" ColumnName="file_path" />
+                <ScalarProperty Name="name_m" ColumnName="name_m" />
+                <ScalarProperty Name="name_e" ColumnName="name_e" />
+                <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="error_log">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.error_log">
+              <MappingFragment StoreEntitySet="error_log">
+                <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+                <ScalarProperty Name="ExceptionStackTrace" ColumnName="ExceptionStackTrace" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ExceptionMessage" ColumnName="ExceptionMessage" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="login_trail">
+            <EntityTypeMapping TypeName="MinorityDasboard_DBModel.login_trail">
+              <MappingFragment StoreEntitySet="login_trail">
+                <ScalarProperty Name="logouttime" ColumnName="logouttime" />
+                <ScalarProperty Name="logintimedisplay" ColumnName="logintimedisplay" />
+                <ScalarProperty Name="loginstatusreason" ColumnName="loginstatusreason" />
+                <ScalarProperty Name="ipaddress" ColumnName="ipaddress" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="loginmode" ColumnName="loginmode" />
+                <ScalarProperty Name="logintime" ColumnName="logintime" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="logintrailid" ColumnName="logintrailid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
