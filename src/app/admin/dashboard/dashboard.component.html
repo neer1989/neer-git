@@ -1,0 +1,63 @@
+<p>
+  dashboard works!
+</p>
+
+<ul>
+<li>{{ Name }}</li>
+<li>{{ Designation }}</li>
+<li>{{ MobileNo }}</li>
+ <li>{{ MobileNo }}</li>
+
+</ul>
+
+<ul>
+
+  <li  *ngFor="let x of DeveloperList" >
+    {{x=="A"? "Neer" : x}}
+  
+  </li>
+
+</ul>
+
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+
+    <li *ngFor="let X of DropdownList"> <a  (change)="DDLChange($event)" > {{ X }} </a> </li>
+
+    <!-- <li><a href="#">HTML</a></li>
+    <li><a href="#">CSS</a></li>
+    <li><a href="#">JavaScript</a></li> -->
+  </ul>
+
+  <select  (change) ="DDLChange($event)"  >
+      <option value="0">--All--</option> 
+    <option *ngFor="let ddl of DropdownList" value="{{ddl}}" >
+
+      {{ ddl }}
+    </option>
+  </select>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>EmpName</th>
+        <th>TypeN</th>
+        <th>Scientific</th>
+      </tr>
+    </thead>
+
+  
+    <tbody>
+      <tr *ngFor="let X of EmployeeList">
+        <td>{{X.ID}}</td>
+        <td>{{X.EmpName}}</td>
+        <td>{{X.TypeN}}</td>
+        <td>{{X.Scientific}}</td>
+      </tr>
+     
+    </tbody>
+  </table>
+</div>
+

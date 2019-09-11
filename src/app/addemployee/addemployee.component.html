@@ -1,0 +1,65 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="reactiveForm" novalidate  >
+      <div class="form-group">
+        <label class="col-md-4">First Name</label>       
+        <input type="text" class="form-control"  formControlName="firstname" #firstname  />
+      </div>
+     
+      <div class="form-group">
+        <label class="col-md-4">Last Description </label>
+        <input type="text" class="form-control"  formControlName="lastname"  />
+      </div>
+    
+      <div class="form-group">
+        <label class="col-md-4">Email ID</label>
+        <input type="text" class="form-control"  formControlName="emailid"  />
+      </div>
+    
+
+      <div class="form-group">
+        <label class="col-md-4">Message</label>       
+        <input type="text" class="form-control"  formControlName="message"  />
+      </div>
+     
+      <div class="form-group">
+        <label class="col-md-4">Contact No </label>
+        <input type="text" class="form-control"  formControlName="contactno"  />
+      </div>
+    
+      <div class="form-group">
+        <label class="col-md-4">Password</label>
+        <input type="text" class="form-control"  formControlName="password"  />
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary"  (click)="addEmployee()" >
+          Save Employee
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>FirstName</th>
+      <th>Last Name</th>
+      <th>Email Id</th>
+      <th>Message</th>
+      <th>Contact No</th>
+      <th>Password</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+
+    <tr>
+
+    </tr>
+    </tbody>
+    </table> -->
